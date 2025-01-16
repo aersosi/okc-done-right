@@ -1,0 +1,25 @@
+{
+  "name": "ae-okc-utils",
+  "module": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "watch-build-css": "nodemon --watch ./src --ext css --exec 'bun run src/_build/build_CSS.js && bun build ./src/index.js --outdir ./dist'",
+    "watch-build-js": "nodemon --watch ./src --ext js --exec 'bun run src/_build/build_JS.js && bun build ./src/index.js --outdir ./dist'",
+    "clean": "rm -rf dist && rm -rf dist_js && rm -rf dist_styles",
+    "build-inject-css": "bun run src/_build/build_CSS.js",
+    "build-inject-js": "bun run src/_build/build_JS.js",
+    "dist": "bun build ./src/index.js --outdir ./dist",
+    "dist-minify": "bun build ./src/index.js --outdir ./dist --minify",
+    "dist-all": "bun run clean && bun run build-inject-css && bun run build-inject-js && bun run dist",
+    "dist-all-minify": "bun run clean && bun run build-inject-css && bun run build-inject-js && bun run dist-minify"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "nodemon": "^3.1.9"
+  }
+}

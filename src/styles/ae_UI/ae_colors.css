@@ -1,0 +1,10 @@
+:root {
+    --primary: #aa00cc;
+    --primary-accent: white;
+    --secondary: #e2cfe6;
+    --secondary-accent: #1a1b1c;
+    --tertiary: #f0e6f2;
+    --tertiary-accent: #1a1b1c;
+    --error: #f44336;
+    --error-accent: white;
+}

@@ -1,0 +1,19 @@
+/* Hide Section if only headline is present */
+#ae_UI_section_hiddenUsers:has(#ae_UI_body_hiddenUsers:empty) {
+    /*if parent has empty child #ae_UI_body_hiddenUsers hide parent*/
+    display: none;
+}
+
+#ae_UI_body_hiddenUsers {
+    overflow-y: auto;
+    max-height: 12rem;
+}
+
+#ae_UI_body_tools {
+    overflow-y: hidden;
+    max-height: 12rem;
+}
+
+label[for="input_notCity"] {
+    padding-block: 0.25rem;
+}

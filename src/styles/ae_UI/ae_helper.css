@@ -1,0 +1,28 @@
+.not-online,
+.hidden {
+    display: none !important;
+}
+
+
+.height-0 {
+    max-height: 0 !important;
+    padding-block: 0 !important;
+    margin-block: 0 !important;
+}
+
+.opacity-10 {
+    opacity: 0.1;
+}
+
+.opacity-25 {
+    opacity: 0.25;
+}
+
+.opacity-50 {
+    opacity: 0.5;
+}
+
+.pointer-events-none {
+    pointer-events: none !important;
+    cursor: not-allowed !important;
+}

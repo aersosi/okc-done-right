@@ -1,0 +1,13 @@
+export function inject_script(inject, id = "injected-script", logConsole = false) {
+  let scriptElement = document.getElementById(id);
+  if (scriptElement) {
+    logConsole && console.error(`Script with ID "${id}" already exists.`);
+    return;
+  }
+
+  const script = document.createElement("script");
+  script.id = id; // Assign an ID for easy identification
+  script.textContent = inject;
+
+  if (document.head) document.head.appendChild(script);
+}
