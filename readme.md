@@ -33,9 +33,9 @@
 ### Setup Dev Environment
 
 1. Same as above (Step 1-7)
-2. After `bun run dist-all` run both commands in separate terminal:
-   - First `bun run watch-build-js`
-   - Then `bun run watch-build-css` 
+2. After `bun run dist-all` (Step 5) run both commands in separate terminal:
+   - `bun run watch-build-js`
+   - `bun run watch-build-css` 
 3. Changes in CSS and JS are watched and built automatically
 4. Open **okcupid.com** and _enjoy your enhanced interface_!
 5. Sorry, no hot reload yet.
