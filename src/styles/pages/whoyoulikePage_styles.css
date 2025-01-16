@@ -10,7 +10,35 @@
 /* Wrapper for Block and Hide buttons in user-cards*/
 .dr_OKC_wrapper_userCard_blockHide {
     display: flex;
-    gap: 1rem;
-    align-items: center;
+    justify-content: space-between;
     margin-block-start: 0.5rem;
+    width: 105%;
+}
+
+/* overrides to improve OKC UI */
+
+.userrows-content-main {
+    left: 0;
+}
+
+.userrow-bucket-display-card,
+.userthumb img.userthumb-img,
+.userrow-bucket-display-card > div:first-child {
+    width: 220px;
+}
+
+.superlike-button-scene--round, .superlike-button-scene--roundLarge, .superlike-button-scene--roundSmall,
+.superlike-button-face-front, .superlike-button-face-back {
+    width: 60px;
+    height: 32px;
+    margin-block-end: 0.5rem;
+}
+
+.userInfo--center {
+    padding: 1.25rem 0 !important;
+}
+
+.userrow-bucket-display-card {
+    border-radius: 1rem !important;
+    overflow: hidden;
 }

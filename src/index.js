@@ -1,8 +1,9 @@
 import { init_element, inject_script, inject_stylesheetToHead, observe_URLChanges, waitForElement } from "./core";
 
 import { inject_interceptGraphQL } from "../dist_js/inject_interceptGraphQL.js";
+import { inject_matchPercent } from "../dist_js/inject_matchPercent.js";
 import { okc_overrides } from "../dist_styles/okc_overrides.js";
-import { dr_colors } from "../dist_styles/dr_colors.js";
+import { dr_variables } from "../dist_styles/dr_variables.js";
 import { dr_elements } from "../dist_styles/dr_elements.js";
 import { dr_UI_sections } from "../dist_styles/dr_UI_sections.js";
 import { dr_UI } from "../dist_styles/dr_UI.js";
@@ -22,8 +23,9 @@ import { init_discover_UI } from "./features/DiscoverPage/init_discover_UI.js";
       URL_includes: "okcupid.com",
       document_interactive: [
         () => inject_script(inject_interceptGraphQL, "inject_interceptGraphQL"),
+        () => inject_script(inject_matchPercent, "inject_matchPercent"),
         () => inject_stylesheetToHead(okc_overrides, "okc_overrides"),
-        () => inject_stylesheetToHead(dr_colors, " dr_colors"),
+        () => inject_stylesheetToHead(dr_variables, " dr_variables"),
         () => inject_stylesheetToHead(dr_elements, " dr_elements"),
         () => inject_stylesheetToHead(dr_UI, " dr_UI"),
         () => inject_stylesheetToHead(dr_helper, "dr_helper"),

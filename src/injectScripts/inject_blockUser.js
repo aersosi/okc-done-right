@@ -50,7 +50,6 @@
     // Timeout to avoid infinite intervals in case of an error.
     setTimeout(() => {
       clearInterval(closeConfirmationModal);
-      console.error("Timeout while waiting for the confirmation modal.");
     }, 5000);
   });
 

@@ -30,7 +30,7 @@ export function clickBlockBtn(event) {
     .find(button => button.innerText.includes("BLOCK"));
 
   if (!blockButton) {
-    console.error("[clickBlockBtn] Block button not found in the modal.");
+    console.error("Block button not found in the modal.");
     return;
   }
 
@@ -45,14 +45,13 @@ export function clickBlockBtn(event) {
     if (closeButton) {
       clearInterval(closeConfirmationModal);
       closeButton.dispatchEvent(clickEvent);
-      console.debug("[clickBlockBtn] Successfully blocked the user.");
+      console.debug("Successfully blocked the user.");
     }
   }, 100);
 
   // Timeout to avoid infinite intervals in case of an error.
   setTimeout(() => {
     clearInterval(closeConfirmationModal);
-    console.error("[clickBlockBtn] Timeout while waiting for the confirmation modal.");
-  }, 5000); // Adjust timeout duration as needed.
+  }, 5000);
 
 }

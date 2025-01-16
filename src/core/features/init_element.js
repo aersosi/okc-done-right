@@ -12,7 +12,6 @@ export function init_element(parentElement, elementName, elementClasses, element
 
   const element = document.createElement(elementName);
 
-
   if (elementClasses) element.classList.add(...elementClasses.split(" "));
   if (elementID) element.id = elementID;
   if (elementText) element.textContent = elementText;
