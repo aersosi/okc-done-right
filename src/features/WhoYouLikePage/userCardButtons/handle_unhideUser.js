@@ -1,14 +1,14 @@
 export function handle_unhideUser(event, logConsole = false) {
-  const userId = event.target.closest(".ae_UI_row")?.dataset.okcUserId;
+  const userId = event.target.closest(".dr_UI_row")?.dataset.okcUserId;
   if (!userId) {
-    console.error("No 'data-okc-user-id' found on '.ae_UI_row' element.");
+    console.error("No 'data-okc-user-id' found on '.dr_UI_row' element.");
     return;
   }
 
   // Safely parse hidden users from localStorage
   const hiddenUsers = (() => {
     try {
-      return JSON.parse(localStorage.getItem("ae_hiddenUsers")) || {};
+      return JSON.parse(localStorage.getItem("dr_hiddenUsers")) || {};
     } catch (error) {
       console.error("Failed to parse hidden users from localStorage:", error);
       return {};
@@ -18,7 +18,7 @@ export function handle_unhideUser(event, logConsole = false) {
   // Remove userId from hiddenUsers
   if (hiddenUsers[userId]) {
     delete hiddenUsers[userId];
-    localStorage.setItem("ae_hiddenUsers", JSON.stringify(hiddenUsers));
+    localStorage.setItem("dr_hiddenUsers", JSON.stringify(hiddenUsers));
     logConsole && console.log(`User ID "${userId}" removed from hidden users.`);
   } else {
     logConsole && console.log(`User ID "${userId}" not found in hidden users.`);
@@ -35,8 +35,8 @@ export function handle_unhideUser(event, logConsole = false) {
     console.error(`User card not found for ID "${userId}".`);
   }
 
-  // Remove ae_UI_row from ae_UI
-  const hideListRow = document.querySelector(`.ae_UI_row[data-okc-user-id="${userId}"]`);
+  // Remove dr_UI_row from dr_UI
+  const hideListRow = document.querySelector(`.dr_UI_row[data-okc-user-id="${userId}"]`);
   if (hideListRow) {
     hideListRow.remove();
     logConsole && console.log(`Hide list row for ID "${userId}" removed.`);

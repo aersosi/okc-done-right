@@ -1,15 +1,15 @@
 /* Hide Section if only headline is present */
-#ae_UI_section_hiddenUsers:has(#ae_UI_body_hiddenUsers:empty) {
-    /*if parent has empty child #ae_UI_body_hiddenUsers hide parent*/
+#dr_UI_section_hiddenUsers:has(#dr_UI_body_hiddenUsers:empty) {
+    /*if parent has empty child #dr_UI_body_hiddenUsers hide parent*/
     display: none;
 }
 
-#ae_UI_body_hiddenUsers {
+#dr_UI_body_hiddenUsers {
     overflow-y: auto;
     max-height: 12rem;
 }
 
-#ae_UI_body_tools {
+#dr_UI_body_tools {
     overflow-y: hidden;
     max-height: 12rem;
 }

@@ -18,8 +18,8 @@ export function handle_btn_notCity(inputID, buttonID) {
     return;
   }
 
-  const isActive = button.classList.toggle("ae_btn_primary");
-  button.classList.toggle("ae_btn_secondary", !isActive);
+  const isActive = button.classList.toggle("dr_btn_primary");
+  button.classList.toggle("dr_btn_secondary", !isActive);
 
   userLocation.forEach(location => {
     if (!location.textContent.toLowerCase().includes(input.value.toLowerCase())) {

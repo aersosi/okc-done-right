@@ -1,36 +1,36 @@
-.ae_label,
-.ae_headline {
+.dr_label,
+.dr_headline {
     color: var(--primary);
     font-weight: 500;
 }
 
-.ae_hr {
+.dr_hr {
     Width: 100%;
     opacity: .5;
     border-color: var(--secondary);
 }
 
-.ae_label {
+.dr_label {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
 }
 
-.ae_input {
+.dr_input {
     Width: 100%;
 }
 
-.ae_link_primary {
+.dr_link_primary {
     text-decoration: none;
     color: var(--secondary-accent);
     transition: color 0.25s ease;
 }
 
-.ae_link_primary:hover {
+.dr_link_primary:hover {
     color: var(--primary);
 }
 
-[class*="ae_btn"] {
+[class*="dr_btn"] {
     padding-block-start: 2px;
     padding-block-end: 4px;
     padding-inline: 12px;
@@ -39,24 +39,24 @@
     transition: background 0.25s ease, color 0.25s ease;
 }
 
-[class*="ae_btn"]:hover,
-.ae_btn_primary {
+[class*="dr_btn"]:hover,
+.dr_btn_primary {
     color: var(--primary-accent);
     background: var(--primary);
 }
 
-[class*="ae_icon_btn"]:hover,
-.ae_btn_secondary {
+[class*="dr_icon_btn"]:hover,
+.dr_btn_secondary {
     color: var(--secondary-accent);
     background: var(--secondary);
 }
 
-.ae_btn_tertiary {
+.dr_btn_tertiary {
     color: var(--tertiary-accent);
     background: var(--tertiary);
 }
 
-[class*="ae_icon_btn"] {
+[class*="dr_icon_btn"] {
     position: relative;
     width: 32px;
     height: 32px;
@@ -68,8 +68,8 @@
     transition: background 0.25s ease, color 0.25s ease, transform 0.5s ease;
 }
 
-.ae_icon_chevron_down:after,
-.ae_icon_chevron_up:after {
+.dr_icon_chevron_down:after,
+.dr_icon_chevron_up:after {
     content: "";
     position: absolute;
     inset: 0;
@@ -77,11 +77,11 @@
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='none'%3E%3Cmask id='a' width='24' height='25' x='0' y='0' maskUnits='userSpaceOnUse' style='mask-type:alpha'%3E%3Cpath fill='%23D9D9D9' d='M0 .5h24v24H0z'/%3E%3C/mask%3E%3Cg mask='url(%23a)'%3E%3Cpath fill='%231C1B1F' d='m12 16.9-6-6 1.4-1.4 4.6 4.6 4.6-4.6 1.4 1.4-6 6Z'/%3E%3C/g%3E%3C/svg%3E");
 }
 
-.ae_icon_chevron_up:after {
+.dr_icon_chevron_up:after {
     transform: rotate(180deg);
 }
 
-.ae_OKC_userNewTabLink {
+.dr_OKC_userNewTabLink {
     position: absolute;
     top: 0.5rem;
     right: 0.5rem;
@@ -95,6 +95,6 @@
     background-position: 50% 50%;
 }
 
-.ae_OKC_userNewTabLink:hover {
+.dr_OKC_userNewTabLink:hover {
     background-color: white;
 }

@@ -3,7 +3,7 @@ import { update_hiddenUserList } from "./update_hiddenUserList.js";
 export const init_hiddenUsers = (logConsole = false) => {
   const hiddenUsers = (() => {
     try {
-      return JSON.parse(localStorage.getItem("ae_hiddenUsers")) ?? {};
+      return JSON.parse(localStorage.getItem("dr_hiddenUsers")) ?? {};
     } catch {
       console.error("Failed to parse hidden users from localStorage.");
       return {};

@@ -33,7 +33,7 @@
 ### Setup Dev Environment
 
 Same as above, but instead of `bun run dist-all`, run both commands in separate terminal:
-- `bun run watch-build-js`
-- `bun run watch-build-css` 
+- First `bun run watch-build-js`
+- Then `bun run watch-build-css` 
 
 Enjoy hacking!

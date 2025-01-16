@@ -4,7 +4,7 @@ export function toggle_buttonHighlight(buttonID) {
     console.error(`Error: Button "${buttonID}" not found.`);
     return;
   }
-  button.classList.toggle("ae_btn_primary");
-  button.classList.toggle("ae_btn_secondary");
+  button.classList.toggle("dr_btn_primary");
+  button.classList.toggle("dr_btn_secondary");
   button.classList.toggle("active");
 }

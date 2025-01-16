@@ -8,7 +8,7 @@
 }
 
 /* Wrapper for Block and Hide buttons in user-cards*/
-.ae_OKC_wrapper_userCard_blockHide {
+.dr_OKC_wrapper_userCard_blockHide {
     display: flex;
     gap: 1rem;
     align-items: center;

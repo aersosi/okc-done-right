@@ -36,7 +36,7 @@
       logData && console.log("GraphQL Response Data:", data);
       if (data) {
         localStorage.setItem(
-          "ae_OKC_data",
+          "dr_OKC_data",
           JSON.stringify(data)
         );
       }

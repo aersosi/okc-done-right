@@ -15,21 +15,21 @@ export function init_blockHideButtons(logConsole = false) {
   set_userIDs_toUserCards(userCardClass);
   userCards.forEach((card) => {
 
-    openUserNewTab(".ae_OKC_userNewTabLink", card);
+    openUserNewTab(".dr_OKC_userNewTabLink", card);
 
     // Check if wrapper already exists, otherwise create it
-    let wrapper = card.querySelector(".ae_OKC_wrapper_userCard_blockHide");
+    let wrapper = card.querySelector(".dr_OKC_wrapper_userCard_blockHide");
     if (!wrapper) {
       wrapper = document.createElement("div");
-      wrapper.className = "ae_OKC_wrapper_userCard_blockHide";
+      wrapper.className = "dr_OKC_wrapper_userCard_blockHide";
       card.appendChild(wrapper);
     }
 
     if (wrapper.children.length === 0) {
       // Initialize buttons inside the wrapper
       init_button(
-        `${userCardClass}[id="${card.id}"] .ae_OKC_wrapper_userCard_blockHide`,
-        "ae_btn_primary",
+        `${userCardClass}[id="${card.id}"] .dr_OKC_wrapper_userCard_blockHide`,
+        "dr_btn_primary",
         null,
         "Block",
         null,
@@ -38,8 +38,8 @@ export function init_blockHideButtons(logConsole = false) {
         });
 
       init_button(
-        `${userCardClass}[id="${card.id}"] .ae_OKC_wrapper_userCard_blockHide`,
-        "ae_btn_secondary",
+        `${userCardClass}[id="${card.id}"] .dr_OKC_wrapper_userCard_blockHide`,
+        "dr_btn_secondary",
         null,
         "Hide",
         null,

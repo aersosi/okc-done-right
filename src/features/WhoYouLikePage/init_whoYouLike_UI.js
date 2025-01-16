@@ -18,69 +18,69 @@ import { init_hiddenUsers } from "./userCardButtons/init_hiddenUsers.js";
 
 export function init_whoYouLike_UI() {
 
-  // init ae_UI_wrapper sections and headlines
+  // init dr_UI_wrapper sections and headlines
   const section_hiddenUsers = [
     {
-      parent: "#ae_UI_wrapper",
+      parent: "#dr_UI_wrapper",
       tag: "section",
-      className: "ae_UI_section",
-      id: "ae_UI_section_hiddenUsers"
+      className: "dr_UI_section",
+      id: "dr_UI_section_hiddenUsers"
     },
     {
-      parent: "#ae_UI_section_hiddenUsers",
+      parent: "#dr_UI_section_hiddenUsers",
       tag: "div",
-      className: "ae_UI_head"
+      className: "dr_UI_head"
     },
     {
-      parent: "#ae_UI_section_hiddenUsers .ae_UI_head",
+      parent: "#dr_UI_section_hiddenUsers .dr_UI_head",
       tag: "p",
-      className: "ae_headline",
+      className: "dr_headline",
       text: "Hidden Users"
     },
     {
-      parent: "#ae_UI_section_hiddenUsers",
+      parent: "#dr_UI_section_hiddenUsers",
       tag: "div",
-      className: "ae_UI_body",
-      id: "ae_UI_body_hiddenUsers"
+      className: "dr_UI_body",
+      id: "dr_UI_body_hiddenUsers"
     },
     {
       parent: ".userrow-bucket-container",
       tag: "div",
       className: "hidden",
-      id: "ae_wrapper_usersOnline",
+      id: "dr_wrapper_usersOnline",
       adjacent: true
     }
   ];
   const section_tools = [
     {
-      parent: "#ae_UI_wrapper",
+      parent: "#dr_UI_wrapper",
       tag: "section",
-      className: "ae_UI_section",
-      id: "ae_UI_section_tools"
+      className: "dr_UI_section",
+      id: "dr_UI_section_tools"
     },
     {
-      parent: "#ae_UI_section_tools",
+      parent: "#dr_UI_section_tools",
       tag: "div",
-      className: "ae_UI_head"
+      className: "dr_UI_head"
     },
     {
-      parent: "#ae_UI_section_tools .ae_UI_head",
+      parent: "#dr_UI_section_tools .dr_UI_head",
       tag: "p",
-      className: "ae_headline",
+      className: "dr_headline",
       text: "Tools"
     },
 
     {
-      parent: "#ae_UI_section_tools",
+      parent: "#dr_UI_section_tools",
       tag: "div",
-      className: "ae_UI_body",
-      id: "ae_UI_body_tools"
+      className: "dr_UI_body",
+      id: "dr_UI_body_tools"
     },
     {
       parent: ".userrow-bucket-container",
       tag: "div",
       className: "hidden",
-      id: "ae_wrapper_usersOnline",
+      id: "dr_wrapper_usersOnline",
       adjacent: true
     }
   ];
@@ -93,52 +93,52 @@ export function init_whoYouLike_UI() {
   });
 
 
-  const btn_ae_UI_headlines = [
+  const btn_dr_UI_headlines = [
     {
-      parent: "#ae_UI_section_hiddenUsers .ae_UI_head",
+      parent: "#dr_UI_section_hiddenUsers .dr_UI_head",
       tag: "button",
-      className: "ae_icon_btn ae_icon_chevron_down",
-      id: "ae_UI_section_hiddenUsers_close",
+      className: "dr_icon_btn dr_icon_chevron_down",
+      id: "dr_UI_section_hiddenUsers_close",
       handler: () => {
-        toggle_elementClass("ae_UI_section_hiddenUsers_close", "hidden");
-        toggle_elementClass("ae_UI_section_hiddenUsers_open", "hidden");
-        toggle_elementClass("ae_UI_body_hiddenUsers", "height-0");
+        toggle_elementClass("dr_UI_section_hiddenUsers_close", "hidden");
+        toggle_elementClass("dr_UI_section_hiddenUsers_open", "hidden");
+        toggle_elementClass("dr_UI_body_hiddenUsers", "height-0");
       }
     },
     {
-      parent: "#ae_UI_section_hiddenUsers .ae_UI_head",
+      parent: "#dr_UI_section_hiddenUsers .dr_UI_head",
       tag: "button",
-      className: "ae_icon_btn hidden ae_icon_chevron_up",
-      id: "ae_UI_section_hiddenUsers_open",
+      className: "dr_icon_btn hidden dr_icon_chevron_up",
+      id: "dr_UI_section_hiddenUsers_open",
       handler: () => {
-        toggle_elementClass("ae_UI_section_hiddenUsers_close", "hidden");
-        toggle_elementClass("ae_UI_section_hiddenUsers_open", "hidden");
-        toggle_elementClass("ae_UI_body_hiddenUsers", "height-0");
+        toggle_elementClass("dr_UI_section_hiddenUsers_close", "hidden");
+        toggle_elementClass("dr_UI_section_hiddenUsers_open", "hidden");
+        toggle_elementClass("dr_UI_body_hiddenUsers", "height-0");
       }
     },
     {
-      parent: "#ae_UI_section_tools .ae_UI_head",
-      className: "ae_icon_btn ae_icon_chevron_down",
-      id: "ae_UI_section_tools_close",
+      parent: "#dr_UI_section_tools .dr_UI_head",
+      className: "dr_icon_btn dr_icon_chevron_down",
+      id: "dr_UI_section_tools_close",
       handler: () => {
-        toggle_elementClass("ae_UI_section_tools_close", "hidden");
-        toggle_elementClass("ae_UI_section_tools_open", "hidden");
-        toggle_elementClass("ae_UI_body_tools", "height-0");
+        toggle_elementClass("dr_UI_section_tools_close", "hidden");
+        toggle_elementClass("dr_UI_section_tools_open", "hidden");
+        toggle_elementClass("dr_UI_body_tools", "height-0");
       }
     },
     {
-      parent: "#ae_UI_section_tools .ae_UI_head",
-      className: "ae_icon_btn hidden ae_icon_chevron_up",
-      id: "ae_UI_section_tools_open",
+      parent: "#dr_UI_section_tools .dr_UI_head",
+      className: "dr_icon_btn hidden dr_icon_chevron_up",
+      id: "dr_UI_section_tools_open",
       handler: () => {
-        toggle_elementClass("ae_UI_section_tools_close", "hidden");
-        toggle_elementClass("ae_UI_section_tools_open", "hidden");
-        toggle_elementClass("ae_UI_body_tools", "height-0");
+        toggle_elementClass("dr_UI_section_tools_close", "hidden");
+        toggle_elementClass("dr_UI_section_tools_open", "hidden");
+        toggle_elementClass("dr_UI_body_tools", "height-0");
       }
     }
   ];
 
-  btn_ae_UI_headlines.forEach(({ parent, className, id, text, handler }) => {
+  btn_dr_UI_headlines.forEach(({ parent, className, id, text, handler }) => {
     init_button(parent, className, id, text, null, handler);
   });
 
@@ -147,7 +147,7 @@ export function init_whoYouLike_UI() {
   // init first two buttons
   const btn_sectionTools = [
     {
-      className: "ae_btn_primary hidden",
+      className: "dr_btn_primary hidden",
       id: "btn_stopScrollUntilLoaded",
       text: "Stop scroll",
       handler: () => {
@@ -157,7 +157,7 @@ export function init_whoYouLike_UI() {
       }
     },
     {
-      className: "ae_btn_secondary",
+      className: "dr_btn_secondary",
       id: "btn_scrollUntilLoaded",
       text: "Scroll until loaded",
       dataUserID: null,
@@ -168,7 +168,7 @@ export function init_whoYouLike_UI() {
       }
     },
     {
-      className: "ae_btn_secondary",
+      className: "dr_btn_secondary",
       id: "btn_showIsOnline",
       text: "Show is Online",
       dataUserID: null,
@@ -179,11 +179,11 @@ export function init_whoYouLike_UI() {
     }
   ];
   btn_sectionTools.forEach(({ className, id, text, dataUserID, handler }) => {
-    init_button("#ae_UI_body_tools", className, id, text, dataUserID, handler);
+    init_button("#dr_UI_body_tools", className, id, text, dataUserID, handler);
   });
 
   // init input_notCity
-  init_input("#ae_UI_body_tools", "input_notCity", "ae_input", "text", "Hightlight cities except this", "Hamburg", "Highlight except", "ae_label",
+  init_input("#dr_UI_body_tools", "input_notCity", "dr_input", "text", "Hightlight cities except this", "Hamburg", "Highlight except", "dr_label",
     () => {
       // bind input to button child, reset UI on input change
       bind_inputToElement("input_notCity", "btn_notCity_text", "textContent");
@@ -192,7 +192,7 @@ export function init_whoYouLike_UI() {
   );
 
   // init btn_notCity
-  init_button("#ae_UI_body_tools", "ae_btn_secondary", "btn_notCity", null, null, () => {
+  init_button("#dr_UI_body_tools", "dr_btn_secondary", "btn_notCity", null, null, () => {
     // toggle city highlight
     handle_btn_notCity("input_notCity", "btn_notCity");
   });

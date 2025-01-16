@@ -1,4 +1,4 @@
-#ae_UI_wrapper {
+#dr_UI_wrapper {
     position: fixed;
     bottom: 0.5rem;
     right: 0.5rem;
@@ -12,19 +12,19 @@
     width: 240px;
 }
 
-.ae_UI_section {
+.dr_UI_section {
     display: flex;
     flex-direction: column;
 }
 
-.ae_UI_head {
+.dr_UI_head {
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 0.75rem;
 }
 
-.ae_UI_body {
+.dr_UI_body {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
@@ -32,12 +32,12 @@
     transition: max-height 0.25s ease, padding 0.25s ease, margin 0.25s ease;
 }
 
-.ae_UI_row {
+.dr_UI_row {
     display: flex;
     gap: 0.5rem;
     justify-content: space-between;
 }
 
-.ae_UI_row:last-child {
+.dr_UI_row:last-child {
     padding-block-end: 1rem;
 }

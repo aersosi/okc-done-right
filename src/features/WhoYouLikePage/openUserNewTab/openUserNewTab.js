@@ -12,7 +12,7 @@ export function openUserNewTab(newTabLinkClass, card) {
   const hasNewTab = card.querySelector(newTabLinkClass);
   if (!hasNewTab) {
     const newTab = document.createElement("a");
-    newTab.classList.add("ae_OKC_userNewTabLink");
+    newTab.classList.add("dr_OKC_userNewTabLink");
     newTab.href = `/profile/${card.id}`;
     newTab.target = "_blank";
     newTab.rel = "noopener";

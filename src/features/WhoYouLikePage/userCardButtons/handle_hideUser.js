@@ -18,7 +18,7 @@ export function handle_hideUser(userCard, logConsole = false) {
   // Safely parse hidden users from localStorage
   const hiddenUsers = (() => {
     try {
-      return JSON.parse(localStorage.getItem("ae_hiddenUsers")) || {};
+      return JSON.parse(localStorage.getItem("dr_hiddenUsers")) || {};
     } catch (error) {
       console.error("Failed to parse hidden users from localStorage:", error);
       return {};
@@ -28,7 +28,7 @@ export function handle_hideUser(userCard, logConsole = false) {
   // Add or update the hidden user in localStorage
   hiddenUsers[userId] = userNameAge;
   try {
-    localStorage.setItem("ae_hiddenUsers", JSON.stringify(hiddenUsers));
+    localStorage.setItem("dr_hiddenUsers", JSON.stringify(hiddenUsers));
     logConsole && console.log(`User "${userNameAge}" (ID: ${userId}) added to hidden users.`);
   } catch (error) {
     console.error("Failed to update hidden users in localStorage:", error);
