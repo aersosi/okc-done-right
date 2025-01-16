@@ -15,7 +15,7 @@
     // @namespace    http://tampermonkey.net/
     // @version      2024-12-16
     // @description  Improve OKC interface
-    // @author       You
+    // @author       Arthur Ersosi
     // @match        https://www.okcupid.com/*
     // @icon         https://www.google.com/s2/favicons?sz=64&domain=okcupid.com
     // @grant        unsafeWindow
@@ -32,8 +32,12 @@
 
 ### Setup Dev Environment
 
-Same as above, but instead of `bun run dist-all`, run both commands in separate terminal:
-- First `bun run watch-build-js`
-- Then `bun run watch-build-css` 
+1. Same as above (Step 1-7)
+2. After `bun run dist-all` run both commands in separate terminal:
+   - First `bun run watch-build-js`
+   - Then `bun run watch-build-css` 
+3. Changes in CSS and JS are watched and built automatically
+4. Open **okcupid.com** and _enjoy your enhanced interface_!
+5. Sorry, no hot reload yet.
 
-Enjoy hacking!
+Happy hacking!
