@@ -1,8 +1,10 @@
 :root {
-    --primary: #e00095;
+    --primary: #e60099;
+    --primary-hover: #cc1489;
     --primary-accent: white;
-    --secondary: #f5eff3;
-    --secondary-accent: #331c2b;
+    --secondary: #f2e6ee;
+    --secondary-hover: #d9c3d1;
+    --secondary-accent: #331a2a;
     --error: #f44336;
     --error-accent: white;
     --dr-elm-height: 2rem;
