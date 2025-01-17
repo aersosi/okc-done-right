@@ -7,10 +7,10 @@
     const response = await originalFetch(...args);
     const clonedResponse = response.clone();
 
-    function init_Elm(parentElementID, elementName, elementClasses, matchPercent) {
+    function init_Elm(parentElementID, elementTag, elementClasses, matchPercent) {
       const parent = document.getElementById(parentElementID);
       if (parent) {
-        const element = document.createElement(elementName);
+        const element = document.createElement(elementTag);
         element.classList.add.apply(element.classList, elementClasses.split(" "));
         if (matchPercent >= 90) {
           element.classList.add("dr_matchHigh")

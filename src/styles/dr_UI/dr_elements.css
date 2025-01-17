@@ -36,7 +36,7 @@
     line-height: 1.8;
     height: var(--dr-elm-height);
     padding-inline: var(--dr-elm-padding-inline);
-    border-radius: 0.75rem;
+    border-radius: 0.5rem;
     cursor: pointer;
     transition: background 0.25s ease, color 0.25s ease;
 }
@@ -92,8 +92,8 @@
 }
 
 :root {
-    --dr-elm-posX: 1rem;
-    --dr-elm-posY: calc(180px - 14px);
+    --dr-elm-posX: 14px;
+    --dr-elm-posY: calc(180px - 16px);
 }
 
 .dr_OKC_userNewTabLink {

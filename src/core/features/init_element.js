@@ -1,4 +1,4 @@
-export function init_element(parentElement, elementName, elementClasses, elementID, elementText, adjacentElement, logConsole = false) {
+export function init_element(parentElement, elementTag, elementClasses, elementID, elementText, adjacentElement, logConsole = false) {
   if (document.getElementById(elementID)) {
     logConsole && console.error(`Error: Element with ID "${elementID}" already exists.`);
     return;
@@ -10,7 +10,7 @@ export function init_element(parentElement, elementName, elementClasses, element
     return;
   }
 
-  const element = document.createElement(elementName);
+  const element = document.createElement(elementTag);
 
   if (elementClasses) element.classList.add(...elementClasses.split(" "));
   if (elementID) element.id = elementID;
@@ -23,5 +23,5 @@ export function init_element(parentElement, elementName, elementClasses, element
   }
 
 
-  logConsole && console.log(`Add: element "${elementName}" with ID "${elementID}" to "${parentElement}".`);
+  logConsole && console.log(`Add: element "${elementTag}" with ID "${elementID}" to "${parentElement}".`);
 }

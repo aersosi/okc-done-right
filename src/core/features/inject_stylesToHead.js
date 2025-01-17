@@ -1,4 +1,4 @@
-export function inject_stylesheetToHead(styles, id = "custom-styles", logConsole = false) {
+export function inject_stylesToHead(styles, id = "custom-styles", logConsole = false) {
   let styleElement = document.getElementById(id);
 
   if (styleElement) {

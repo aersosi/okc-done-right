@@ -24,16 +24,12 @@
 
 /* user-card width 224px*/
 .userrow-bucket-display-card,
-.userthumb img.userthumb-img,
 .userrow-bucket-display-card > div:first-child {
     width: 13rem;
     margin-top: 0;
 }
 
-/* remove image scale on card:hover*/
-.userrow-bucket-display-card:hover .userthumb img.userthumb-img {
-    transform: none;
-}
+
 
 /* user-card roundeed corners*/
 .userrow-bucket-display-card {
@@ -43,23 +39,11 @@
 }
 
 .userrow-bucket-display-card:hover {
-    transform: scale(1.05);
+    transform: scale(1.03);
 }
 
 /* user-card user-info vertical spacing */
 .userInfo--center {
     padding: 1.25rem 0 !important;
-}
-
-/* superlike-btn improve*/
-.superlike-button-scene--round, .superlike-button-scene--roundLarge, .superlike-button-scene--roundSmall,
-.superlike-button-face-front, .superlike-button-face-back {
-    width: 3.5rem;
-    height: var(--dr-elm-height);
-    margin-block-end: 0.5rem;
-}
-/* superlike-btn icon size improve*/
-.superlike-button-icon--roundSmall {
-    width: 18px;
 }
 
