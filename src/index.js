@@ -43,10 +43,10 @@ import { init_discover_UI } from "./features/DiscoverPage/init_discover_UI.js";
     {
       URL_includes: "who-you-like",
       document_interactive: [
-        () => inject_stylesheetToHead(whoyoulikePage_styles, "whoyoulikePage_styles"),
         () => inject_stylesheetToHead(dr_UI_sections, " dr_UI_sections")
       ],
       document_complete: [
+        () => inject_stylesheetToHead(whoyoulikePage_styles, "whoyoulikePage_styles"),
         () => waitForElement(".userrow-bucket-display-card", () => {
           init_element("body", "div", "dr_UI_wrapper", "dr_UI_wrapper");
           init_whoYouLike_UI();
