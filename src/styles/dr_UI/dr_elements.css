@@ -32,6 +32,7 @@
 
 [class*="dr_btn"] {
     display: flex;
+    justify-content: center;
     line-height: 1.8;
     height: var(--dr-elm-height);
     padding-inline: var(--dr-elm-padding-inline);
@@ -40,22 +41,27 @@
     transition: background 0.25s ease, color 0.25s ease;
 }
 
-[class*="dr_btn"]:hover,
 .dr_btn_primary {
     color: var(--primary-accent);
     background: var(--primary);
 }
 
-[class*="dr_icon_btn"]:hover,
+.dr_btn_primary:hover {
+    color: var(--primary);
+    background: var(--primary-accent);
+}
+
 .dr_btn_secondary {
     color: var(--secondary-accent);
     background: var(--secondary);
 }
 
-.dr_btn_tertiary {
-    color: var(--tertiary-accent);
-    background: var(--tertiary);
+.dr_btn_secondary:hover {
+    color: var(--primary-accent);
+    background: var(--primary);
 }
+
+
 
 [class*="dr_icon_btn"] {
     position: relative;
@@ -67,6 +73,11 @@
     border-radius: 1rem;
     cursor: pointer;
     transition: background 0.25s ease, color 0.25s ease, transform 0.5s ease;
+}
+
+[class*="dr_icon_btn"]:hover {
+    color: var(--secondary-accent);
+    background: var(--secondary);
 }
 
 .dr_icon_chevron_down:after,
@@ -121,4 +132,9 @@
     color: var(--primary);
     font-weight: 500;
     font-size: 14px;
+}
+
+.dr_OKC_matchPercent.dr_matchHigh {
+    color: white;
+    background-color: var(--primary);
 }

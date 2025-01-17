@@ -7,12 +7,15 @@
     const response = await originalFetch(...args);
     const clonedResponse = response.clone();
 
-    function init_Elm(parentElementID, elementName, elementClasses, elementText) {
+    function init_Elm(parentElementID, elementName, elementClasses, matchPercent) {
       const parent = document.getElementById(parentElementID);
       if (parent) {
         const element = document.createElement(elementName);
         element.classList.add.apply(element.classList, elementClasses.split(" "));
-        element.textContent = elementText;
+        if (matchPercent >= 90) {
+          element.classList.add("dr_matchHigh")
+        }
+        element.textContent = matchPercent + "%";
         parent.appendChild(element);
       }
     }
@@ -27,7 +30,7 @@
 
           if (firstParent) {
             meData.likes.data.forEach(function(like) {
-              init_Elm(like.user.id, "div", "dr_OKC_matchPercent", like.matchPercent + "%");
+              init_Elm(like.user.id, "div", "dr_OKC_matchPercent", like.matchPercent);
             });
             clearInterval(firstParentInterval);
           }

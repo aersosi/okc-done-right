@@ -1,4 +1,5 @@
 # Todo
 
 - Add tooltips https://kazzkiq.github.io/balloon.css/
-- Enrich user cards with match % from user data
+- check https://www.okcupid.com/profile console on scroll
+- check https://www.okcupid.com/who-likes-you console: clearInterval broken

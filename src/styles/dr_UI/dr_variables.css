@@ -1,10 +1,8 @@
 :root {
     --primary: #aa00cc;
     --primary-accent: white;
-    --secondary: #e2cfe6;
-    --secondary-accent: #1a1b1c;
-    --tertiary: #f0e6f2;
-    --tertiary-accent: #1a1b1c;
+    --secondary: #f0e6f2;
+    --secondary-accent: #2f1b33;
     --error: #f44336;
     --error-accent: white;
     --dr-elm-height: 2rem;

@@ -29,7 +29,7 @@ export function init_blockHideButtons(logConsole = false) {
       // Initialize buttons inside the wrapper
       init_button(
         `${userCardClass}[id="${card.id}"] .dr_OKC_wrapper_userCard_blockHide`,
-        "dr_btn_primary",
+        "dr_btn_secondary",
         null,
         "Block",
         null,
