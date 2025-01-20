@@ -15,6 +15,7 @@ import { handle_scrollUntilLoaded } from "./scrollUntilLoaded/handle_scrollUntil
 import { handle_stopScrollUntilLoaded } from "./scrollUntilLoaded/handle_stopScrollUntilLoaded.js";
 import { handle_showIsOnline } from "./showIsOnline/handle_showIsOnline.js";
 import { init_hiddenUsers } from "./userCardButtons/init_hiddenUsers.js";
+import { set_matchPercentToUserCards } from "./set_matchPercent_toUserCards.js";
 
 export function init_whoYouLike_UI() {
 
@@ -204,7 +205,8 @@ export function init_whoYouLike_UI() {
 
   // Set these funtions also to ./observe_scroll.js
   init_blockHideButtons();
-  observe_scroll();
+  set_matchPercentToUserCards();
   init_hiddenUsers();
+  observe_scroll();
 }
 

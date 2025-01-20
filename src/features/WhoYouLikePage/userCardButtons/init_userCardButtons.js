@@ -12,7 +12,7 @@ export function init_blockHideButtons(logConsole = false) {
     console.error("User Cards not found.");
     return;
   }
-  set_userIDs_toUserCards(userCardClass);
+  set_userIDs_toUserCards(userCards);
   userCards.forEach((card) => {
 
     openUserNewTab(".dr_OKC_userNewTabLink", card);

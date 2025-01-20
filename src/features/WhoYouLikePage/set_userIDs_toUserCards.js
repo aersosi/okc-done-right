@@ -1,7 +1,6 @@
 import { get_userID_fromLink } from "./get_userID_fromLink.js";
 
-export function set_userIDs_toUserCards(userCardClass) {
-  const userCards = document.querySelectorAll(userCardClass);
+export function set_userIDs_toUserCards(userCards) {
   if (!userCards) {
     console.error("Failed to find user cards.");
     return;

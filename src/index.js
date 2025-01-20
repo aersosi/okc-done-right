@@ -1,7 +1,6 @@
 import { init_element, inject_scriptToHead, inject_stylesToHead, observe_URLChanges, waitForElement } from "./core";
 
-import { inject_interceptGraphQL } from "../dist_js/inject_interceptGraphQL.js";
-import { inject_matchPercent } from "../dist_js/inject_matchPercent.js";
+import { inject_storeMatchPercent } from "../dist_js/inject_storeMatchPercent.js";
 import { okc_overrides } from "../dist_styles/okc_overrides.js";
 import { okc_superlikeBtn } from "../dist_styles/okc_superlikeBtn.js";
 import { okc_userThumb } from "../dist_styles/okc_userThumb.js";
@@ -26,13 +25,12 @@ import { remove_ElementsOnLoad } from "./core/features/remove_ElementsOnLoad.js"
       URL_includes: "okcupid.com",
       document_interactive: [
         () => remove_ElementsOnLoad(["dr_UI_wrapper", "okc_superlikeBtn", "okc_userThumb"]),
-        () => inject_scriptToHead(inject_interceptGraphQL, "inject_interceptGraphQL"),
 
         () => inject_stylesToHead(okc_overrides, "okc_overrides"),
         () => inject_stylesToHead(dr_variables, "dr_variables"),
         () => inject_stylesToHead(dr_elements, "dr_elements"),
         () => inject_stylesToHead(dr_UI, "dr_UI"),
-        () => inject_stylesToHead(dr_helper, "dr_helper"),
+        () => inject_stylesToHead(dr_helper, "dr_helper")
       ]
     }
   );
@@ -41,7 +39,7 @@ import { remove_ElementsOnLoad } from "./core/features/remove_ElementsOnLoad.js"
     {
       URL_includes: "who-you-like",
       document_interactive: [
-        () => inject_scriptToHead(inject_matchPercent, "inject_matchPercent"),
+        () => inject_scriptToHead(inject_storeMatchPercent, "inject_storeMatchPercent"),
 
         () => inject_stylesToHead(dr_UI_sections, "dr_UI_sections"),
         () => inject_stylesToHead(okc_superlikeBtn, "okc_superlikeBtn"),
@@ -73,7 +71,7 @@ import { remove_ElementsOnLoad } from "./core/features/remove_ElementsOnLoad.js"
     {
       URL_includes: "discover",
       document_interactive: [
-        () => inject_stylesToHead(discoverPage_styles, "discoverPage_styles"),
+        () => inject_stylesToHead(discoverPage_styles, "discoverPage_styles")
       ],
       document_complete: [
         () => {

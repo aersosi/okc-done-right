@@ -1,33 +1,36 @@
 import { toggle_elementClass } from "../../../core";
 
-export function handle_scrollUntilLoaded(gloabalIntervals, intervaID, logConsole = false) {
-  logConsole && console.log(intervaID);
+export function handle_scrollUntilLoaded(globalIntervals, intervalID, logConsole = false) {
+  logConsole && console.log(intervalID);
 
+  const loaderIndicator = document.querySelector(".ok-css-loader");
   let previousScrollPosition = 0;
 
   function handle_scrollDown() {
+    // Scroll to the bottom of the page
     window.scrollTo({ top: document.body.scrollHeight, behavior: "instant" });
-
-    const loaderIndicator = document.querySelector(".ok-css-loader");
     const currentScrollPosition = window.scrollY + window.innerHeight;
+    const endOfData = localStorage.getItem('dr_isMoreData') === 'false';
 
-    // Stop scrolling
-    if (!loaderIndicator && previousScrollPosition === currentScrollPosition) {
-      clearInterval(gloabalIntervals[intervaID]); // Use the interval name to clear
-      delete gloabalIntervals[intervaID]; // Remove the interval from storage
+    // Stop scrolling when the loader is gone and the scroll position hasn't changed
+    if (endOfData && !loaderIndicator) {
+      clearInterval(globalIntervals[intervalID]); // Clear the interval
+      delete globalIntervals[intervalID]; // Remove interval from storage
 
       toggle_elementClass("btn_scrollUntilLoaded", "hidden");
       toggle_elementClass("btn_stopScrollUntilLoaded", "hidden");
       logConsole && console.log("All content is loaded.");
     }
+
     previousScrollPosition = currentScrollPosition;
   }
 
-  if (gloabalIntervals[intervaID]) {
-    console.error(`Interval ${intervaID} is already running.`);
+  // Ensure no interval is running already for this intervalID
+  if (globalIntervals[intervalID]) {
+    console.error(`Interval ${intervalID} is already running.`);
     return;
   }
 
-  // Store interval to global interval object and et the interval
-  gloabalIntervals[intervaID] = setInterval(handle_scrollDown, 500);
+  // Start scrolling using setInterval (fallback if necessary)
+  globalIntervals[intervalID] = setInterval(handle_scrollDown, 500);
 }
