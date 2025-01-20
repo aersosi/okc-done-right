@@ -3,7 +3,7 @@
     padding: 0 1.5rem;
 }
 
-.dt-action-button.block {
+.dt-action-button.dr_block {
     cursor: pointer;
     background-color: var(--error);
     color: var(--error-accent);

@@ -7,7 +7,8 @@ export function set_userIDs_toUserCards(userCards) {
   }
 
   userCards.forEach((card) => {
-    const userId = get_userID_fromLink(card); // Extract or define the user ID
+    // Extract or define the user ID
+    const userId = get_userID_fromLink(card);
     if (!userId) {
       console.error("Failed to extract user ID from card.");
       return;

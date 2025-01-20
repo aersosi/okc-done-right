@@ -11,12 +11,10 @@ export function observe_URLChanges({
     if (document.location.href.includes(URL_includes)) {
       if (document.readyState === "interactive" || document.readyState === "complete") {
         document_interactive.forEach(fn => fn());
-        // console.log("document_interactive");
       }
 
       if (document.readyState === "complete") {
         document_complete.forEach(fn => fn());
-        // console.log("document_complete");
       }
     }
   }
