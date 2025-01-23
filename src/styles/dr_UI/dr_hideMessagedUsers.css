@@ -1,0 +1,4 @@
+.userrow-bucket-display-card:has(.dr_OKC_firstMessage) {
+    opacity: 0.10;
+    pointer-events: none;
+}

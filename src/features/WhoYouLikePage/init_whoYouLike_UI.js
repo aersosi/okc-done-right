@@ -16,6 +16,8 @@ import { handle_stopScrollUntilLoaded } from "./scrollUntilLoaded/handle_stopScr
 import { handle_showIsOnline } from "./showIsOnline/handle_showIsOnline.js";
 import { init_hiddenUsers } from "./userCardButtons/init_hiddenUsers.js";
 import { set_matchPercentToUserCards } from "./set_matchPercent_toUserCards.js";
+import { handle_hideMessagedUsers } from "./hideAllMessagedUsers/handle_hideMessagedUsers.js";
+import { handle_showMessagedUsers } from "./hideAllMessagedUsers/handle_showMessagedUsers.js";
 
 export function init_whoYouLike_UI() {
 
@@ -176,6 +178,28 @@ export function init_whoYouLike_UI() {
       handler: () => {
         toggle_buttonHighlight("btn_showIsOnline");
         handle_showIsOnline();
+      }
+    },
+    {
+      className: "dr_btn_secondary",
+      id: "btn_hideMessagedUsers",
+      text: "Hide Messaged Users",
+      dataUserID: null,
+      handler: () => {
+        toggle_elementClass("btn_hideMessagedUsers", "hidden");
+        toggle_elementClass("btn_showMessagedUsers", "hidden");
+        handle_hideMessagedUsers();
+      }
+    },
+    {
+      className: "dr_btn_primary hidden",
+      id: "btn_showMessagedUsers",
+      text: "Show Messaged Users",
+      dataUserID: null,
+      handler: () => {
+        toggle_elementClass("btn_showMessagedUsers", "hidden");
+        toggle_elementClass("btn_hideMessagedUsers", "hidden");
+        handle_showMessagedUsers();
       }
     }
   ];

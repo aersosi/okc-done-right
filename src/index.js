@@ -15,7 +15,7 @@ import { discoverPage_styles } from "../dist_styles/discoverPage_styles.js";
 
 import { init_whoYouLike_UI } from "./features/WhoYouLikePage/init_whoYouLike_UI.js";
 import { init_discover_UI } from "./features/DiscoverPage/init_discover_UI.js";
-import { remove_ElementsOnLoad } from "./core/features/remove_ElementsOnLoad.js";
+import { remove_ElementsWithID } from "./core/features/remove_ElementsWithID.js";
 
 (async function() {
   "use strict";
@@ -24,7 +24,7 @@ import { remove_ElementsOnLoad } from "./core/features/remove_ElementsOnLoad.js"
     {
       URL_includes: "okcupid.com",
       document_interactive: [
-        () => remove_ElementsOnLoad(["dr_UI_wrapper", "okc_superlikeBtn", "okc_userThumb"]),
+        () => remove_ElementsWithID(["dr_UI_wrapper", "okc_superlikeBtn", "okc_userThumb"]),
 
         () => inject_stylesToHead(okc_overrides, "okc_overrides"),
         () => inject_stylesToHead(dr_variables, "dr_variables"),

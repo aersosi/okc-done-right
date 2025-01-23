@@ -29,7 +29,6 @@
           userData[like.user.id] = [like.matchPercent, like.senderMessageTime];
         });
         logConsole && console.log(userData);
-        console.log(userData);
 
         let existingData;
         try {
