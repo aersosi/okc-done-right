@@ -3,7 +3,6 @@ import {
   init_button,
   init_element,
   init_input,
-  toggle_buttonHighlight,
   toggle_elementClass
 } from "../../core";
 
@@ -13,7 +12,7 @@ import { reset_userLocations } from "./highlightNotCity/reset_userLocations.js";
 import { observe_scroll } from "./observe_scroll.js";
 import { handle_scrollUntilLoaded } from "./scrollUntilLoaded/handle_scrollUntilLoaded.js";
 import { handle_stopScrollUntilLoaded } from "./scrollUntilLoaded/handle_stopScrollUntilLoaded.js";
-import { handle_showIsOnline } from "./showIsOnline/handle_showIsOnline.js";
+import { handle_hideOfflineUsers } from "./hideOfflineUsers/handle_hideOfflineUsers.js";
 import { init_hiddenUsers } from "./userCardButtons/init_hiddenUsers.js";
 import { set_matchPercentToUserCards } from "./set_matchPercent_toUserCards.js";
 import { handle_hideMessagedUsers } from "./hideAllMessagedUsers/handle_hideMessagedUsers.js";
@@ -172,12 +171,24 @@ export function init_whoYouLike_UI() {
     },
     {
       className: "dr_btn_secondary",
-      id: "btn_showIsOnline",
-      text: "Show is Online",
+      id: "btn_hideOfflineUsers",
+      text: "Hide Offline Users",
       dataUserID: null,
       handler: () => {
-        toggle_buttonHighlight("btn_showIsOnline");
-        handle_showIsOnline();
+        toggle_elementClass("btn_hideOfflineUsers", "hidden");
+        toggle_elementClass("btn_showOfflineUsers", "hidden");
+        handle_hideOfflineUsers();
+      }
+    },
+    {
+      className: "dr_btn_primary hidden",
+      id: "btn_showOfflineUsers",
+      text: "Show Offline Users",
+      dataUserID: null,
+      handler: () => {
+        toggle_elementClass("btn_showOfflineUsers", "hidden");
+        toggle_elementClass("btn_hideOfflineUsers", "hidden");
+        handle_hideOfflineUsers();
       }
     },
     {
