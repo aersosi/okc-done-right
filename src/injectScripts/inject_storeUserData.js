@@ -19,16 +19,17 @@
         logConsole && console.log(meData.likes.pageInfo);
         logConsole && console.log(meData.likes.pageInfo.hasMore);
         localStorage.setItem("dr_isMoreData", meData.likes.pageInfo.hasMore);
-
       }
 
       // 5. save userID and matchPercent to localstore
       if (meData?.likes?.data) {
-        let matchData = {};
+        let userData = {};
+
         meData.likes.data.forEach(like => {
-          matchData[like.user.id] = like.matchPercent;
+          userData[like.user.id] = [like.matchPercent, like.senderMessageTime];
         });
-        logConsole && console.log(matchData);
+        logConsole && console.log(userData);
+        console.log(userData);
 
         let existingData;
         try {
@@ -38,7 +39,7 @@
           console.warn("Error parsing dr_matchPercent from localStorage:", error);
           existingData = {};
         }
-        const updatedData = { ...existingData, ...matchData };
+        const updatedData = { ...existingData, ...userData };
 
         localStorage.setItem("dr_matchPercent", JSON.stringify(updatedData));
       }

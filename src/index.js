@@ -1,6 +1,6 @@
 import { init_element, inject_scriptToHead, inject_stylesToHead, observe_URLChanges, waitForElement } from "./core";
 
-import { inject_storeMatchPercent } from "../dist_js/inject_storeMatchPercent.js";
+import { inject_storeUserData } from "../dist_js/inject_storeUserData.js";
 import { okc_overrides } from "../dist_styles/okc_overrides.js";
 import { okc_superlikeBtn } from "../dist_styles/okc_superlikeBtn.js";
 import { okc_userThumb } from "../dist_styles/okc_userThumb.js";
@@ -39,7 +39,7 @@ import { remove_ElementsOnLoad } from "./core/features/remove_ElementsOnLoad.js"
     {
       URL_includes: "who-you-like",
       document_interactive: [
-        () => inject_scriptToHead(inject_storeMatchPercent, "inject_storeMatchPercent"),
+        () => inject_scriptToHead(inject_storeUserData, "inject_storeUserData"),
 
         () => inject_stylesToHead(dr_UI_sections, "dr_UI_sections"),
         () => inject_stylesToHead(okc_superlikeBtn, "okc_superlikeBtn"),
