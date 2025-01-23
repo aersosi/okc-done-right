@@ -1,4 +1,4 @@
-export function handle_unhideUser(event, logConsole = false) {
+export function handle_showUser(event, logConsole = false) {
   const userId = event.target.closest(".dr_UI_row")?.dataset.okcUserId;
   if (!userId) {
     console.error("No 'data-okc-user-id' found on '.dr_UI_row' element.");

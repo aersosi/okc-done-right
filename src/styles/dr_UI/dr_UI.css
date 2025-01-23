@@ -6,7 +6,7 @@
     flex-direction: column;
     background: white;
     border-radius: 1rem;
-    padding-block: 0.5rem 0.75rem;
+    padding-block: 0.5rem;
     padding-inline: var(--dr-elm-padding-inline);
     border: 1px solid var(--secondary);
     width: 240px;

@@ -8,7 +8,7 @@ export function handle_scrollUntilLoaded(globalIntervals, intervalID, logConsole
 
   function handle_scrollDown() {
     // Scroll to the bottom of the page
-    window.scrollTo({ top: document.body.scrollHeight, behavior: "instant" });
+    window.scrollTo({ top: document.body.scrollHeight - 200, behavior: "instant" });
     const currentScrollPosition = window.scrollY + window.innerHeight;
     const endOfData = localStorage.getItem('dr_isMoreData') === 'false';
 

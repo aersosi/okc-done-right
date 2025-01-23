@@ -7,5 +7,7 @@ export { inject_stylesToHead } from "./features/inject_stylesToHead.js";
 export { inject_scriptToHead } from "./features/inject_scriptToHead.js";
 export { observe_childrenAppended } from "./features/observe_childrenAppended.js";
 export { observe_URLChanges } from "./features/observe_URLChanges.js";
+export { remove_ElementsWithID } from "./features/remove_ElementsWithID.js";
 export { toggle_elementClass } from "./features/toggle_elementClass.js";
 export { waitForElement } from "./features/waitForElement.js";
+export { debounce } from "./features/debounce.js";

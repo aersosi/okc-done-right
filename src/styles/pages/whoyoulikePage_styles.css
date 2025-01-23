@@ -29,8 +29,6 @@
     margin-top: 0;
 }
 
-
-
 /* user-card roundeed corners*/
 .userrow-bucket-display-card {
     border-radius: 1rem !important;
@@ -47,3 +45,7 @@
     padding: 1.25rem 0 !important;
 }
 
+/*Improved performance by reduces DOM operations*/
+.userrow-bucket-card-link-container {
+    contain: content;
+}

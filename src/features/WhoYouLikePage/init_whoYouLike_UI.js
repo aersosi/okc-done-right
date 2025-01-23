@@ -17,6 +17,7 @@ import { init_hiddenUsers } from "./userCardButtons/init_hiddenUsers.js";
 import { set_matchPercentToUserCards } from "./set_matchPercent_toUserCards.js";
 import { handle_hideMessagedUsers } from "./hideAllMessagedUsers/handle_hideMessagedUsers.js";
 import { handle_showMessagedUsers } from "./hideAllMessagedUsers/handle_showMessagedUsers.js";
+import { handle_showOfflineUsers } from "./hideOfflineUsers/handle_showOfflineUsers.js";
 
 export function init_whoYouLike_UI() {
 
@@ -188,7 +189,7 @@ export function init_whoYouLike_UI() {
       handler: () => {
         toggle_elementClass("btn_showOfflineUsers", "hidden");
         toggle_elementClass("btn_hideOfflineUsers", "hidden");
-        handle_hideOfflineUsers();
+        handle_showOfflineUsers();
       }
     },
     {

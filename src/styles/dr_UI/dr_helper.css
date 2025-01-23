@@ -1,6 +1,7 @@
 .not-online,
 .hidden {
     display: none !important;
+    contain: style layout;
 }
 
 

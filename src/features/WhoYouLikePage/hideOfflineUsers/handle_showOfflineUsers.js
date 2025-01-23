@@ -1,7 +1,7 @@
 import { handle_emptyRows } from "./handle_emptyRows.js";
 
-export function handle_hideOfflineUsers() {
-  const button = document.getElementById("btn_hideOfflineUsers");
+export function handle_showOfflineUsers() {
+  const button = document.getElementById("btn_showOfflineUsers");
   if (!button) {
     console.error(`Button with ID "btn_hideOfflineUsers" not found.`);
     return;
@@ -30,7 +30,7 @@ export function handle_hideOfflineUsers() {
 
   // Update visibility in a single pass
   userCards.forEach(card => {
-    card.classList.toggle('not-online', !onlineCards.has(card));
+    card.classList.remove("not-online");
   });
 
   handle_emptyRows();

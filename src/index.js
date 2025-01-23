@@ -15,7 +15,7 @@ import { discoverPage_styles } from "../dist_styles/discoverPage_styles.js";
 
 import { init_whoYouLike_UI } from "./features/WhoYouLikePage/init_whoYouLike_UI.js";
 import { init_discover_UI } from "./features/DiscoverPage/init_discover_UI.js";
-import { remove_ElementsWithID } from "./core/features/remove_ElementsWithID.js";
+import { remove_ElementsWithID } from "./core";
 
 (async function() {
   "use strict";

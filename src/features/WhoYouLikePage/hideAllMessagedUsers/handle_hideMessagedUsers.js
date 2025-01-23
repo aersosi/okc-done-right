@@ -1,4 +1,4 @@
-import { inject_stylesToHead } from "../../../core/index.js";
+import { inject_stylesToHead } from "../../../core";
 import { dr_hideMessagedUsers } from "../../../../dist_styles/dr_hideMessagedUsers.js";
 
 export function handle_hideMessagedUsers() {

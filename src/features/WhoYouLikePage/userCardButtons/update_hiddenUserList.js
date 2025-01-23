@@ -1,4 +1,4 @@
-import { handle_unhideUser } from "./handle_unhideUser.js";
+import { handle_showUser } from "./handle_showUser.js";
 import { init_element } from "../../../core";
 
 export function update_hiddenUserList() {
@@ -34,7 +34,7 @@ export function update_hiddenUserList() {
     unhideButton.dataset.okcUserId = userId;
     unhideButton.textContent = "Unhide";
     unhideButton.classList.add("dr_btn_secondary");
-    unhideButton.addEventListener("click", handle_unhideUser);
+    unhideButton.addEventListener("click", handle_showUser);
 
     row.appendChild(link);
     row.appendChild(unhideButton);
