@@ -33,7 +33,7 @@
 [class*="dr_btn"] {
     display: flex;
     justify-content: center;
-    line-height: 1.8;
+    line-height: 1.6;
     height: var(--dr-elm-height);
     padding-inline: var(--dr-elm-padding-inline);
     border-radius: 0.5rem;
@@ -93,7 +93,7 @@
 
 :root {
     --dr-elm-posX: 14px;
-    --dr-elm-posY: calc(180px - 16px);
+    --dr-elm-posY: calc(180px - 14px);
 }
 
 .dr_OKC_userNewTabLink {
@@ -106,9 +106,9 @@
     transition: background 0.25s ease;
     background-color: white;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Cpath fill='%23E00095' d='M5 21c-.55 0-1.02-.196-1.413-.587A1.926 1.926 0 0 1 3 19V5c0-.55.196-1.02.587-1.413A1.926 1.926 0 0 1 5 3h7v2H5v14h14v-7h2v7c0 .55-.196 1.02-.587 1.413A1.926 1.926 0 0 1 19 21H5Zm4.7-5.3-1.4-1.4L17.6 5H14V3h7v7h-2V6.4l-9.3 9.3Z'/%3E%3C/svg%3E");
-    background-size: 1.25rem;
     background-repeat: no-repeat;
     background-position: 50% 50%;
+    background-size: 1.125rem;
 }
 
 .dr_OKC_userNewTabLink:hover {
@@ -123,7 +123,7 @@
     left: var(--dr-elm-posX);
     height: var(--dr-elm-height);
     display: flex;
-    align-items: center;
+    line-height: 190%;
     padding-inline: var(--dr-elm-padding-inline);
     border-radius: 1rem;
     background-color: white;
@@ -148,5 +148,5 @@
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='25' height='25' fill='none'%3E%3Cpath fill='white' d='m9.729 18.485-5.7-5.7 1.425-1.425 4.275 4.275 9.175-9.175 1.425 1.425-10.6 10.6Z'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: 50% 50%;
-    background-size: 1.5rem;
+    background-size: 1.25rem;
 }
