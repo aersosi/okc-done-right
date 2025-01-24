@@ -1,4 +1,9 @@
-import { init_element, inject_scriptToHead, inject_stylesToHead, observe_URLChanges, waitForElement } from "./core";
+import { init_element, inject_scriptToHead, inject_stylesToHead, observe_URLChanges, waitFor_Element } from "./core";
+
+import { init_whoYouLike_UI } from "./features/page_whoYouLike/init_whoYouLike_UI.js";
+import { init_discover_UI } from "./features/page_discover/init_discover_UI.js";
+import { remove_ElementsWithID } from "./core";
+import { init_profile_UI } from "./features/page_profile/init_profile_UI.js";
 
 import { inject_storeUserData } from "../dist_js/inject_storeUserData.js";
 import { okc_overrides } from "../dist_styles/okc_overrides.js";
@@ -9,13 +14,12 @@ import { dr_elements } from "../dist_styles/dr_elements.js";
 import { dr_UI_sections } from "../dist_styles/dr_UI_sections.js";
 import { dr_UI } from "../dist_styles/dr_UI.js";
 import { dr_helper } from "../dist_styles/dr_helper.js";
-import { whoyoulikePage_styles } from "../dist_styles/whoyoulikePage_styles.js";
-import { messagesPage_styles } from "../dist_styles/messagesPage_styles.js";
-import { discoverPage_styles } from "../dist_styles/discoverPage_styles.js";
+import { dr_blockBtn } from "../dist_styles/dr_blockBtn.js";
 
-import { init_whoYouLike_UI } from "./features/WhoYouLikePage/init_whoYouLike_UI.js";
-import { init_discover_UI } from "./features/DiscoverPage/init_discover_UI.js";
-import { remove_ElementsWithID } from "./core";
+import { styles_pageDiscover } from "../dist_styles/styles_pageDiscover.js";
+import { styles_pageMessages } from "../dist_styles/styles_pageMessages.js";
+import { styles_pageProfile } from "../dist_styles/styles_pageProfile.js";
+import { styles_pageWhoYouLike } from "../dist_styles/styles_pageWhoYouLike.js";
 
 (async function() {
   "use strict";
@@ -37,20 +41,16 @@ import { remove_ElementsWithID } from "./core";
 
   observe_URLChanges(
     {
-      URL_includes: "who-you-like",
+      URL_includes: "discover",
+      waitForElement: ".desktop-dt-wrapper",
       document_interactive: [
-        () => inject_scriptToHead(inject_storeUserData, "inject_storeUserData"),
-
-        () => inject_stylesToHead(dr_UI_sections, "dr_UI_sections"),
-        () => inject_stylesToHead(okc_superlikeBtn, "okc_superlikeBtn"),
-        () => inject_stylesToHead(okc_userThumb, "okc_userThumb")
+        () => inject_stylesToHead(styles_pageDiscover, "styles_pageDiscover"),
+        () => inject_stylesToHead(dr_blockBtn, "dr_blockBtn"),
       ],
       document_complete: [
-        () => inject_stylesToHead(whoyoulikePage_styles, "whoyoulikePage_styles"),
-        () => waitForElement(".userrow-bucket-display-card", () => {
-          init_element("body", "div", "dr_UI_wrapper", "dr_UI_wrapper");
-          init_whoYouLike_UI();
-        })
+        () => {
+          init_discover_UI();
+        }
       ]
     }
   );
@@ -59,7 +59,7 @@ import { remove_ElementsWithID } from "./core";
     {
       URL_includes: "messages",
       document_interactive: [
-        () => inject_stylesToHead(messagesPage_styles, "messagesPage_styles")
+        () => inject_stylesToHead(styles_pageMessages, "styles_pageMessages")
       ],
       document_complete: [
         () => console.log("Messages Page is ready!")
@@ -69,14 +69,36 @@ import { remove_ElementsWithID } from "./core";
 
   observe_URLChanges(
     {
-      URL_includes: "discover",
+      URL_includes: "profile",
+      waitForElement: ".profile-userinfo",
       document_interactive: [
-        () => inject_stylesToHead(discoverPage_styles, "discoverPage_styles")
+        () => inject_stylesToHead(styles_pageProfile, "styles_pageProfile"),
+        () => inject_stylesToHead(dr_blockBtn, "dr_blockBtn"),
       ],
       document_complete: [
         () => {
-          init_discover_UI();
+          init_profile_UI();
         }
+      ]
+    }
+  );
+
+  observe_URLChanges(
+    {
+      URL_includes: "who-you-like",
+      document_interactive: [
+        () => inject_scriptToHead(inject_storeUserData, "inject_storeUserData"),
+
+        () => inject_stylesToHead(dr_UI_sections, "dr_UI_sections"),
+        () => inject_stylesToHead(okc_superlikeBtn, "okc_superlikeBtn"),
+        () => inject_stylesToHead(okc_userThumb, "okc_userThumb")
+      ],
+      document_complete: [
+        () => inject_stylesToHead(styles_pageWhoYouLike, "styles_pageWhoYouLike"),
+        () => waitFor_Element(".userrow-bucket-display-card", () => {
+          init_element("body", "div", "dr_UI_wrapper", "dr_UI_wrapper");
+          init_whoYouLike_UI();
+        })
       ]
     }
   );

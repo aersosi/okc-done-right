@@ -11,4 +11,4 @@ export { observe_childrenAppended } from "./features/observe_childrenAppended.js
 export { observe_URLChanges } from "./features/observe_URLChanges.js";
 export { remove_ElementsWithID } from "./features/remove_ElementsWithID.js";
 export { toggle_elementClass } from "./features/toggle_elementClass.js";
-export { waitForElement } from "./features/waitForElement.js";
+export { waitFor_Element } from "./features/waitFor_Element.js";

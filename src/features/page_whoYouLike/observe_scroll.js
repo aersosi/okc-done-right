@@ -4,7 +4,7 @@ import { init_hiddenUsers } from "./userCardButtons/init_hiddenUsers.js";
 import { set_matchPercentToUserCards } from "./set_matchPercent_toUserCards.js";
 import { handle_hideOfflineUsers } from "./hideOfflineUsers/handle_hideOfflineUsers.js";
 
-export function observe_scroll(debounceTime = 100, logConsole = true) {
+export function observe_scroll(debounceTime = 100, logConsole = false) {
   const debouncedScrollHandler = debounce(() => {
     init_blockHideButtons();
     init_hiddenUsers();

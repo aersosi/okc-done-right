@@ -1,7 +1,9 @@
-import { waitForElement } from "./waitForElement.js";
+import { waitFor_Element } from "./waitFor_Element.js";
 
 export function observe_URLChanges({
                                      URL_includes,
+                                     waitForElement = "#root",
+                                     logConsole = false,
                                      document_interactive = [],
                                      document_complete = []
                                    }) {
@@ -10,18 +12,22 @@ export function observe_URLChanges({
   function runFunctions() {
     if (document.location.href.includes(URL_includes)) {
       if (document.readyState === "interactive" || document.readyState === "complete") {
+        logConsole && console.log("Page is interactive!");
         document_interactive.forEach(fn => fn());
       }
 
-      if (document.readyState === "complete") {
-        document_complete.forEach(fn => fn());
-      }
+      const interval = setInterval(() => {
+        if (document.readyState === "complete") {
+          clearInterval(interval);
+          logConsole && console.log("Page is complete!");
+          document_complete.forEach(fn => fn());
+        }
+      }, 250);
     }
   }
 
-
-  waitForElement(".desktop-dt-wrapper", () => {
-    // Initial on page load
+  waitFor_Element(waitForElement, () => {
+    logConsole && console.log("Element loaded!: ", waitForElement);
     runFunctions();
   });
 

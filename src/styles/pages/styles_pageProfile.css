@@ -1,0 +1,10 @@
+.profile-userinfo-inner {
+    width: var(--profile-width);
+}
+
+@media screen and (min-width: 1096px) {
+    .page--profile .profile-content,
+    #p_profile .profile-content {
+        width: var(--profile-width);
+    }
+}
