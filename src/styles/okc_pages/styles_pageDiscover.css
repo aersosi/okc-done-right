@@ -1,0 +1,11 @@
+.desktop-dt-content {
+    max-width: var(--profile-width);
+}
+
+.desktop-dt-left {
+    width: calc((var(--profile-width) - 1rem) * 0.66);
+}
+
+.desktop-dt-right {
+    width: calc((var(--profile-width) - 1rem) * 0.33);
+}

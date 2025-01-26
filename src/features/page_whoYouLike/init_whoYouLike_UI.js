@@ -9,7 +9,7 @@ import {
 import { init_blockHideButtons } from "./userCardButtons/init_userCardButtons.js";
 import { handle_btn_notCity } from "./highlightNotCity/handle_btn_notCity.js";
 import { reset_userLocations } from "./highlightNotCity/reset_userLocations.js";
-import { observe_scroll } from "./observe_scroll.js";
+import { observe_scrollTimeout } from "./observe_scroll.js";
 import { handle_scrollUntilLoaded } from "./scrollUntilLoaded/handle_scrollUntilLoaded.js";
 import { handle_stopScrollUntilLoaded } from "./scrollUntilLoaded/handle_stopScrollUntilLoaded.js";
 import { handle_hideOfflineUsers } from "./hideOfflineUsers/handle_hideOfflineUsers.js";
@@ -20,6 +20,8 @@ import { handle_showMessagedUsers } from "./hideAllMessagedUsers/handle_showMess
 import { handle_showOfflineUsers } from "./hideOfflineUsers/handle_showOfflineUsers.js";
 
 export function init_whoYouLike_UI() {
+  // Init dr_UI_wrapper
+  init_element("body", "div", "dr_UI_wrapper", "dr_UI_wrapper", false);
 
   // init dr_UI_wrapper sections and headlines
   const section_hiddenUsers = [
@@ -94,7 +96,6 @@ export function init_whoYouLike_UI() {
   section_tools.forEach(({ parent, tag, className, id, text, adjacent }) => {
     init_element(parent, tag, className, id, text, adjacent);
   });
-
 
   const btn_dr_UI_headlines = [
     {
@@ -239,10 +240,15 @@ export function init_whoYouLike_UI() {
   // set input value to button child on load
   bind_inputToElement("input_notCity", "btn_notCity_text", "textContent");
 
-  // Set these funtions also to ./observe_scroll.js
-  init_blockHideButtons();
-  set_matchPercentToUserCards();
-  init_hiddenUsers();
-  observe_scroll();
+  // Functions to init on Load
+  const init_UI = [
+    init_blockHideButtons,
+    init_hiddenUsers,
+    set_matchPercentToUserCards,
+    handle_hideOfflineUsers
+  ];
+  init_UI.forEach(callback => callback());
+
+  observe_scrollTimeout(init_UI);
 }
 

@@ -1,4 +1,4 @@
-export function init_element(parentElement, elementTag, elementClasses, elementID, elementText, adjacentElement, logConsole = false) {
+export function init_element(parentElement, elementTag, elementClasses, elementID, elementText, adjacentElement = false, logConsole = false) {
   if (document.getElementById(elementID)) {
     logConsole && console.error(`Error: Element with ID "${elementID}" already exists.`);
     return;

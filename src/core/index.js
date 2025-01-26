@@ -1,5 +1,5 @@
 export { bind_inputToElement } from "./features/bind_inputToElement.js";
-export { capitalizeFirstLetter } from "./features/capitalizeFirstLetter.js";
+export { capitalize_firstLetter } from "./features/capitalize_firstLetter.js";
 export { debounce } from "./features/debounce.js";
 export { init_button } from "./features/init_button.js";
 export { init_element } from "./features/init_element.js";
@@ -9,6 +9,6 @@ export { inject_scriptToHead } from "./features/inject_scriptToHead.js";
 export { log_allScrollEvents } from "./features/log_allScrollEvents.js";
 export { observe_childrenAppended } from "./features/observe_childrenAppended.js";
 export { observe_URLChanges } from "./features/observe_URLChanges.js";
-export { remove_ElementsWithID } from "./features/remove_ElementsWithID.js";
+export { remove_elementsWithID } from "./features/remove_elementsWithID.js";
 export { toggle_elementClass } from "./features/toggle_elementClass.js";
-export { waitFor_Element } from "./features/waitFor_Element.js";
+export { waitFor_element } from "./features/waitFor_element.js";

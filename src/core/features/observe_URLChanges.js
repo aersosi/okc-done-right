@@ -1,4 +1,4 @@
-import { waitFor_Element } from "./waitFor_Element.js";
+import { waitFor_element } from "./waitFor_element.js";
 
 export function observe_URLChanges({
                                      URL_includes,
@@ -8,33 +8,36 @@ export function observe_URLChanges({
                                      document_complete = []
                                    }) {
   let oldHref = document.location.href;
+  const observedElements = new Set();
 
-  function runFunctions() {
+  async function runFunctions() {
     if (document.location.href.includes(URL_includes)) {
       if (document.readyState === "interactive" || document.readyState === "complete") {
         logConsole && console.log("Page is interactive!");
         document_interactive.forEach(fn => fn());
       }
 
-      const interval = setInterval(() => {
-        if (document.readyState === "complete") {
-          clearInterval(interval);
-          logConsole && console.log("Page is complete!");
-          document_complete.forEach(fn => fn());
-        }
-      }, 250);
+      // elementIsNew ensures waitForElement is processed only once
+      // by marking it as "new" and adding it to observedElements
+      const elementIsNew = !observedElements.has(waitForElement);
+      const elementIsAvailable = await waitFor_element(waitForElement);
+
+      if (elementIsNew && elementIsAvailable) {
+        observedElements.add(waitForElement);
+        logConsole && console.log("Element is available: ", waitForElement);
+      }
+
+      if (document.readyState === "complete" && observedElements.has(waitForElement)) {
+        logConsole && console.log("Page is complete!");
+        document_complete.forEach(fn => fn());
+      }
     }
   }
 
-  waitFor_Element(waitForElement, () => {
-    logConsole && console.log("Element loaded!: ", waitForElement);
-    runFunctions();
-  });
-
+  runFunctions();
 
   // Observe URL changes
   const observer = new MutationObserver(() => {
-    // When the URL has changed
     if (oldHref !== document.location.href) {
       oldHref = document.location.href;
       runFunctions();

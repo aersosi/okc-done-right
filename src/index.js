@@ -1,8 +1,8 @@
-import { init_element, inject_scriptToHead, inject_stylesToHead, observe_URLChanges, waitFor_Element } from "./core";
+import { inject_scriptToHead, inject_stylesToHead, observe_URLChanges } from "./core";
 
 import { init_whoYouLike_UI } from "./features/page_whoYouLike/init_whoYouLike_UI.js";
 import { init_discover_UI } from "./features/page_discover/init_discover_UI.js";
-import { remove_ElementsWithID } from "./core";
+import { remove_elementsWithID } from "./core";
 import { init_profile_UI } from "./features/page_profile/init_profile_UI.js";
 
 import { inject_storeUserData } from "../dist_js/inject_storeUserData.js";
@@ -28,7 +28,7 @@ import { styles_pageWhoYouLike } from "../dist_styles/styles_pageWhoYouLike.js";
     {
       URL_includes: "okcupid.com",
       document_interactive: [
-        () => remove_ElementsWithID(["dr_UI_wrapper", "okc_superlikeBtn", "okc_userThumb"]),
+        () => remove_elementsWithID(["dr_UI_wrapper", "okc_superlikeBtn", "okc_userThumb"]),
 
         () => inject_stylesToHead(okc_overrides, "okc_overrides"),
         () => inject_stylesToHead(dr_variables, "dr_variables"),
@@ -44,8 +44,8 @@ import { styles_pageWhoYouLike } from "../dist_styles/styles_pageWhoYouLike.js";
       URL_includes: "discover",
       waitForElement: ".desktop-dt-wrapper",
       document_interactive: [
-        () => inject_stylesToHead(styles_pageDiscover, "styles_pageDiscover"),
         () => inject_stylesToHead(dr_blockBtn, "dr_blockBtn"),
+        () => inject_stylesToHead(styles_pageDiscover, "styles_pageDiscover"),
       ],
       document_complete: [
         () => {
@@ -72,8 +72,8 @@ import { styles_pageWhoYouLike } from "../dist_styles/styles_pageWhoYouLike.js";
       URL_includes: "profile",
       waitForElement: ".profile-userinfo",
       document_interactive: [
-        () => inject_stylesToHead(styles_pageProfile, "styles_pageProfile"),
         () => inject_stylesToHead(dr_blockBtn, "dr_blockBtn"),
+        () => inject_stylesToHead(styles_pageProfile, "styles_pageProfile"),
       ],
       document_complete: [
         () => {
@@ -86,19 +86,16 @@ import { styles_pageWhoYouLike } from "../dist_styles/styles_pageWhoYouLike.js";
   observe_URLChanges(
     {
       URL_includes: "who-you-like",
+      waitForElement: ".userrow-bucket-display-card",
       document_interactive: [
         () => inject_scriptToHead(inject_storeUserData, "inject_storeUserData"),
-
         () => inject_stylesToHead(dr_UI_sections, "dr_UI_sections"),
         () => inject_stylesToHead(okc_superlikeBtn, "okc_superlikeBtn"),
-        () => inject_stylesToHead(okc_userThumb, "okc_userThumb")
+        () => inject_stylesToHead(okc_userThumb, "okc_userThumb"),
+        () => inject_stylesToHead(styles_pageWhoYouLike, "styles_pageWhoYouLike")
       ],
       document_complete: [
-        () => inject_stylesToHead(styles_pageWhoYouLike, "styles_pageWhoYouLike"),
-        () => waitFor_Element(".userrow-bucket-display-card", () => {
-          init_element("body", "div", "dr_UI_wrapper", "dr_UI_wrapper");
-          init_whoYouLike_UI();
-        })
+        () => init_whoYouLike_UI()
       ]
     }
   );
