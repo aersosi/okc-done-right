@@ -4,10 +4,10 @@ export function observe_URLChanges({
                                      URL_includes,
                                      waitForElement = "#root",
                                      logConsole = false,
+                                     before_document_interactive = [],
                                      document_interactive = [],
                                      document_complete = []
                                    }) {
-
   let oldHref = document.location.href;
   const observedElements = new Set();
   let isRunning = false; // Prevent multiple executions
@@ -17,25 +17,28 @@ export function observe_URLChanges({
     if (isRunning) return;
     isRunning = true;
 
-    if (document.readyState === "interactive" || document.readyState === "complete") {
-      logConsole && console.log("Page is interactive!");
-      document_interactive.forEach(fn => fn());
+    try {
+      if (document.readyState === "interactive" || document.readyState === "complete") {
+        logConsole && console.log("Page is interactive!");
+        await Promise.all(before_document_interactive.map(fn => fn()));
+        await Promise.all(document_interactive.map(fn => fn()));
+      }
+
+      const elementIsNew = !observedElements.has(waitForElement);
+      const elementIsAvailable = await waitFor_element(waitForElement);
+
+      if (elementIsNew && elementIsAvailable) {
+        observedElements.add(waitForElement);
+        logConsole && console.log("Element is available: ", waitForElement);
+      }
+
+      if (document.readyState === "complete" && observedElements.has(waitForElement)) {
+        logConsole && console.log("Page is complete!");
+        document_complete.forEach(fn => fn());
+      }
+    } finally {
+      isRunning = false;
     }
-
-    const elementIsNew = !observedElements.has(waitForElement);
-    const elementIsAvailable = await waitFor_element(waitForElement);
-
-    if (elementIsNew && elementIsAvailable) {
-      observedElements.add(waitForElement);
-      logConsole && console.log("Element is available: ", waitForElement);
-    }
-
-    if (document.readyState === "complete" && observedElements.has(waitForElement)) {
-      logConsole && console.log("Page is complete!");
-      document_complete.forEach(fn => fn());
-    }
-
-    isRunning = false;
   }
 
   runFunctions();
@@ -48,4 +51,5 @@ export function observe_URLChanges({
   });
 
   observer.observe(document.body, { childList: true, subtree: true });
+  window.addEventListener('beforeunload', () => observer.disconnect());
 }

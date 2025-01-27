@@ -29,7 +29,6 @@ export function update_hiddenUserList() {
     link.target = "_blank";
     link.textContent = userNameAge;
 
-
     const unhideButton = document.createElement("button");
     unhideButton.dataset.okcUserId = userId;
     unhideButton.textContent = "Unhide";

@@ -1,8 +1,7 @@
-import { inject_scriptToHead, inject_stylesToHead, observe_URLChanges } from "./core";
+import { inject_scriptToHead, inject_stylesToHead, observe_URLChanges, remove_elementsWithID } from "./core";
 
 import { init_whoYouLike_UI } from "./features/page_whoYouLike/init_whoYouLike_UI.js";
 import { init_discover_UI } from "./features/page_discover/init_discover_UI.js";
-import { remove_elementsWithID } from "./core";
 import { init_profile_UI } from "./features/page_profile/init_profile_UI.js";
 
 import { inject_storeUserData } from "../dist_js/inject_storeUserData.js";
@@ -27,7 +26,8 @@ import { styles_pageWhoYouLike } from "../dist_styles/styles_pageWhoYouLike.js";
   observe_URLChanges(
     {
       URL_includes: "okcupid.com",
-      document_interactive: [
+      before_document_interactive: [
+        () => console.log("before_document_interactive"),
         () => remove_elementsWithID(["dr_UI_wrapper", "okc_superlikeBtn", "okc_userThumb"]),
 
         () => inject_stylesToHead(okc_overrides, "okc_overrides"),
