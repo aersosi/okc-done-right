@@ -6,18 +6,17 @@ import {
   toggle_elementClass
 } from "../../core";
 
-import { init_blockHideButtons } from "./userCardButtons/init_userCardButtons.js";
 import { handle_btn_notCity } from "./highlightNotCity/handle_btn_notCity.js";
 import { reset_userLocations } from "./highlightNotCity/reset_userLocations.js";
 import { observe_scrollTimeout } from "./observe_scroll.js";
 import { handle_scrollUntilLoaded } from "./scrollUntilLoaded/handle_scrollUntilLoaded.js";
 import { handle_stopScrollUntilLoaded } from "./scrollUntilLoaded/handle_stopScrollUntilLoaded.js";
 import { handle_hideOfflineUsers } from "./hideOfflineUsers/handle_hideOfflineUsers.js";
-import { init_hiddenUsers } from "./userCardButtons/init_hiddenUsers.js";
-import { set_matchPercentToUserCards } from "./set_matchPercent_toUserCards.js";
+import { init_hiddenUsers } from "./hideShowUsers/init_hiddenUsers.js";
 import { handle_hideMessagedUsers } from "./hideAllMessagedUsers/handle_hideMessagedUsers.js";
 import { handle_showMessagedUsers } from "./hideAllMessagedUsers/handle_showMessagedUsers.js";
 import { handle_showOfflineUsers } from "./hideOfflineUsers/handle_showOfflineUsers.js";
+import { bootstrap_userCard } from "./bootstrapUserCard/bootstrap_userCard.js";
 
 export function init_whoYouLike_UI() {
   // Init dr_UI_wrapper
@@ -242,10 +241,9 @@ export function init_whoYouLike_UI() {
 
   // Functions to init on Load
   const init_UI = [
-    init_blockHideButtons,
-    init_hiddenUsers,
-    set_matchPercentToUserCards,
-    handle_hideOfflineUsers
+    bootstrap_userCard,
+    handle_hideOfflineUsers,
+    init_hiddenUsers
   ];
   init_UI.forEach(callback => callback());
 

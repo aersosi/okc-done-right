@@ -1,18 +1,16 @@
 import { inject_blockUser } from "../../../../dist_js/inject_blockUser.js";
 
-export function handle_blockUser(userCard) {
+export function handle_blockUser(event, logConsole = false) {
+  const userCard = event.target.closest(".userrow-bucket-display-card");
   if (!userCard) {
-    console.error("Invalid userCard element or missing 'id' attribute.");
+    console.error("Invalid userCard element");
     return;
   }
 
-  const profileLink = userCard.querySelector("a");
-  if (!profileLink) {
-    console.error("Profile link not found.");
-    return;
-  }
+  const userID = userCard.dataset.dr_user_id;
+  const profileLink = `/profile/${userID}`;
 
-  const newTab = window.open(profileLink.href, "_blank");
+  const newTab = window.open(profileLink, "_blank");
   newTab.addEventListener("load", () => injectBlockScript(newTab));
 }
 

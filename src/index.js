@@ -42,7 +42,7 @@ import { styles_pageWhoYouLike } from "../dist_styles/styles_pageWhoYouLike.js";
   observe_URLChanges(
     {
       URL_includes: "discover",
-      waitForElement: ".desktop-dt-wrapper",
+      waitForElement: ".dt-action-buttons",
       document_interactive: [
         () => inject_stylesToHead(dr_blockBtn, "dr_blockBtn"),
         () => inject_stylesToHead(styles_pageDiscover, "styles_pageDiscover"),
@@ -86,7 +86,7 @@ import { styles_pageWhoYouLike } from "../dist_styles/styles_pageWhoYouLike.js";
   observe_URLChanges(
     {
       URL_includes: "who-you-like",
-      waitForElement: ".userrow-bucket-display-card",
+      waitForElement: ".userrow-bucket-container",
       document_interactive: [
         () => inject_scriptToHead(inject_storeUserData, "inject_storeUserData"),
         () => inject_stylesToHead(dr_UI_sections, "dr_UI_sections"),

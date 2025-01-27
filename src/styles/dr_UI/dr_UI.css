@@ -1,7 +1,7 @@
 #dr_UI_wrapper {
     position: fixed;
-    bottom: 0.5rem;
-    right: 0.5rem;
+    bottom: 0.25rem;
+    right: 0.25rem;
     display: flex;
     flex-direction: column;
     background: white;

@@ -1,17 +1,19 @@
 import { update_hiddenUserList } from "./update_hiddenUserList.js";
 
-export function handle_hideUser(userCard, logConsole = false) {
-  // Validate the input
+export function handle_hideUser(event, logConsole = false) {
+  const userCard = event.target.closest('.userrow-bucket-display-card');
   if (!userCard) {
-    console.error("Invalid userCard element or missing 'id' attribute.");
+    console.error("Invalid userCard element");
     return;
   }
 
-  const userId = userCard.id;
-  const userNameAge = userCard.querySelector(".userInfo-username-name")?.textContent.trim();
+  const userID = userCard.dataset.dr_user_id
+  const userName = userCard.dataset.dr_user_name
+  const userAge = userCard.dataset.dr_user_age
+  const userNameAge = `${userName}, ${userAge}`;
 
   if (!userNameAge) {
-    console.error(`Username and age information not found for userCard with ID "${userId}".`);
+    console.error(`Username and age information not found for userCard with ID "${userID}".`);
     return;
   }
 
@@ -26,10 +28,10 @@ export function handle_hideUser(userCard, logConsole = false) {
   })();
 
   // Add or update the hidden user in localStorage
-  hiddenUsers[userId] = userNameAge;
+  hiddenUsers[userID] = userNameAge;
   try {
     localStorage.setItem("dr_hiddenUsers", JSON.stringify(hiddenUsers));
-    logConsole && console.log(`User "${userNameAge}" (ID: ${userId}) added to hidden users.`);
+    logConsole && console.log(`User "${userNameAge}" (ID: ${userID}) added to hidden users.`);
   } catch (error) {
     console.error("Failed to update hidden users in localStorage:", error);
     return;
@@ -39,11 +41,12 @@ export function handle_hideUser(userCard, logConsole = false) {
   const parentElement = userCard.parentElement;
   if (parentElement) {
     parentElement.classList.add("opacity-10", "pointer-events-none");
-    logConsole && console.log(`User card for ID "${userId}" visually hidden.`);
+    logConsole && console.log(`User card for ID "${userID}" visually hidden.`);
   } else {
-    console.error(`Parent element not found for userCard with ID "${userId}".`);
+    console.error(`Parent element not found for userCard with ID "${userID}".`);
   }
 
   // Update the hide list UI
   update_hiddenUserList();
+
 }

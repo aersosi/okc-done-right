@@ -8,7 +8,7 @@
 }
 
 /* Wrapper for Block and Hide buttons in user-cards*/
-.dr_OKC_wrapper_userCard_blockHide {
+.dr_OKC_wrapper_blockHide {
     display: flex;
     justify-content: space-between;
     margin-block-start: 0.5rem;
@@ -29,23 +29,22 @@
     margin-top: 0;
 }
 
+/*Improved performance by reduces DOM operations*/
+.userrow-bucket-card-link-container {
+    contain: content;
+}
+
 /* user-card roundeed corners*/
-.userrow-bucket-display-card {
-    border-radius: 1rem !important;
-    overflow: hidden;
+.userrow-bucket-card-link-container {
+    border-radius: 1rem;
     transition: transform 0.25s ease;
 }
 
-.userrow-bucket-display-card:hover {
+.userrow-bucket-card-link-container:hover {
     transform: scale(1.03);
 }
 
 /* user-card user-info vertical spacing */
 .userInfo--center {
     padding: 1.25rem 0 !important;
-}
-
-/*Improved performance by reduces DOM operations*/
-.userrow-bucket-card-link-container {
-    contain: content;
 }

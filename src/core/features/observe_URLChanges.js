@@ -7,36 +7,39 @@ export function observe_URLChanges({
                                      document_interactive = [],
                                      document_complete = []
                                    }) {
+
   let oldHref = document.location.href;
   const observedElements = new Set();
+  let isRunning = false; // Prevent multiple executions
 
   async function runFunctions() {
-    if (document.location.href.includes(URL_includes)) {
-      if (document.readyState === "interactive" || document.readyState === "complete") {
-        logConsole && console.log("Page is interactive!");
-        document_interactive.forEach(fn => fn());
-      }
+    if (!document.location.href.includes(URL_includes)) return;
+    if (isRunning) return;
+    isRunning = true;
 
-      // elementIsNew ensures waitForElement is processed only once
-      // by marking it as "new" and adding it to observedElements
-      const elementIsNew = !observedElements.has(waitForElement);
-      const elementIsAvailable = await waitFor_element(waitForElement);
-
-      if (elementIsNew && elementIsAvailable) {
-        observedElements.add(waitForElement);
-        logConsole && console.log("Element is available: ", waitForElement);
-      }
-
-      if (document.readyState === "complete" && observedElements.has(waitForElement)) {
-        logConsole && console.log("Page is complete!");
-        document_complete.forEach(fn => fn());
-      }
+    if (document.readyState === "interactive" || document.readyState === "complete") {
+      logConsole && console.log("Page is interactive!");
+      document_interactive.forEach(fn => fn());
     }
+
+    const elementIsNew = !observedElements.has(waitForElement);
+    const elementIsAvailable = await waitFor_element(waitForElement);
+
+    if (elementIsNew && elementIsAvailable) {
+      observedElements.add(waitForElement);
+      logConsole && console.log("Element is available: ", waitForElement);
+    }
+
+    if (document.readyState === "complete" && observedElements.has(waitForElement)) {
+      logConsole && console.log("Page is complete!");
+      document_complete.forEach(fn => fn());
+    }
+
+    isRunning = false;
   }
 
   runFunctions();
 
-  // Observe URL changes
   const observer = new MutationObserver(() => {
     if (oldHref !== document.location.href) {
       oldHref = document.location.href;
