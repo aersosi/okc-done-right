@@ -1,4 +1,5 @@
 import { inject_blockUser } from "../../../../dist_js/inject_blockUser.js";
+import { handle_hideUser } from "../hideShowUsers/handle_hideUser.js";
 
 export function handle_blockUser(event, logConsole = false) {
   const userCard = event.target.closest(".userrow-bucket-display-card");
@@ -9,6 +10,8 @@ export function handle_blockUser(event, logConsole = false) {
 
   const userID = userCard.dataset.dr_user_id;
   const profileLink = `/profile/${userID}`;
+
+  handle_hideUser(event);
 
   const newTab = window.open(profileLink, "_blank");
   newTab.addEventListener("load", () => injectBlockScript(newTab));
