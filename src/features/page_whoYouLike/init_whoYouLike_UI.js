@@ -17,8 +17,22 @@ import { handle_hideMessagedUsers } from "./hideAllMessagedUsers/handle_hideMess
 import { handle_showMessagedUsers } from "./hideAllMessagedUsers/handle_showMessagedUsers.js";
 import { handle_showOfflineUsers } from "./hideOfflineUsers/handle_showOfflineUsers.js";
 import { bootstrap_userCard } from "./bootstrapUserCard/bootstrap_userCard.js";
+import { handle_btn_matchHighlightAbove } from "./matchHighlightAbove/handle_btn_matchHighlightAbove.js";
+import { init_matchHighlightAbove } from "./matchHighlightAbove/init_matchHighlightAbove.js";
+import { set_matchHighlightAbove } from "./matchHighlightAbove/set_matchHighlightAbove.js";
 
 export function init_whoYouLike_UI() {
+  // Functions to init on Load
+  const init_UI = [
+    init_matchHighlightAbove,
+    bootstrap_userCard,
+    handle_hideOfflineUsers,
+    init_hiddenUsers
+  ];
+
+  init_UI.forEach(callback => callback());
+  observe_scrollTimeout(init_UI);
+
   // Init dr_UI_wrapper
   init_element("body", "div", "dr_UI_wrapper", "dr_UI_wrapper", false);
 
@@ -219,6 +233,20 @@ export function init_whoYouLike_UI() {
     init_button("#dr_UI_body_tools", className, id, text, dataUserID, handler);
   });
 
+  // init input_matchHighlightAbove
+
+  let matchPercentValue = JSON.parse(localStorage.getItem("dr_matchHighlightAbove"));
+  init_input("#dr_UI_body_tools", "input_matchHighlightAbove", "dr_input", "number", "Match highlight above",
+    matchPercentValue, "Match highlight above", "dr_label", null
+  );
+
+  // init btn_matchHighlightAbove
+  init_button("#dr_UI_body_tools", "dr_btn_secondary", "btn_matchHighlightAbove", "Set match highlight", null, () => {
+    // toggle match highlight
+    handle_btn_matchHighlightAbove("input_matchHighlightAbove");
+    set_matchHighlightAbove();
+  });
+
   // init input_notCity
   init_input("#dr_UI_body_tools", "input_notCity", "dr_input", "text", "Hightlight cities except this", "Hamburg", "Highlight except", "dr_label",
     () => {
@@ -239,14 +267,6 @@ export function init_whoYouLike_UI() {
   // set input value to button child on load
   bind_inputToElement("input_notCity", "btn_notCity_text", "textContent");
 
-  // Functions to init on Load
-  const init_UI = [
-    bootstrap_userCard,
-    handle_hideOfflineUsers,
-    init_hiddenUsers
-  ];
-  init_UI.forEach(callback => callback());
 
-  observe_scrollTimeout(init_UI);
 }
 

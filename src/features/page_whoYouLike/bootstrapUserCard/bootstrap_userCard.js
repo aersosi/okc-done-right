@@ -18,7 +18,7 @@ export function bootstrap_userCard() {
       console.error("No user data for userID:", userID);
       return;
     }
-    // [like.user.username, like.user.age, like.matchPercent, like.senderMessageTime];
+
     const userName = userData[0];
     const userAge = userData[1];
     const matchPercent = userData[2];

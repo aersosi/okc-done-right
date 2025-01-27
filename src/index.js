@@ -27,7 +27,6 @@ import { styles_pageWhoYouLike } from "../dist_styles/styles_pageWhoYouLike.js";
     {
       URL_includes: "okcupid.com",
       before_document_interactive: [
-        () => console.log("before_document_interactive"),
         () => remove_elementsWithID(["dr_UI_wrapper", "okc_superlikeBtn", "okc_userThumb"]),
 
         () => inject_stylesToHead(okc_overrides, "okc_overrides"),
