@@ -50,13 +50,17 @@ export async function buildFilesToJS(srcDir, outputDir, fileExtension, minificat
         cleanContent = cleanContent
           .map((line) =>
             line.replace(/\s{2,}/g, "")               // Remove double spaces
-              .replace(/\/\/(?![^"]*["']).*/g, "")  // Remove JS inline comment (// ...)
-              .replace(/\/\*[\s\S]*?\*\//g, "")       // Remove JS multiline comment (/* ... */)
+              .replace(/\/\/(?![^"]*["']).*/g, "")    // Remove JS inline comment (// ...)
+              .replace(/\/\*[\s\S]*?\*\//g, "")       // Remove JS/CSS multiline comment (/* ... */)
               .replace(/\s*{\s*/g, "{")               // Replace " {" with "{"
               .replace(/\s*:\s*/g, ":")               // Replace ": " with ":"
               .replace(/\s*!/g, "!")                  // Replace " !" with "!"
           )
-          .filter((line) => line.trim());
+          .filter((line) =>
+            line.trim() &&
+            !line.trim().startsWith("logConsole &&") &&
+            !line.trim().startsWith("logError &&")
+          );
       }
 
 

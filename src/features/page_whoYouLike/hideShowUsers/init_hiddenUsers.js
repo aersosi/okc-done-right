@@ -19,10 +19,7 @@ export const init_hiddenUsers = (logConsole = false) => {
     const userCard = document.querySelector(`a[href*="${userId}"]`)?.closest(".userrow-bucket-display-card");
 
     if (!userCard) {
-      logConsole &&
-      console.log(
-        `userCard not found for ID "${userId}".`
-      );
+      logConsole && console.log(`userCard not found for ID "${userId}".`);
       return;
     }
 
