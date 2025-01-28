@@ -24,7 +24,7 @@ async function getAllFiles(directory, fileExtension) {
 }
 
 // Main function to build files into JS modules
-export async function buildFilesToJS(srcDir, outputDir, fileExtension) {
+export async function buildFilesToJS(srcDir, outputDir, fileExtension, minification = false) {
   try {
     console.log(`Building files from '${srcDir}' with extension '${fileExtension}'...`);
 
@@ -44,11 +44,24 @@ export async function buildFilesToJS(srcDir, outputDir, fileExtension) {
     for (const filePath of allFiles) {
       const fileContent = await readFile(filePath, "utf-8");
 
-      // Remove comments and empty lines
-      const cleanContent = fileContent
-        .split("\n")
-        .filter((line) => line.trim() && !line.trim().startsWith("//") && !line.trim().startsWith("/*"))
-        .join("\n");
+      let cleanContent = fileContent.split("\n");
+
+      if (minification) {
+        cleanContent = cleanContent
+          .map((line) =>
+            line.replace(/\s{2,}/g, "")               // Remove double spaces
+              .replace(/\/\/(?![^"]*["']).*/g, "")  // Remove JS inline comment (// ...)
+              .replace(/\/\*[\s\S]*?\*\//g, "")       // Remove JS multiline comment (/* ... */)
+              .replace(/\s*{\s*/g, "{")               // Replace " {" with "{"
+              .replace(/\s*:\s*/g, ":")               // Replace ": " with ":"
+              .replace(/\s*!/g, "!")                  // Replace " !" with "!"
+          )
+          .filter((line) => line.trim());
+      }
+
+
+      const lineBreak = minification ? "" : "\n";
+      cleanContent = cleanContent.join(lineBreak);
 
       const filename = path.basename(filePath, path.extname(filePath));
       const jsContent = `export const ${filename} = \`${cleanContent}\`;`;

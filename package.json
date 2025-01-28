@@ -8,10 +8,12 @@
     "clean": "rm -rf dist && rm -rf dist_js && rm -rf dist_styles",
     "build-inject-css": "bun run src/_build/build_CSS.js",
     "build-inject-js": "bun run src/_build/build_JS.js",
+    "build-inject-css-minify": "bun run src/_build/build_CSS_minify.js",
+    "build-inject-js-minify": "bun run src/_build/build_JS_minify.js",
     "dist": "bun build ./src/index.js --outdir ./dist",
     "dist-minify": "bun build ./src/index.js --outdir ./dist --minify",
     "dist-all": "bun run clean && bun run build-inject-css && bun run build-inject-js && bun run dist",
-    "dist-all-minify": "bun run clean && bun run build-inject-css && bun run build-inject-js && bun run dist-minify"
+    "dist-all-minify": "bun run clean && bun run build-inject-css-minify && bun run build-inject-js-minify && bun run dist-minify"
   },
   "devDependencies": {
     "@types/bun": "latest"
