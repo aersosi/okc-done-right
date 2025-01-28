@@ -3,7 +3,7 @@ import { handle_emptyRows } from "./handle_emptyRows.js";
 export function handle_hideOfflineUsers() {
   const button = document.getElementById("btn_hideOfflineUsers");
   if (!button) {
-    console.error(`Button with ID "btn_hideOfflineUsers" not found.`);
+  logError && console.error(`Button with ID "btn_hideOfflineUsers" not found.`);
     return;
   }
 
@@ -24,7 +24,7 @@ export function handle_hideOfflineUsers() {
   // Get all user cards
   const userCards = document.querySelectorAll(".userrow-bucket-card-link-container");
   if (!userCards.length) {
-    console.error("User Cards not found.");
+  logError && console.error("User Cards not found.");
     return;
   }
 

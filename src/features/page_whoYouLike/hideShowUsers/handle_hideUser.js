@@ -1,9 +1,9 @@
 import { update_hiddenUserList } from "./update_hiddenUserList.js";
 
-export function handle_hideUser(event, logConsole = false) {
+export function handle_hideUser(event, logConsole = false, logError = false) {
   const userCard = event.target.closest('.userrow-bucket-display-card');
   if (!userCard) {
-    console.error("Invalid userCard element");
+  logError && console.error("Invalid userCard element");
     return;
   }
 
@@ -13,7 +13,7 @@ export function handle_hideUser(event, logConsole = false) {
   const userNameAge = `${userName}, ${userAge}`;
 
   if (!userNameAge) {
-    console.error(`Username and age information not found for userCard with ID "${userID}".`);
+  logError && console.error(`Username and age information not found for userCard with ID "${userID}".`);
     return;
   }
 
@@ -22,7 +22,7 @@ export function handle_hideUser(event, logConsole = false) {
     try {
       return JSON.parse(localStorage.getItem("dr_hiddenUsers")) || {};
     } catch (error) {
-      console.error("Failed to parse hidden users from localStorage:", error);
+    logError && console.error("Failed to parse hidden users from localStorage:", error);
       return {};
     }
   })();
@@ -33,7 +33,7 @@ export function handle_hideUser(event, logConsole = false) {
     localStorage.setItem("dr_hiddenUsers", JSON.stringify(hiddenUsers));
     logConsole && console.log(`User "${userNameAge}" (ID: ${userID}) added to hidden users.`);
   } catch (error) {
-    console.error("Failed to update hidden users in localStorage:", error);
+  logError && console.error("Failed to update hidden users in localStorage:", error);
     return;
   }
 
@@ -43,7 +43,7 @@ export function handle_hideUser(event, logConsole = false) {
     parentElement.classList.add("opacity-10", "pointer-events-none");
     logConsole && console.log(`User card for ID "${userID}" visually hidden.`);
   } else {
-    console.error(`Parent element not found for userCard with ID "${userID}".`);
+  logError && console.error(`Parent element not found for userCard with ID "${userID}".`);
   }
 
   // Update the hide list UI

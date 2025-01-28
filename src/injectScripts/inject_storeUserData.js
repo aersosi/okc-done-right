@@ -1,4 +1,4 @@
-(function(logConsole = false) {
+(function(logConsole = false, logError = false) {
   // 1. Remove localStorage data on init
   localStorage.removeItem("dr_isMoreData");
   localStorage.removeItem("dr_allUserData");
@@ -25,7 +25,7 @@
       if (responseDataMe?.likes?.data) {
         let userData = {};
 
-        responseDataMe.likes.data.forEach((like, index) => {
+        responseDataMe.likes.data.forEach((like) => {
           userData[like.user.id] = [like.user.username, like.user.age, like.matchPercent, like.senderMessageTime];
         });
         logConsole && console.log(userData);
@@ -35,7 +35,7 @@
           const storedData = localStorage.getItem("dr_allUserData");
           existingData = storedData ? JSON.parse(storedData) : {}; // Fallback to empty object
         } catch (error) {
-          console.warn("Error parsing dr_allUserData from localStorage:", error);
+          logError && console.error("Error parsing dr_allUserData from localStorage:", error);
           existingData = {};
         }
         const updatedData = { ...existingData, ...userData };
@@ -43,7 +43,7 @@
         localStorage.setItem("dr_allUserData", JSON.stringify(updatedData));
       }
     }).catch((err) => {
-      logConsole && console.log(err);
+      logError && console.error(err);
     });
 
     return response;

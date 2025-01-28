@@ -1,7 +1,7 @@
 export function handle_btn_matchHighlightAbove(inputID) {
   const input = document.getElementById(inputID);
   if (!input) {
-    console.error(`Input with ID "${inputID}" not found.`);
+  logError && console.error(`Input with ID "${inputID}" not found.`);
     return;
   }
 

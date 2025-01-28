@@ -1,7 +1,7 @@
-export function handle_showUser(event, logConsole = false) {
+export function handle_showUser(event, logConsole = false, logError = false) {
   const userId = event.target.closest(".dr_UI_row")?.dataset.okcUserId;
   if (!userId) {
-    console.error("No 'data-okc-user-id' found on '.dr_UI_row' element.");
+  logError && console.error("No 'data-okc-user-id' found on '.dr_UI_row' element.");
     return;
   }
 
@@ -10,7 +10,7 @@ export function handle_showUser(event, logConsole = false) {
     try {
       return JSON.parse(localStorage.getItem("dr_hiddenUsers")) || {};
     } catch (error) {
-      console.error("Failed to parse hidden users from localStorage:", error);
+    logError && console.error("Failed to parse hidden users from localStorage:", error);
       return {};
     }
   })();
@@ -32,7 +32,7 @@ export function handle_showUser(event, logConsole = false) {
 
     logConsole && console.log(`User card for ID "${userId}" is now visible.`);
   } else {
-    console.error(`User card not found for ID "${userId}".`);
+  logError && console.error(`User card not found for ID "${userId}".`);
   }
 
   // Remove dr_UI_row from dr_UI

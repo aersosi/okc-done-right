@@ -1,4 +1,4 @@
-export function bind_inputToElement(inputID, elementID, attribute = "textContent", logConsole = false) {
+export function bind_inputToElement(inputID, elementID, attribute = "textContent", logConsole = false, logError = false) {
   const input = document.getElementById(inputID);
   const element = document.getElementById(elementID);
 
@@ -6,11 +6,11 @@ export function bind_inputToElement(inputID, elementID, attribute = "textContent
   logConsole && console.log(element);
 
   if (!input) {
-    console.error(`Input with ID "${inputID}" not found.`);
+  logError && console.error(`Input with ID "${inputID}" not found.`);
     return;
   }
   if (!element) {
-    console.error(`Element with ID "${elementID}" not found.`);
+  logError && console.error(`Element with ID "${elementID}" not found.`);
     return;
   }
 

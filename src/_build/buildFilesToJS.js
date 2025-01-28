@@ -32,7 +32,7 @@ export async function buildFilesToJS(srcDir, outputDir, fileExtension, minificat
     const allFiles = await getAllFiles(srcDir, fileExtension);
 
     if (allFiles.length === 0) {
-      console.error(`No files with extension '${fileExtension}' found in directory: ${srcDir}`);
+    logError && console.error(`No files with extension '${fileExtension}' found in directory: ${srcDir}`);
       return;
     }
 
@@ -77,7 +77,7 @@ export async function buildFilesToJS(srcDir, outputDir, fileExtension, minificat
 
     console.log(`\nBuild completed successfully for '${srcDir}' -> '${outputDir}'!`);
   } catch (error) {
-    console.error("Error during build:", error);
+  logError && console.error("Error during build:", error);
     process.exit(1);
   }
 }

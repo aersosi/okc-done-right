@@ -1,7 +1,7 @@
-export function inject_scriptToHead(inject, id = "injected-script", logConsole = false) {
+export function inject_scriptToHead(inject, id = "injected-script", logConsole = false, logError = false) {
   let scriptElement = document.getElementById(id);
   if (scriptElement) {
-    logConsole && console.error(`Script with ID "${id}" already exists.`);
+    logError && console.error(`Script with ID "${id}" already exists.`);
     return;
   }
 

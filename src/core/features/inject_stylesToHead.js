@@ -1,8 +1,8 @@
-export function inject_stylesToHead(styles, id = "custom-styles", logConsole = false) {
+export function inject_stylesToHead(styles, id = "custom-styles", logConsole = false, logError = false) {
   let styleElement = document.getElementById(id);
 
   if (styleElement) {
-    logConsole && console.error(`Styles with ID "${id}" already exists.`);
+    logError && console.error(`Styles with ID "${id}" already exists.`);
     return;
   }
 

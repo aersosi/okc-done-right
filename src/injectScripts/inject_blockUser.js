@@ -19,7 +19,7 @@
     // Wait for the modal to appear in the DOM.
     const baseModal = document.getElementById("BaseModal");
     if (!baseModal) {
-      console.error("Base modal not found.");
+    logError && console.error("Base modal not found.");
       return;
     }
 
@@ -28,7 +28,7 @@
       .find(button => button.innerText.includes("BLOCK"));
 
     if (!blockButton) {
-      console.error("Block button not found in the modal.");
+    logError && console.error("Block button not found in the modal.");
       return;
     }
 

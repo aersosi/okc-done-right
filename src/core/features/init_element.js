@@ -1,12 +1,12 @@
-export function init_element(parentElement, elementTag, elementClasses, elementID, elementText, adjacentElement = false, logConsole = false) {
+export function init_element(parentElement, elementTag, elementClasses, elementID, elementText, adjacentElement = false, logConsole = false, logError = false) {
   if (document.getElementById(elementID)) {
-    logConsole && console.error(`Error: Element with ID "${elementID}" already exists.`);
+    logError && console.error(`Error: Element with ID "${elementID}" already exists.`);
     return;
   }
 
   const parent = document.querySelector(parentElement);
   if (!parent) {
-    console.error(`Error: Parent "${parentElement}" not found.`);
+  logError && console.error(`Error: Parent "${parentElement}" not found.`);
     return;
   }
 

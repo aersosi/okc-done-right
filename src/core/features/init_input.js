@@ -1,12 +1,12 @@
-export function init_input(parentElement, inputID, inputClasses, inputType, inputPlaceholder, inputValue, labelText, labelClasses, inputHandler, logConsole = false) {
+export function init_input(parentElement, inputID, inputClasses, inputType, inputPlaceholder, inputValue, labelText, labelClasses, inputHandler, logConsole = false, logError = false) {
   if (document.getElementById(inputID)) {
-    logConsole && console.error(`Error: Input with ID "${inputID}" already exists.`);
+    logError && console.error(`Error: Input with ID "${inputID}" already exists.`);
     return;
   }
 
   const parent = document.querySelector(parentElement);
   if (!parent) {
-    console.error(`Error: Parent "${parentElement}" not found.`);
+  logError && console.error(`Error: Parent "${parentElement}" not found.`);
     return;
   }
 

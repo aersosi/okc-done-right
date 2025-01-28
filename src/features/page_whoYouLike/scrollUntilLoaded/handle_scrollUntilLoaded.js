@@ -1,6 +1,6 @@
 import { toggle_elementClass } from "../../../core";
 
-export function handle_scrollUntilLoaded(globalIntervals, intervalID, logConsole = false) {
+export function handle_scrollUntilLoaded(globalIntervals, intervalID, logConsole = false, logError = false) {
   logConsole && console.log(intervalID);
 
   const loaderIndicator = document.querySelector(".ok-css-loader");
@@ -27,7 +27,7 @@ export function handle_scrollUntilLoaded(globalIntervals, intervalID, logConsole
 
   // Ensure no interval is running already for this intervalID
   if (globalIntervals[intervalID]) {
-    console.error(`Interval ${intervalID} is already running.`);
+  logError && console.error(`Interval ${intervalID} is already running.`);
     return;
   }
 

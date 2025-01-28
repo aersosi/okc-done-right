@@ -1,8 +1,12 @@
-export function remove_elementsWithID(idArrary, logConsole = false) {
+export function remove_elementsWithID(idArrary, logConsole = false, logError = false) {
   idArrary.forEach(id => {
     const element = document.getElementById(id);
-    logConsole && !element && console.warn(`Element with ID "${id}" not found.`);
+
+    if (!element) {
+      logError && console.error(`Element with ID "${id}" not found.`);
+      return;
+    }
 
     element && element.remove();
-  })
+  });
 }

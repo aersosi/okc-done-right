@@ -5,13 +5,13 @@ export function clickBlockBtn(event) {
   // Locate the modal icon.
   const modalIcon = document.querySelector("[class*='i-ellipsis']");
   if (!modalIcon) {
-    console.error("Modal icon not found.");
+  logError && console.error("Modal icon not found.");
     return;
   }
 
   const modalButton = modalIcon.closest("button");
   if (!modalButton) {
-    console.error("Modal button not found.");
+  logError && console.error("Modal button not found.");
     return;
   }
 
@@ -21,7 +21,7 @@ export function clickBlockBtn(event) {
   // Wait for the modal to appear in the DOM.
   const baseModal = document.getElementById("BaseModal");
   if (!baseModal) {
-    console.error("Base modal not found.");
+  logError && console.error("Base modal not found.");
     return;
   }
 
@@ -30,7 +30,7 @@ export function clickBlockBtn(event) {
     .find(button => button.innerText.includes("BLOCK"));
 
   if (!blockButton) {
-    console.error("Block button not found in the modal.");
+  logError && console.error("Block button not found in the modal.");
     return;
   }
 

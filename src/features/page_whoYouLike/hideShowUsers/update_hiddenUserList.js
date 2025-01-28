@@ -8,7 +8,7 @@ export function update_hiddenUserList() {
 
   let hideList = document.getElementById("dr_UI_body_hiddenUsers");
   if (!hideList) {
-    console.error("Hide List not found.");
+  logError && console.error("Hide List not found.");
     return;
   }
 

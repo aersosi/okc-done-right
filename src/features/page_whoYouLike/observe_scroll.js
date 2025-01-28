@@ -1,6 +1,6 @@
 import { debounce } from "../../core";
 
-export function observe_scrollDebounced(callbacks, debounceTime = 100, logConsole = false) {
+export function observe_scrollDebounced(callbacks, debounceTime = 100, logConsole = false, logError = false) {
   const debouncedScrollHandler = debounce(() => {
   callbacks.forEach(fn => fn());
   }, debounceTime);
@@ -16,7 +16,7 @@ export function observe_scrollDebounced(callbacks, debounceTime = 100, logConsol
 }
 
 
-export function observe_scrollTimeout(callbacks, waitForNewScroll = 1000, logConsole = false) {
+export function observe_scrollTimeout(callbacks, waitForNewScroll = 1000, logConsole = false, logError = false) {
   let timer = null;
 
   function onScrollEnd() {

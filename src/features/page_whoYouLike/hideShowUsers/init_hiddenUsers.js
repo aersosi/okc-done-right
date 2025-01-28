@@ -1,17 +1,17 @@
 import { update_hiddenUserList } from "./update_hiddenUserList.js";
 
-export const init_hiddenUsers = (logConsole = false) => {
+export const init_hiddenUsers = (logConsole = false, logError = false) => {
   const hiddenUsers = (() => {
     try {
       return JSON.parse(localStorage.getItem("dr_hiddenUsers")) ?? {};
     } catch {
-      console.error("Failed to parse hidden users from localStorage.");
+    logError && console.error("Failed to parse hidden users from localStorage.");
       return {};
     }
   })();
 
   if (!Object.keys(hiddenUsers).length) {
-    logConsole && console.log("No hidden users found.");
+    logError && console.error("No hidden users found.");
     return;
   }
 
@@ -19,7 +19,7 @@ export const init_hiddenUsers = (logConsole = false) => {
     const userCard = document.querySelector(`a[href*="${userId}"]`)?.closest(".userrow-bucket-display-card");
 
     if (!userCard) {
-      logConsole && console.log(`userCard not found for ID "${userId}".`);
+      logError && console.error(`userCard not found for ID "${userId}".`);
       return;
     }
 

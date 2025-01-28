@@ -4,6 +4,7 @@ export function observe_stateChanges({
                                        URL_includes,
                                        waitForElement = "#root",
                                        logConsole = false,
+                                       logError = false,
                                        logEvent = false,
                                        eventsToListen = ["focus", "visibilitychange", "resize"],
                                        before_document_interactive = [],

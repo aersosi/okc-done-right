@@ -1,12 +1,12 @@
-export function init_button(parentElement, buttonClasses, buttonID, buttonText, dataUserID, buttonHandler, logConsole = false) {
+export function init_button(parentElement, buttonClasses, buttonID, buttonText, dataUserID, buttonHandler, logConsole = false, logError = false) {
   const parent = document.querySelector(parentElement);
   if (!parent) {
-    console.error(`Error: Parent "${parentElement}" not found.`);
+  logError && console.error(`Error: Parent "${parentElement}" not found.`);
     return;
   }
 
   if (document.getElementById(buttonID)) {
-    logConsole && console.error(`Error: Button with ID "${buttonID}" already exists.`);
+    logError && console.error(`Error: Button with ID "${buttonID}" already exists.`);
     return;
   }
 

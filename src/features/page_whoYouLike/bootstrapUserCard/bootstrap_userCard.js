@@ -6,7 +6,7 @@ import { init_userLinkNewTab } from "./init_userLinkNewTab.js";
 export function bootstrap_userCard() {
   const userCards = document.querySelectorAll(".userrow-bucket-display-card");
   if (!userCards || userCards.length === 0) {
-    console.error("User Cards not found.");
+  logError && console.error("User Cards not found.");
     return;
   }
 
@@ -15,7 +15,7 @@ export function bootstrap_userCard() {
   Object.keys(allUserData).forEach((userID, index) => {
     const userData = allUserData[userID];
     if (!userData) {
-      console.error("No user data for userID:", userID);
+    logError && console.error("No user data for userID:", userID);
       return;
     }
 
