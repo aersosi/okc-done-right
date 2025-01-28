@@ -1,4 +1,4 @@
-import { inject_scriptToHead, inject_stylesToHead, observe_URLChanges, remove_elementsWithID } from "./core";
+import { inject_scriptToHead, inject_stylesToHead, observe_stateChanges, remove_elementsWithID } from "./core";
 
 import { init_whoYouLike_UI } from "./features/page_whoYouLike/init_whoYouLike_UI.js";
 import { init_discover_UI } from "./features/page_discover/init_discover_UI.js";
@@ -23,7 +23,7 @@ import { styles_pageWhoYouLike } from "../dist_styles/styles_pageWhoYouLike.js";
 (async function() {
   "use strict";
 
-  observe_URLChanges(
+  observe_stateChanges(
     {
       URL_includes: "okcupid.com",
       before_document_interactive: [
@@ -38,7 +38,7 @@ import { styles_pageWhoYouLike } from "../dist_styles/styles_pageWhoYouLike.js";
     }
   );
 
-  observe_URLChanges(
+  observe_stateChanges(
     {
       URL_includes: "discover",
       waitForElement: ".dt-action-buttons",
@@ -54,7 +54,7 @@ import { styles_pageWhoYouLike } from "../dist_styles/styles_pageWhoYouLike.js";
     }
   );
 
-  observe_URLChanges(
+  observe_stateChanges(
     {
       URL_includes: "messages",
       document_interactive: [
@@ -66,7 +66,7 @@ import { styles_pageWhoYouLike } from "../dist_styles/styles_pageWhoYouLike.js";
     }
   );
 
-  observe_URLChanges(
+  observe_stateChanges(
     {
       URL_includes: "profile",
       waitForElement: ".profile-userinfo",
@@ -82,7 +82,7 @@ import { styles_pageWhoYouLike } from "../dist_styles/styles_pageWhoYouLike.js";
     }
   );
 
-  observe_URLChanges(
+  observe_stateChanges(
     {
       URL_includes: "who-you-like",
       waitForElement: ".userrow-bucket-container",

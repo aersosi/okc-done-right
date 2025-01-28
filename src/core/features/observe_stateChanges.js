@@ -1,14 +1,15 @@
 import { waitFor_element } from "./waitFor_element.js";
 
-export function observe_URLChanges({
-                                     URL_includes,
-                                     waitForElement = "#root",
-                                     logConsole = false,
-                                     logEvent = false,
-                                     before_document_interactive = [],
-                                     document_interactive = [],
-                                     document_complete = []
-                                   }) {
+export function observe_stateChanges({
+                                       URL_includes,
+                                       waitForElement = "#root",
+                                       logConsole = false,
+                                       logEvent = false,
+                                       eventsToListen = ["focus", "visibilitychange", "resize"],
+                                       before_document_interactive = [],
+                                       document_interactive = [],
+                                       document_complete = []
+                                     }) {
   let oldHref = document.location.href;
   const observedElements = new Set();
   let isRunning = false;
@@ -56,8 +57,6 @@ export function observe_URLChanges({
   });
 
   observer.observe(document.body, { childList: true, subtree: true, attributes: false });
-
-  const eventsToListen = ["focus", "visibilitychange", "resize"];
   eventsToListen.forEach((event) => window.addEventListener(event, runFunctions));
 
   // Cleanup on unload
