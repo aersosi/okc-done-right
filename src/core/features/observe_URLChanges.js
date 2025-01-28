@@ -4,15 +4,19 @@ export function observe_URLChanges({
                                      URL_includes,
                                      waitForElement = "#root",
                                      logConsole = false,
+                                     logEvent = false,
                                      before_document_interactive = [],
                                      document_interactive = [],
                                      document_complete = []
                                    }) {
   let oldHref = document.location.href;
   const observedElements = new Set();
-  let isRunning = false; // Prevent multiple executions
+  let isRunning = false;
 
-  async function runFunctions() {
+  async function runFunctions(event) {
+    logEvent && console.log(event?.type);
+    logEvent && console.log(event?.target);
+
     if (!document.location.href.includes(URL_includes)) return;
     if (isRunning) return;
     isRunning = true;
@@ -24,6 +28,7 @@ export function observe_URLChanges({
         await Promise.all(document_interactive.map(fn => fn()));
       }
 
+      // Wait for the target element and ensure it's handled only once
       const elementIsNew = !observedElements.has(waitForElement);
       const elementIsAvailable = await waitFor_element(waitForElement);
 
@@ -50,6 +55,14 @@ export function observe_URLChanges({
     }
   });
 
-  observer.observe(document.body, { childList: true, subtree: true });
-  window.addEventListener('beforeunload', () => observer.disconnect());
+  observer.observe(document.body, { childList: true, subtree: true, attributes: false });
+
+  const eventsToListen = ["focus", "visibilitychange", "resize"];
+  eventsToListen.forEach((event) => window.addEventListener(event, runFunctions));
+
+  // Cleanup on unload
+  window.addEventListener("beforeunload", () => {
+    observer.disconnect();
+    eventsToListen.forEach((event) => window.removeEventListener(event, runFunctions));
+  });
 }

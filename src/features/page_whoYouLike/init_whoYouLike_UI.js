@@ -23,15 +23,12 @@ import { set_matchHighlightAbove } from "./matchHighlightAbove/set_matchHighligh
 
 export function init_whoYouLike_UI() {
   // Functions to init on Load
-  const init_UI = [
+  const init_okc_UI = [
     init_matchHighlightAbove,
     bootstrap_userCard,
-    handle_hideOfflineUsers,
-    init_hiddenUsers
   ];
-
-  init_UI.forEach(callback => callback());
-  observe_scrollTimeout(init_UI);
+  init_okc_UI.forEach(callback => callback());
+  observe_scrollTimeout(init_okc_UI);
 
   // Init dr_UI_wrapper
   init_element("body", "div", "dr_UI_wrapper", "dr_UI_wrapper", false);
@@ -267,6 +264,12 @@ export function init_whoYouLike_UI() {
   // set input value to button child on load
   bind_inputToElement("input_notCity", "btn_notCity_text", "textContent");
 
+  const init_dr_UI = [
+    handle_hideOfflineUsers,
+    init_hiddenUsers
+  ];
+  init_dr_UI.forEach(callback => callback());
+  observe_scrollTimeout(init_dr_UI);
 
 }
 
