@@ -5,15 +5,23 @@
     --primary: #e60099;
     --primary-hover: #bf007f;
     --primary-accent: var(--text-light);
+    --primary-hover-accent: var(--text-light);
+
     --secondary: #e6e6f2;
     --secondary-hover: #c3c3d9;
     --secondary-accent: var(--text-dark);
+    --secondary-hover-accent: var(--text-dark);
+
     --teritiary: #0000bf;
     --teritiary-hover: #000099;
     --teritiary-accent: var(--text-light);
+    --teritiary-hover-accent: var(--text-light);
+
     --error: #f23041;
     --error-hover: #ff99a2;
-    --error-accent: var(--text-dark);
+    --error-accent: var(--text-light);
+    --error-hover-accent: var(--text-dark);
+
     --dr-elm-height: 1.75rem;
     --dr-elm-padding-inline: 0.75rem;
     --profile-width: 1024px;

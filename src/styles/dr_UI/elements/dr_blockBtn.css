@@ -15,7 +15,7 @@
 
 .dr_blockBtn:hover {
     background-color: var(--error-hover);
-    color: var(--error-accent);
+    color: var(--error-hover-accent);
 }
 
 .dr_blockBtn .dr_blockBtn-text {

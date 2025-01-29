@@ -20,5 +20,5 @@ export function init_blockBtn(buttonsWrapper, insertBefore) {
     buttonsWrapper.insertBefore(blockButton, buttonsWrapper.firstChild);
   }
 
-  blockButton.addEventListener("click", (event) => clickBlockBtn(event));
+  blockButton.addEventListener("click", clickBlockBtn);
 }
