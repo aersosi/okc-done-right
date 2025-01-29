@@ -237,7 +237,7 @@ export function init_whoYouLike_UI() {
   );
 
   // init btn_matchHighlightPercent
-  init_button("#dr_UI_body_tools", "dr_btn_secondary", "btn_matchHighlightPercent", "Set match highlight", null, () => {
+  init_button("[for='input_matchHighlightPercent']", "dr_btn_secondary", "btn_matchHighlightPercent", "Set match highlight", null, () => {
     // toggle match highlight
     handle_btn_matchHighlightPercent("input_matchHighlightPercent", "btn_matchHighlightPercent");
     set_matchHighlightPercent();
@@ -253,7 +253,7 @@ export function init_whoYouLike_UI() {
   );
 
   // init btn_notCity
-  init_button("#dr_UI_body_tools", "dr_btn_secondary", "btn_notCity", null, null, () => {
+  init_button("[for='input_notCity']", "dr_btn_secondary", "btn_notCity", null, null, () => {
     // toggle city highlight
     handle_btn_notCity("input_notCity", "btn_notCity");
   });

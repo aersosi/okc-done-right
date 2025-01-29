@@ -1,7 +1,7 @@
 export function init_button(parentElement, buttonClasses, buttonID, buttonText, dataUserID, buttonHandler, logConsole = false, logError = false) {
   const parent = document.querySelector(parentElement);
   if (!parent) {
-  logError && console.error(`Error: Parent "${parentElement}" not found.`);
+    logError && console.error(`Error: Parent "${parentElement}" not found.`);
     return;
   }
 
