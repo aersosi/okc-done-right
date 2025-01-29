@@ -6,20 +6,16 @@ export function init_input(parentElement, inputID, inputClasses, inputType, inpu
 
   const parent = document.querySelector(parentElement);
   if (!parent) {
-  logError && console.error(`Error: Parent "${parentElement}" not found.`);
+    logError && console.error(`Error: Parent "${parentElement}" not found.`);
     return;
   }
 
   // Create the label element
   const label = document.createElement("label");
-  if (inputID) label.setAttribute("for", inputID);
-
-  if (labelText) {
-    const labelTextNode = document.createTextNode(labelText);
-    label.appendChild(labelTextNode);
-  }
-
   if (labelClasses) label.classList.add(...labelClasses.split(" "));
+  if (inputID) label.setAttribute("for", inputID);
+  if (labelText) label.innerHTML = labelText;
+
 
   // Create the input element
   const input = document.createElement("input");

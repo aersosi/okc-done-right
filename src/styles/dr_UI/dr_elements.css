@@ -1,6 +1,6 @@
 .dr_label,
 .dr_headline {
-    color: var(--primary);
+    color: var(--secondary-accent);
     font-weight: 500;
 }
 
