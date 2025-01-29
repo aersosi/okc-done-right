@@ -6,7 +6,7 @@ export function observe_stateChanges({
                                        logConsole = false,
                                        logError = false,
                                        logEvent = false,
-                                       eventsToListen = ["focus", "visibilitychange", "resize"],
+                                       eventsToListen = ["visibilitychange", "resize"],
                                        before_document_interactive = [],
                                        document_interactive = [],
                                        document_complete = []

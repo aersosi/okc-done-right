@@ -10,6 +10,11 @@
     padding-inline: var(--dr-elm-padding-inline);
     border: 1px solid var(--secondary);
     width: 240px;
+    transition: border-color 0.25s ease;
+}
+
+#dr_UI_wrapper:hover {
+    border: 1px solid var(--primary);
 }
 
 .dr_UI_section {

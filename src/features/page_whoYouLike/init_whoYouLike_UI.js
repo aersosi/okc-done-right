@@ -163,7 +163,7 @@ export function init_whoYouLike_UI() {
     {
       className: "dr_btn_primary hidden",
       id: "btn_stopScrollUntilLoaded",
-      text: "Stop scroll",
+      text: "Stop scrolling",
       handler: () => {
         toggle_elementClass("btn_stopScrollUntilLoaded", "hidden");
         toggle_elementClass("btn_scrollUntilLoaded", "hidden");
@@ -240,7 +240,7 @@ export function init_whoYouLike_UI() {
   // init btn_matchHighlightAbove
   init_button("#dr_UI_body_tools", "dr_btn_secondary", "btn_matchHighlightAbove", "Set match highlight", null, () => {
     // toggle match highlight
-    handle_btn_matchHighlightAbove("input_matchHighlightAbove");
+    handle_btn_matchHighlightAbove("input_matchHighlightAbove", "btn_matchHighlightAbove");
     set_matchHighlightAbove();
   });
 
