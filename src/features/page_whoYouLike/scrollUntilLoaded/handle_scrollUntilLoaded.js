@@ -10,12 +10,13 @@ export function handle_scrollUntilLoaded(globalIntervals, intervalID, logConsole
     // Scroll to the bottom of the page
     window.scrollTo({ top: document.body.scrollHeight - 200, behavior: "instant" });
     const currentScrollPosition = window.scrollY + window.innerHeight;
-    const endOfData = localStorage.getItem('dr_isMoreData') === 'false';
+    const endOfData = localStorage.getItem("dr_isMoreData") === "false";
 
     // Stop scrolling when the loader is gone and the scroll position hasn't changed
     if (endOfData && !loaderIndicator) {
       clearInterval(globalIntervals[intervalID]); // Clear the interval
       delete globalIntervals[intervalID]; // Remove interval from storage
+      window.scrollTo({ top: 0, behavior: "instant" });
 
       toggle_elementClass("btn_scrollUntilLoaded", "hidden");
       toggle_elementClass("btn_stopScrollUntilLoaded", "hidden");
@@ -27,7 +28,7 @@ export function handle_scrollUntilLoaded(globalIntervals, intervalID, logConsole
 
   // Ensure no interval is running already for this intervalID
   if (globalIntervals[intervalID]) {
-  logError && console.error(`Interval ${intervalID} is already running.`);
+    logError && console.error(`Interval ${intervalID} is already running.`);
     return;
   }
 

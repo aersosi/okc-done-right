@@ -1,9 +1,9 @@
 import { handle_emptyRows } from "./handle_emptyRows.js";
 
-export function handle_showOfflineUsers() {
+export function handle_showOfflineUsers(logError = false) {
   const button = document.getElementById("btn_showOfflineUsers");
   if (!button) {
-  logError && console.error(`Button with ID "btn_hideOfflineUsers" not found.`);
+    logError && console.error(`Button with ID "btn_hideOfflineUsers" not found.`);
     return;
   }
 
@@ -12,19 +12,19 @@ export function handle_showOfflineUsers() {
   if (!isActive) return;
 
   // Get all online status elements in one query
-  const onlineMarkers = document.querySelectorAll('.userInfo-username-online');
+  const onlineMarkers = document.querySelectorAll(".userInfo-username-online");
   const onlineCards = new Set();
 
   // Collect parent cards of online markers
   onlineMarkers.forEach(marker => {
-    const card = marker.closest('.userrow-bucket-card-link-container');
+    const card = marker.closest(".userrow-bucket-card-link-container");
     if (card) onlineCards.add(card);
   });
 
   // Get all user cards
   const userCards = document.querySelectorAll(".userrow-bucket-card-link-container");
   if (!userCards.length) {
-  logError && console.error("User Cards not found.");
+    logError && console.error("User Cards not found.");
     return;
   }
 

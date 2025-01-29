@@ -24,7 +24,7 @@ async function getAllFiles(directory, fileExtension) {
 }
 
 // Main function to build files into JS modules
-export async function buildFilesToJS(srcDir, outputDir, fileExtension, minification = false) {
+export async function buildFilesToJS(srcDir, outputDir, fileExtension, minification = false, logError = false) {
   try {
     console.log(`Building files from '${srcDir}' with extension '${fileExtension}'...`);
 

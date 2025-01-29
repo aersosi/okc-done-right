@@ -1,5 +1,5 @@
-export function set_matchHighlightAbove() {
-  const matchPercentValue = JSON.parse(localStorage.getItem("dr_matchHighlightAbove"));
+export function set_matchHighlightPercent() {
+  const matchPercentValue = JSON.parse(localStorage.getItem("dr_matchHighlightPercent"));
 
   const matchPercentPills = document.querySelectorAll(".dr_OKC_matchPercent");
   matchPercentPills.forEach(pill => {

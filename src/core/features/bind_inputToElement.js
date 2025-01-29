@@ -6,11 +6,11 @@ export function bind_inputToElement(inputID, elementID, attribute = "textContent
   logConsole && console.log(element);
 
   if (!input) {
-  logError && console.error(`Input with ID "${inputID}" not found.`);
+    logError && console.error(`Input with ID "${inputID}" not found.`);
     return;
   }
   if (!element) {
-  logError && console.error(`Element with ID "${elementID}" not found.`);
+    logError && console.error(`Element with ID "${elementID}" not found.`);
     return;
   }
 

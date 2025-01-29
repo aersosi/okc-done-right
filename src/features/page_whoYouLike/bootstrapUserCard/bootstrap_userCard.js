@@ -3,10 +3,10 @@ import { init_firstMessage } from "./init_firstMessage.js";
 import { init_matchPercent } from "./init_matchPercent.js";
 import { init_userLinkNewTab } from "./init_userLinkNewTab.js";
 
-export function bootstrap_userCard() {
+export function bootstrap_userCard(logError = false) {
   const userCards = document.querySelectorAll(".userrow-bucket-display-card");
   if (!userCards || userCards.length === 0) {
-  logError && console.error("User Cards not found.");
+    logError && console.error("User Cards not found.");
     return;
   }
 
@@ -15,7 +15,7 @@ export function bootstrap_userCard() {
   Object.keys(allUserData).forEach((userID, index) => {
     const userData = allUserData[userID];
     if (!userData) {
-    logError && console.error("No user data for userID:", userID);
+      logError && console.error("No user data for userID:", userID);
       return;
     }
 
@@ -30,17 +30,17 @@ export function bootstrap_userCard() {
     userCards[index].dataset.dr_match_percent = matchPercent;
     userCards[index].dataset.dr_user_messaged = firstMessage;
 
-    if (!userCards[index].querySelector('.dr_OKC_matchPercent')) {
+    if (!userCards[index].querySelector(".dr_OKC_matchPercent")) {
       const elmMatchPercent = init_matchPercent("dr_OKC_matchPercent", matchPercent);
       userCards[index].appendChild(elmMatchPercent);
     }
 
-    if (!userCards[index].querySelector('.dr_OKC_firstMessage')) {
+    if (!userCards[index].querySelector(".dr_OKC_firstMessage")) {
       const elmFirstMessage = init_firstMessage("dr_OKC_firstMessage", firstMessage);
       if (elmFirstMessage !== null) userCards[index].appendChild(elmFirstMessage);
     }
 
-    if (!userCards[index].querySelector('.dr_OKC_userNewTabLink')) {
+    if (!userCards[index].querySelector(".dr_OKC_userNewTabLink")) {
       const elmNewTab = init_userLinkNewTab("dr_OKC_userNewTabLink", userID);
       userCards[index].appendChild(elmNewTab);
     }

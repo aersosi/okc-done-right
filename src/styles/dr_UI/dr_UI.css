@@ -40,6 +40,7 @@
 .dr_UI_row {
     display: flex;
     gap: 0.5rem;
+    flex-direction: row;
     justify-content: space-between;
 }
 

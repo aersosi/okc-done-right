@@ -10,7 +10,7 @@
     }, 100);
   }
 
-  waitForElement(".profile-userdropdown-toggler", (modalButton) => {
+  waitForElement(".profile-userdropdown-toggler", (modalButton, logError = false) => {
     const clickEvent = new Event("click", { bubbles: true });
 
     // Simulate a click to open the modal dialog.
@@ -19,7 +19,7 @@
     // Wait for the modal to appear in the DOM.
     const baseModal = document.getElementById("BaseModal");
     if (!baseModal) {
-    logError && console.error("Base modal not found.");
+      logError && console.error("Base modal not found.");
       return;
     }
 
@@ -28,7 +28,7 @@
       .find(button => button.innerText.includes("BLOCK"));
 
     if (!blockButton) {
-    logError && console.error("Block button not found in the modal.");
+      logError && console.error("Block button not found in the modal.");
       return;
     }
 

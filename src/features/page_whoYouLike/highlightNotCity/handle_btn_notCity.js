@@ -1,20 +1,20 @@
-export function handle_btn_notCity(inputID, buttonID) {
+export function handle_btn_notCity(inputID, buttonID, logError = false) {
   const input = document.getElementById(inputID);
   const button = document.getElementById(buttonID);
 
   if (!input) {
-  logError && console.error(`Input with ID "${inputID}" not found.`);
+    logError && console.error(`Input with ID "${inputID}" not found.`);
     return;
   }
   if (!button) {
-  logError && console.error(`Button with ID "${buttonID}" not found.`);
+    logError && console.error(`Button with ID "${buttonID}" not found.`);
     return;
   }
   const userLocationsSelector = ".userInfo-meta-location";
   const userLocation = document.querySelectorAll(userLocationsSelector);
 
   if (!userLocation) {
-  logError && console.error(`User Locations with class "${userLocationsSelector}" not found.`);
+    logError && console.error(`User Locations with class "${userLocationsSelector}" not found.`);
     return;
   }
 

@@ -1,14 +1,14 @@
-export function handle_btn_matchHighlightAbove(inputID, buttonID, logError = false) {
+export function handle_btn_matchHighlightPercent(inputID, buttonID, logError = false) {
   const input = document.getElementById(inputID);
   if (!input) {
-  logError && console.error(`Input with ID "${inputID}" not found.`);
+    logError && console.error(`Input with ID "${inputID}" not found.`);
     return;
   }
 
   const button = document.getElementById(buttonID);
-  console.log(button)
+  console.log(button);
   if (!button) {
-  logError && console.error(`Input with ID "${inputID}" not found.`);
+    logError && console.error(`Input with ID "${inputID}" not found.`);
     return;
   }
 
@@ -19,13 +19,12 @@ export function handle_btn_matchHighlightAbove(inputID, buttonID, logError = fal
   }
 
 
-
   button.classList.remove("dr_btn_secondary");
   button.classList.add("dr_btn_primary");
   setTimeout(() => {
     button.classList.remove("dr_btn_primary");
     button.classList.add("dr_btn_secondary");
-  }, 250)
+  }, 500);
 
-  localStorage.setItem("dr_matchHighlightAbove", JSON.stringify(input.value));
+  localStorage.setItem("dr_matchHighlightPercent", JSON.stringify(input.value));
 }

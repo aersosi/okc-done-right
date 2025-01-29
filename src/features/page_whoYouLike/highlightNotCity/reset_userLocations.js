@@ -1,7 +1,7 @@
-export function reset_userLocations() {
+export function reset_userLocations(logError = false) {
   const userLocations = document.querySelectorAll(".userInfo-meta-location");
   if (!userLocations) {
-  logError && console.error(`Error: User Locations "${userLocations}" not found.`);
+    logError && console.error(`Error: User Locations "${userLocations}" not found.`);
     return;
   }
 

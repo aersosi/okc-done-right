@@ -5,7 +5,7 @@ export const init_hiddenUsers = (logConsole = false, logError = false) => {
     try {
       return JSON.parse(localStorage.getItem("dr_hiddenUsers")) ?? {};
     } catch {
-    logError && console.error("Failed to parse hidden users from localStorage.");
+      logError && console.error("Failed to parse hidden users from localStorage.");
       return {};
     }
   })();

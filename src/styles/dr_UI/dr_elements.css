@@ -93,7 +93,7 @@
 
 :root {
     --dr-elm-posX: 14px;
-    --dr-elm-posY: calc(180px - 14px);
+    --dr-elm-posY: calc(180px - 12px);
 }
 
 .dr_OKC_userNewTabLink {
