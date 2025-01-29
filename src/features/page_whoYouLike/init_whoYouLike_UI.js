@@ -57,13 +57,6 @@ export function init_whoYouLike_UI() {
       tag: "div",
       className: "dr_UI_body",
       id: "dr_UI_body_hiddenUsers"
-    },
-    {
-      parent: ".userrow-bucket-container",
-      tag: "div",
-      className: "hidden",
-      id: "dr_wrapper_usersOnline",
-      adjacent: true
     }
   ];
   const section_tools = [
@@ -90,21 +83,14 @@ export function init_whoYouLike_UI() {
       tag: "div",
       className: "dr_UI_body",
       id: "dr_UI_body_tools"
-    },
-    {
-      parent: ".userrow-bucket-container",
-      tag: "div",
-      className: "hidden",
-      id: "dr_wrapper_usersOnline",
-      adjacent: true
     }
   ];
 
-  section_hiddenUsers.forEach(({ parent, tag, className, id, text, adjacent }) => {
-    init_element(parent, tag, className, id, text, adjacent);
+  section_hiddenUsers.forEach(({ parent, tag, className, id, text }) => {
+    init_element(parent, tag, className, id, text);
   });
-  section_tools.forEach(({ parent, tag, className, id, text, adjacent }) => {
-    init_element(parent, tag, className, id, text, adjacent);
+  section_tools.forEach(({ parent, tag, className, id, text }) => {
+    init_element(parent, tag, className, id, text);
   });
 
   const btn_dr_UI_headlines = [

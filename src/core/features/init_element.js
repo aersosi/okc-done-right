@@ -1,4 +1,4 @@
-export function init_element(parentElement, elementTag, elementClasses, elementID, elementText, adjacentElement = false, logConsole = false, logError = false) {
+export function init_element(parentElement, elementTag, elementClasses, elementID, elementText, logConsole = false, logError = false) {
   if (document.getElementById(elementID)) {
     logError && console.error(`Error: Element with ID "${elementID}" already exists.`);
     return;
@@ -6,7 +6,7 @@ export function init_element(parentElement, elementTag, elementClasses, elementI
 
   const parent = document.querySelector(parentElement);
   if (!parent) {
-  logError && console.error(`Error: Parent "${parentElement}" not found.`);
+    logError && console.error(`Error: Parent "${parentElement}" not found.`);
     return;
   }
 
@@ -16,12 +16,7 @@ export function init_element(parentElement, elementTag, elementClasses, elementI
   if (elementID) element.id = elementID;
   if (elementText) element.textContent = elementText;
 
-  if (!adjacentElement) {
-    parent.appendChild(element);
-  } else {
-    parent.insertAdjacentElement("afterend", element);
-  }
-
+  parent.appendChild(element);
 
   logConsole && console.log(`Add: element "${elementTag}" with ID "${elementID}" to "${parentElement}".`);
 }
