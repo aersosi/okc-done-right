@@ -45,6 +45,7 @@ export function clickBlockBtn(event, logError = false) {
     if (closeButton) {
       clearInterval(closeConfirmationModal);
       closeButton.dispatchEvent(clickEvent);
+      userLocalStorage();
       console.debug("Successfully blocked the user.");
     }
   }, 100);
@@ -54,4 +55,46 @@ export function clickBlockBtn(event, logError = false) {
     clearInterval(closeConfirmationModal);
   }, 5000);
 
+}
+
+function userLocalStorage(logConsole = false, logError = false) {
+
+  const userID = window.location.pathname.replace("/profile/", "");
+  if (!userID) {
+    logError && console.error("Failed to extract userID from URL.");
+    return;
+  }
+
+  const userName = document.querySelector(".profile-basics-username-text").textContent.trim();
+  if (!userName) {
+    logError && console.error("Username element not found.");
+    return;
+  }
+
+  const userAge = document.querySelector(".profile-basics-asl-age").textContent.trim();
+  if (!userAge) {
+    logError && console.error("User age element not found.");
+    return;
+  }
+
+  const userNameAge = `${userName}, ${userAge}`;
+
+  // Safely parse hidden users from localStorage
+  const hiddenUsers = (() => {
+    try {
+      return JSON.parse(localStorage.getItem("dr_hiddenUsers")) || {};
+    } catch (error) {
+      logError && console.error("Failed to parse hidden users from localStorage:", error);
+      return {};
+    }
+  })();
+
+  // Add or update the hidden user in localStorage
+  hiddenUsers[userID] = userNameAge;
+  try {
+    localStorage.setItem("dr_hiddenUsers", JSON.stringify(hiddenUsers));
+    logConsole && console.log(`User "${userNameAge}" (ID: ${userID}) added to hidden users.`);
+  } catch (error) {
+    logError && console.error("Failed to update hidden users in localStorage:", error);
+  }
 }
