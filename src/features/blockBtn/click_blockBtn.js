@@ -1,17 +1,24 @@
-export function clickBlockBtn(event, logError = false) {
+export function clickBlockBtn(event, logError = true) {
   event.preventDefault();
   const clickEvent = new Event("click", { bubbles: true });
 
-  // Locate the modal icon.
-  const modalIcon = document.querySelector("[class*='i-ellipsis']");
-  if (!modalIcon) {
-    logError && console.error("Modal icon not found.");
+  // Locate all modal icons.
+  const modalIcons = document.querySelectorAll("[class*='i-ellipsis']");
+
+  if (!modalIcons.length) {
+    logError && console.error("Keine Modal-Icons gefunden.");
     return;
   }
 
-  const modalButton = modalIcon.closest("button");
+ // Find the right Button by filtering content of aria-label
+  const modalButton = Array.from(modalIcons)
+    .map(icon => icon.closest("button")) // Das nächste "button"-Element für jedes Icon suchen
+    .find(button => button &&
+      /report/i.test(button.getAttribute("aria-label")) &&
+      /block/i.test(button.getAttribute("aria-label")));
+
   if (!modalButton) {
-    logError && console.error("Modal button not found.");
+    logError && console.error("Kein passender Modal-Button gefunden.");
     return;
   }
 
