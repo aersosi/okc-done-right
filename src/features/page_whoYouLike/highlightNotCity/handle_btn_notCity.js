@@ -1,3 +1,5 @@
+import { init_errorElement } from "../../../core";
+
 export function handle_btn_notCity(inputID, buttonID, logError = false) {
   const input = document.getElementById(inputID);
   const button = document.getElementById(buttonID);
@@ -10,6 +12,17 @@ export function handle_btn_notCity(inputID, buttonID, logError = false) {
     logError && console.error(`Button with ID "${buttonID}" not found.`);
     return;
   }
+
+  // Throw err if input is empty or the value contains non letter characters
+  if (!input.value || /[^a-z]/i.test(input.value)) {
+    console.log(typeof input.value)
+    logError && console.error(`Input with ID "${inputID}" has no value or not a string.`);
+
+    // Error to user
+    init_errorElement("[for='input_notCity']", "notCity", "Please enter a city name");
+    return;
+  }
+
   const userLocationsSelector = ".userInfo-meta-location";
   const userLocation = document.querySelectorAll(userLocationsSelector);
 

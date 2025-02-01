@@ -6,12 +6,12 @@ export function init_blockHideButtons(wrapperClass) {
   elementWrapper.classList.add(wrapperClass);
 
   const btnBlockUser = document.createElement("button");
-  btnBlockUser.classList.add("dr_btn_secondary");
+  btnBlockUser.classList.add("dr_btn", "dr_btn_secondary");
   btnBlockUser.textContent = "Block";
   btnBlockUser.addEventListener("click", handle_blockUser);
 
   const btnHideUser = document.createElement("button");
-  btnHideUser.classList.add("dr_btn_secondary");
+  btnHideUser.classList.add("dr_btn", "dr_btn_secondary");
   btnHideUser.textContent = "Hide";
   btnHideUser.addEventListener("click", handle_hideUser);
 

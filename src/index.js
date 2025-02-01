@@ -5,6 +5,8 @@ import { init_discover_UI } from "./features/page_discover/init_discover_UI.js";
 import { init_profile_UI } from "./features/page_profile/init_profile_UI.js";
 
 import { inject_storeUserData } from "../dist_js/inject_storeUserData.js";
+
+import { censor_okc } from "../dist_styles/censor_okc.js";
 import { okc_overrides } from "../dist_styles/okc_overrides.js";
 import { okc_superlikeBtn } from "../dist_styles/okc_superlikeBtn.js";
 import { okc_userThumb } from "../dist_styles/okc_userThumb.js";
@@ -33,7 +35,8 @@ import { styles_pageWhoYouLike } from "../dist_styles/styles_pageWhoYouLike.js";
         () => inject_stylesToHead(dr_variables, "dr_variables"),
         () => inject_stylesToHead(dr_elements, "dr_elements"),
         () => inject_stylesToHead(dr_UI, "dr_UI"),
-        () => inject_stylesToHead(dr_helper, "dr_helper")
+        () => inject_stylesToHead(dr_helper, "dr_helper"),
+        () => inject_stylesToHead(censor_okc, "censor_okc")
       ]
     }
   );

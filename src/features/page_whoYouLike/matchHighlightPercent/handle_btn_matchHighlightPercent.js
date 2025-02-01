@@ -1,3 +1,5 @@
+import { init_errorElement } from "../../../core";
+
 export function handle_btn_matchHighlightPercent(inputID, buttonID, logError = false) {
   const input = document.getElementById(inputID);
   if (!input) {
@@ -6,9 +8,18 @@ export function handle_btn_matchHighlightPercent(inputID, buttonID, logError = f
   }
 
   const button = document.getElementById(buttonID);
-  console.log(button);
   if (!button) {
     logError && console.error(`Input with ID "${inputID}" not found.`);
+    return;
+  }
+
+  // Throw err if input is empty or the value contains non letter characters
+  if (!input.value || /[^0-9]/i.test(input.value)) {
+    console.log(typeof input.value)
+    logError && console.error(`Input with ID "${inputID}" has no value or not a string.`);
+
+    // Error to user
+    init_errorElement("[for='input_matchHighlightPercent']", "matchHighlightPercent", "Please enter a number between 1 and 100");
     return;
   }
 

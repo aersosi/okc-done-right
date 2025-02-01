@@ -32,7 +32,7 @@ export function update_hiddenUserList(logError = false) {
     const unhideButton = document.createElement("button");
     unhideButton.dataset.okcUserId = userId;
     unhideButton.textContent = "Unhide";
-    unhideButton.classList.add("dr_btn_secondary");
+    unhideButton.classList.add("dr_btn", "dr_btn_secondary");
     unhideButton.addEventListener("click", handle_showUser);
 
     row.appendChild(link);

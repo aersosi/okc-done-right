@@ -20,6 +20,7 @@ import { bootstrap_userCard } from "./bootstrapUserCard/bootstrap_userCard.js";
 import { handle_btn_matchHighlightPercent } from "./matchHighlightPercent/handle_btn_matchHighlightPercent.js";
 import { init_matchHighlightPercent } from "./matchHighlightPercent/init_matchHighlightPercent.js";
 import { set_matchHighlightPercent } from "./matchHighlightPercent/set_matchHighlightPercent.js";
+import { init_iconButton } from "../../core";
 
 export function init_whoYouLike_UI() {
   // Functions to init on Load
@@ -93,53 +94,53 @@ export function init_whoYouLike_UI() {
     init_element(parent, tag, className, id, text);
   });
 
-  const btn_dr_UI_headlines = [
+  const icon_btn_dr_UI_headlines = [
     {
       parent: "#dr_UI_section_hiddenUsers .dr_UI_head",
       tag: "button",
-      className: "dr_icon_btn dr_icon_chevron_down",
+      className: "dr_icon_chevron_down",
       id: "dr_UI_section_hiddenUsers_close",
       handler: () => {
         toggle_elementClass("dr_UI_section_hiddenUsers_close", "hidden");
         toggle_elementClass("dr_UI_section_hiddenUsers_open", "hidden");
-        toggle_elementClass("dr_UI_body_hiddenUsers", "height-0");
+        toggle_elementClass("dr_UI_body_hiddenUsers", "max-height-0");
       }
     },
     {
       parent: "#dr_UI_section_hiddenUsers .dr_UI_head",
       tag: "button",
-      className: "dr_icon_btn hidden dr_icon_chevron_up",
+      className: "hidden dr_icon_chevron_up",
       id: "dr_UI_section_hiddenUsers_open",
       handler: () => {
         toggle_elementClass("dr_UI_section_hiddenUsers_close", "hidden");
         toggle_elementClass("dr_UI_section_hiddenUsers_open", "hidden");
-        toggle_elementClass("dr_UI_body_hiddenUsers", "height-0");
+        toggle_elementClass("dr_UI_body_hiddenUsers", "max-height-0");
       }
     },
     {
       parent: "#dr_UI_section_tools .dr_UI_head",
-      className: "dr_icon_btn dr_icon_chevron_down",
+      className: "dr_icon_chevron_down",
       id: "dr_UI_section_tools_close",
       handler: () => {
         toggle_elementClass("dr_UI_section_tools_close", "hidden");
         toggle_elementClass("dr_UI_section_tools_open", "hidden");
-        toggle_elementClass("dr_UI_body_tools", "height-0");
+        toggle_elementClass("dr_UI_body_tools", "max-height-0");
       }
     },
     {
       parent: "#dr_UI_section_tools .dr_UI_head",
-      className: "dr_icon_btn hidden dr_icon_chevron_up",
+      className: "hidden dr_icon_chevron_up",
       id: "dr_UI_section_tools_open",
       handler: () => {
         toggle_elementClass("dr_UI_section_tools_close", "hidden");
         toggle_elementClass("dr_UI_section_tools_open", "hidden");
-        toggle_elementClass("dr_UI_body_tools", "height-0");
+        toggle_elementClass("dr_UI_body_tools", "max-height-0");
       }
     }
   ];
 
-  btn_dr_UI_headlines.forEach(({ parent, className, id, text, handler }) => {
-    init_button(parent, className, id, text, null, handler);
+  icon_btn_dr_UI_headlines.forEach(({ parent, className, id, handler }) => {
+    init_iconButton(parent, className, id, handler);
   });
 
 
@@ -248,6 +249,9 @@ export function init_whoYouLike_UI() {
 
   // set input value to button child on load
   bind_inputToElement("input_notCity", "btn_notCity_text", "textContent");
+
+
+
 
   const init_dr_UI = [
     handle_hideOfflineUsers,
