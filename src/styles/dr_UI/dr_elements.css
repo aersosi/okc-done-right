@@ -30,7 +30,7 @@
     color: var(--primary);
 }
 
-[class*="dr_btn"] {
+.dr_btn {
     display: flex;
     justify-content: center;
     line-height: 1.6;
@@ -43,25 +43,25 @@
 
 .dr_btn_primary {
     color: var(--primary-accent);
-    background: var(--primary);
+    background-color: var(--primary);
 }
 
 .dr_btn_primary:hover {
     color: var(--primary-accent);
-    background: var(--primary-hover);
+    background-color: var(--primary-hover);
 }
 
 .dr_btn_secondary {
     color: var(--secondary-accent);
-    background: var(--secondary);
+    background-color: var(--secondary);
 }
 
 .dr_btn_secondary:hover {
     color: var(--secondary-accent);
-    background: var(--secondary-hover);
+    background-color: var(--secondary-hover);
 }
 
-[class*="dr_icon_btn"] {
+.dr_icon_btn {
     position: relative;
     width: var(--dr-elm-height);
     height: var(--dr-elm-height);
@@ -73,17 +73,27 @@
     transition: background 0.25s ease, color 0.25s ease, transform 0.5s ease;
 }
 
-[class*="dr_icon_btn"]:hover {
+.dr_icon_btn:hover {
     color: var(--secondary-accent);
-    background: var(--secondary);
+    background-color: var(--secondary);
+}
+
+
+.dr_icon_btn:after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+}
+
+.dr_icon_close:after {
+    background-size: 1.25rem;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='25' fill='none'%3E%3Cmask id='a' width='24' height='25' x='0' y='0' maskUnits='userSpaceOnUse' style='mask-type:alpha'%3E%3Cpath fill='%23D9D9D9' d='M0 .375h24v24H0z'/%3E%3C/mask%3E%3Cg mask='url(%23a)'%3E%3Cpath fill='%231C1B1F' d='m6.4 19.375-1.4-1.4 5.6-5.6-5.6-5.6 1.4-1.4 5.6 5.6 5.6-5.6 1.4 1.4-5.6 5.6 5.6 5.6-1.4 1.4-5.6-5.6-5.6 5.6Z'/%3E%3C/g%3E%3C/svg%3E");
 }
 
 .dr_icon_chevron_down:after,
 .dr_icon_chevron_up:after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background-position: 50% 50%;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='none'%3E%3Cmask id='a' width='24' height='25' x='0' y='0' maskUnits='userSpaceOnUse' style='mask-type:alpha'%3E%3Cpath fill='%23D9D9D9' d='M0 .5h24v24H0z'/%3E%3C/mask%3E%3Cg mask='url(%23a)'%3E%3Cpath fill='%231C1B1F' d='m12 16.9-6-6 1.4-1.4 4.6 4.6 4.6-4.6 1.4 1.4-6 6Z'/%3E%3C/g%3E%3C/svg%3E");
 }
 
@@ -149,4 +159,27 @@
     background-repeat: no-repeat;
     background-position: 50% 50%;
     background-size: 1.25rem;
+}
+
+.dr_errorElement {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    color: var(--text-dark);
+    background-color: var(--error-hover);
+    border: 1px solid var(--error);
+    line-height: 1.2;
+    border-radius: 0.5rem;
+    padding-block: 0.375rem;
+    padding-inline: 0.5rem 0.25rem;
+}
+
+.dr_errorElement .dr_icon_btn {
+    flex: none;
+}
+
+.dr_errorElement .dr_icon_btn:hover {
+    background-color: var(--error);
 }

@@ -11,7 +11,7 @@
 
 #dr_UI_body_tools {
     overflow-y: hidden;
-    max-height: 20rem;
+    max-height: 24rem;
 }
 
 label[for="input_notCity"] {

@@ -4,7 +4,7 @@
     right: 0.25rem;
     display: flex;
     flex-direction: column;
-    background: white;
+    background-color: white;
     border-radius: 1rem;
     padding-block: 0.5rem 0.75rem;
     padding-inline: var(--dr-elm-padding-inline);
