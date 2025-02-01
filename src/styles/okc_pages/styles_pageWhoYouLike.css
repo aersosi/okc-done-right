@@ -1,6 +1,6 @@
 /* Highlight user city*/
 .not_City {
-    background: var(--primary);
+    background-color: var(--primary);
     color: var(--primary-accent);
     padding-inline: 0.25rem;
     border-radius: 4px;
