@@ -12,7 +12,10 @@ export function init_button(parentElement, buttonClasses, buttonID, buttonText, 
 
   const button = document.createElement("button");
 
-  if (buttonClasses) button.classList.add(...buttonClasses.split(" "));
+  if (buttonClasses) {
+    let combine_buttonClasses = `dr_btn ${buttonClasses}`;
+    button.classList.add(...combine_buttonClasses.split(" "));
+  }
   if (buttonID) button.id = buttonID;
   if (dataUserID) button.dataset.userId = dataUserID;
   if (buttonText) button.textContent = buttonText;
