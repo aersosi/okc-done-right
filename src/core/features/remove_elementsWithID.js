@@ -7,6 +7,6 @@ export function remove_elementsWithID(idArrary, logConsole = false, logError = f
       return;
     }
 
-    element && element.remove();
+    element.remove();
   });
 }
