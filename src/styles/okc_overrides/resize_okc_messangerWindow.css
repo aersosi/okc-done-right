@@ -1,0 +1,7 @@
+.messenger-main-window {
+    width: calc(100vw - 6rem);
+}
+
+.messenger-main-window-user-row {
+    background-color: var(--primary);
+}
