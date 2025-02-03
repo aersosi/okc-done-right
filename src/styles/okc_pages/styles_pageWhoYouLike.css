@@ -19,6 +19,17 @@
     width: 18px;
 }
 
+/* user image size improvement*/
+.userthumb img.userthumb-img {
+    width: 13rem;
+    margin-top: 0;
+}
+
+/* remove image scale on card:hover*/
+.userrow-bucket-display-card:hover .userthumb img.userthumb-img {
+    transform: none;
+}
+
 /* Highlight user city*/
 .not_City {
     background-color: var(--primary);

@@ -1,9 +1,0 @@
-.userthumb img.userthumb-img {
-    width: 13rem;
-    margin-top: 0;
-}
-
-/* remove image scale on card:hover*/
-.userrow-bucket-display-card:hover .userthumb img.userthumb-img {
-    transform: none;
-}

@@ -34,6 +34,7 @@ export function observe_stateChanges({
     if (!document.location.href.includes(URL_includes)) return;
     if (isRunning) return;
     isRunning = true;
+    observedElements.clear();
 
     try {
       if (!hasRunBeforeInteractive) {
@@ -92,7 +93,6 @@ export function observe_stateChanges({
       hasRunBeforeInteractive = false;
       hasRunDocumentInteractive = false;
       hasRunDocumentComplete = false;
-      observedElements.clear();
       runFunctions();
     }
   });

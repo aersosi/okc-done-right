@@ -14,7 +14,6 @@ import { inject_storeUserData } from "../dist_js/inject_storeUserData.js";
 import { censor_okc } from "../dist_styles/censor_okc.js";
 import { okc_overrides } from "../dist_styles/okc_overrides.js";
 import { okc_superlikeBtn } from "../dist_styles/okc_superlikeBtn.js";
-import { okc_userThumb } from "../dist_styles/okc_userThumb.js";
 import { dr_variables } from "../dist_styles/dr_variables.js";
 import { dr_components } from "../dist_styles/dr_components.js";
 import { dr_UI_sections_whoYouLike } from "../dist_styles/dr_UI_sections_whoYouLike.js";
@@ -87,7 +86,6 @@ import { styles_pageWhoYouLike } from "../dist_styles/styles_pageWhoYouLike.js";
       document_complete: () => {
         init_whoYouLike_UI();
         inject_stylesToHead(okc_superlikeBtn, "okc_superlikeBtn");
-        inject_stylesToHead(okc_userThumb, "okc_userThumb");
       },
       waitForElement: [".userrow-bucket-container", () => inject_stylesToHead(styles_pageWhoYouLike, "styles_pageWhoYouLike")]
     }
