@@ -2,7 +2,7 @@ export function inject_stylesToHead(styles, id = "custom-styles", logConsole = f
   let styleElement = document.getElementById(id);
 
   if (styleElement) {
-    logError && console.error(`Styles with ID "${id}" already exists.`);
+    logError && console.error(`Styles with ID "${id}" already exist.`);
     return;
   }
 
@@ -12,4 +12,5 @@ export function inject_stylesToHead(styles, id = "custom-styles", logConsole = f
   styleElement.textContent = styles;
 
   document.head.appendChild(styleElement);
+  logConsole && console.error(`Styles with ID "${id}" appended to head.`);
 }

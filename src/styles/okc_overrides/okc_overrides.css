@@ -8,11 +8,3 @@ main + aside {
 }
 
 
-/*More discreet superlike button*/
-.superlike-button-scene {
-   box-shadow: none;
-}
-.superlike-button-face-back,
-.superlike-button-face-front {
-    background: linear-gradient(90deg, #6673ff 10%, #8a80ff 90%);
-}
