@@ -92,6 +92,7 @@ export function observe_stateChanges({
       hasRunBeforeInteractive = false;
       hasRunDocumentInteractive = false;
       hasRunDocumentComplete = false;
+      observedElements.clear();
       runFunctions();
     }
   });

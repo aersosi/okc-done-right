@@ -2,7 +2,7 @@ import {
   inject_scriptToHead,
   inject_stylesToHead,
   observe_stateChanges,
-  remove_elementsWithID,
+  remove_elementsWithID
 } from "./core";
 
 import { init_whoYouLike_UI } from "./features/page_whoYouLike/init_whoYouLike_UI.js";
@@ -34,7 +34,7 @@ import { styles_pageWhoYouLike } from "../dist_styles/styles_pageWhoYouLike.js";
     {
       URL_includes: "okcupid.com",
       run_before_interactive: () => remove_elementsWithID([
-        "dr_UI_wrapper", "styles_pageDiscover",  "styles_pageMessages",  "styles_pageProfile", "styles_pageWhoYouLike"
+        "dr_UI_wrapper", "styles_pageDiscover", "styles_pageMessages", "styles_pageProfile", "styles_pageWhoYouLike"
       ]),
       document_interactive: () => {
         inject_stylesToHead(okc_overrides, "okc_overrides");
@@ -51,8 +51,10 @@ import { styles_pageWhoYouLike } from "../dist_styles/styles_pageWhoYouLike.js";
     {
       URL_includes: "discover",
       document_interactive: () => inject_stylesToHead(styles_pageDiscover, "styles_pageDiscover"),
-      document_complete: () => init_discover_UI(),
-      waitForElement: [".dt-action-buttons", () => inject_stylesToHead(dr_blockBtn, "dr_blockBtn")]
+      waitForElement: [".dt-action-buttons", () => {
+        inject_stylesToHead(dr_blockBtn, "dr_blockBtn");
+        init_discover_UI();
+      }]
     }
   );
 
@@ -68,8 +70,10 @@ import { styles_pageWhoYouLike } from "../dist_styles/styles_pageWhoYouLike.js";
     {
       URL_includes: "profile",
       document_interactive: () => inject_stylesToHead(dr_blockBtn, "dr_blockBtn"),
-      document_complete: () => init_profile_UI(),
-      waitForElement: [".profile-userinfo", () => inject_stylesToHead(styles_pageProfile, "styles_pageProfile")]
+      waitForElement: [".profile-userinfo", () => {
+        inject_stylesToHead(styles_pageProfile, "styles_pageProfile");
+        init_profile_UI();
+      }]
     }
   );
 

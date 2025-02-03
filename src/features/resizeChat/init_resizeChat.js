@@ -2,7 +2,7 @@ import { init_iconButton, toggle_elementClass, waitFor_element } from "../../cor
 import { handle_scaleUp } from "./handle_scaleUp.js";
 import { handle_scaleDown } from "./handle_scaleDown.js";
 
-export async function init_resizeChat(logConsole = true, logError = true) {
+export async function init_resizeChat(logConsole = true, logError = false) {
   const elementIsAvailable = await waitFor_element(".messenger-main-window-user-row");
 
   if (elementIsAvailable) {
