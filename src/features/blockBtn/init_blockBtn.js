@@ -1,6 +1,6 @@
 import { clickBlockBtn } from "./click_blockBtn.js";
 
-export function init_blockBtn(buttonsWrapper, insertBefore) {
+export function init_blockBtn(buttonsWrapper, insertBefore = false) {
   const blockButtonExists = document.getElementById("dr_OKC_blockBtn");
   if (blockButtonExists) return false;
 
@@ -14,10 +14,10 @@ export function init_blockBtn(buttonsWrapper, insertBefore) {
   span.textContent = "BLOCK";
   blockButton.appendChild(span);
 
-  if (!insertBefore) {
-    buttonsWrapper.appendChild(blockButton);
-  } else {
+  if (insertBefore) {
     buttonsWrapper.insertBefore(blockButton, buttonsWrapper.firstChild);
+  } else {
+    buttonsWrapper.appendChild(blockButton);
   }
 
   blockButton.addEventListener("click", clickBlockBtn);
