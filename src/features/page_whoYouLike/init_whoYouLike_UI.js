@@ -26,7 +26,7 @@ export function init_whoYouLike_UI() {
   // Functions to init on Load
   const init_okc_UI = [
     init_matchHighlightPercent,
-    bootstrap_userCard,
+    bootstrap_userCard
   ];
   init_okc_UI.forEach(callback => callback());
   observe_scrollTimeout(init_okc_UI);
@@ -249,8 +249,6 @@ export function init_whoYouLike_UI() {
 
   // set input value to button child on load
   bind_inputToElement("input_notCity", "btn_notCity_text", "textContent");
-
-
 
 
   const init_dr_UI = [

@@ -37,6 +37,7 @@ export function observe_stateChanges({
     observedElements.clear();
 
     try {
+      // run_before_interactive
       if (!hasRunBeforeInteractive) {
         try {
           logConsole && console.log("Running run_before_interactive functions");
@@ -47,6 +48,7 @@ export function observe_stateChanges({
         }
       }
 
+      // document_interactive
       if (!hasRunDocumentInteractive && (document.readyState === "interactive" || document.readyState === "complete")) {
         try {
           logConsole && console.log("Running document_interactive functions");
@@ -57,6 +59,7 @@ export function observe_stateChanges({
         }
       }
 
+      // waitFor_element
       if (!observedElements.has(targetSelector)) {
         try {
           const element = await waitFor_element(targetSelector);
@@ -71,6 +74,7 @@ export function observe_stateChanges({
         }
       }
 
+      // document_complete
       if (!hasRunDocumentComplete && (document.readyState === "complete" || observedElements.has(waitForElement))) {
         try {
           logConsole && console.log("Running document_complete functions");

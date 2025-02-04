@@ -10,6 +10,7 @@ import { init_discover_UI } from "./features/page_discover/init_discover_UI.js";
 import { init_profile_UI } from "./features/page_profile/init_profile_UI.js";
 
 import { inject_storeUserData } from "../dist_js/inject_storeUserData.js";
+import { inject_logAllData } from "../dist_js/inject_logAllData.js";
 
 import { censor_okc } from "../dist_styles/censor_okc.js";
 import { okc_overrides } from "../dist_styles/okc_overrides.js";
@@ -32,9 +33,11 @@ import { styles_pageWhoYouLike } from "../dist_styles/styles_pageWhoYouLike.js";
   observe_stateChanges(
     {
       URL_includes: "okcupid.com",
-      run_before_interactive: () => remove_elementsWithID([
-        "dr_UI_wrapper", "styles_pageDiscover", "styles_pageMessages", "styles_pageProfile", "styles_pageWhoYouLike"
-      ]),
+      run_before_interactive: () => {
+        remove_elementsWithID([
+          "dr_UI_wrapper", "styles_pageDiscover", "styles_pageMessages", "styles_pageProfile", "styles_pageWhoYouLike"
+        ])
+      },
       document_interactive: () => {
         inject_stylesToHead(okc_overrides, "okc_overrides");
         inject_stylesToHead(dr_variables, "dr_variables");
@@ -49,7 +52,9 @@ import { styles_pageWhoYouLike } from "../dist_styles/styles_pageWhoYouLike.js";
   observe_stateChanges(
     {
       URL_includes: "discover",
-      document_interactive: () => inject_stylesToHead(styles_pageDiscover, "styles_pageDiscover"),
+      document_interactive: () => {
+        inject_stylesToHead(styles_pageDiscover, "styles_pageDiscover");
+      },
       waitForElement: [".dt-action-buttons", () => {
         inject_stylesToHead(dr_blockBtn, "dr_blockBtn");
         init_discover_UI();
@@ -60,15 +65,21 @@ import { styles_pageWhoYouLike } from "../dist_styles/styles_pageWhoYouLike.js";
   observe_stateChanges(
     {
       URL_includes: "messages",
-      document_interactive: () => inject_stylesToHead(styles_pageMessages, "styles_pageMessages"),
-      document_complete: () => console.log("Messages Page is ready!")
+      document_interactive: () => {
+        inject_stylesToHead(styles_pageMessages, "styles_pageMessages");
+      },
+      document_complete: () => {
+        console.log("Messages Page is ready!");
+      }
     }
   );
 
   observe_stateChanges(
     {
       URL_includes: "profile",
-      document_interactive: () => inject_stylesToHead(dr_blockBtn, "dr_blockBtn"),
+      document_interactive: () => {
+        inject_stylesToHead(dr_blockBtn, "dr_blockBtn");
+      },
       waitForElement: [".profile-userinfo", () => {
         inject_stylesToHead(styles_pageProfile, "styles_pageProfile");
         init_profile_UI();
@@ -88,6 +99,14 @@ import { styles_pageWhoYouLike } from "../dist_styles/styles_pageWhoYouLike.js";
         inject_stylesToHead(okc_superlikeBtn, "okc_superlikeBtn");
       },
       waitForElement: [".userrow-bucket-container", () => inject_stylesToHead(styles_pageWhoYouLike, "styles_pageWhoYouLike")]
+    }
+  );
+  observe_stateChanges(
+    {
+      URL_includes: "who-likes-you",
+      document_interactive: () => {
+        inject_scriptToHead(inject_logAllData, "inject_logAllData");
+      }
     }
   );
 
