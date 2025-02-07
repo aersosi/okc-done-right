@@ -8,7 +8,7 @@ import {
 
 import { handle_btn_notCity } from "./highlightNotCity/handle_btn_notCity.js";
 import { reset_userLocations } from "./highlightNotCity/reset_userLocations.js";
-import { observe_scrollTimeout } from "./observe_scroll.js";
+import { observe_scroll } from "./observe_scroll.js";
 import { handle_scrollUntilLoaded } from "./scrollUntilLoaded/handle_scrollUntilLoaded.js";
 import { handle_stopScrollUntilLoaded } from "./scrollUntilLoaded/handle_stopScrollUntilLoaded.js";
 import { handle_hideOfflineUsers } from "./hideOfflineUsers/handle_hideOfflineUsers.js";
@@ -29,7 +29,7 @@ export function init_whoYouLike_UI() {
     bootstrap_userCard
   ];
   init_okc_UI.forEach(callback => callback());
-  observe_scrollTimeout(init_okc_UI);
+  observe_scroll(init_okc_UI);
 
   // Init dr_UI_wrapper
   init_element("body", "div", "dr_UI_wrapper", "dr_UI_wrapper", false);
@@ -256,7 +256,7 @@ export function init_whoYouLike_UI() {
     init_hiddenUsers
   ];
   init_dr_UI.forEach(callback => callback());
-  observe_scrollTimeout(init_dr_UI);
+  observe_scroll(init_dr_UI);
 
 }
 

@@ -1,8 +1,15 @@
 import { debounce } from "../../core";
 
-export function observe_scrollDebounced(callbacks, debounceTime = 100, logConsole = false, logError = false) {
+export function observe_scroll(callbacks, debounceTime = 100, waitForNewScroll = 1000, logConsole = false) {
+  let endTimer = null;
+
   const debouncedScrollHandler = debounce(() => {
-  callbacks.forEach(fn => fn());
+    if (endTimer !== null) clearTimeout(endTimer);
+
+    endTimer = setTimeout(() => {
+      logConsole && console.log("Scroll ended");
+      callbacks.forEach(fn => fn());
+    }, waitForNewScroll);
   }, debounceTime);
 
   function logData(event) {
@@ -13,20 +20,4 @@ export function observe_scrollDebounced(callbacks, debounceTime = 100, logConsol
 
   window.addEventListener("scroll", debouncedScrollHandler);
   logConsole && window.addEventListener("scroll", debouncedLogData);
-}
-
-
-export function observe_scrollTimeout(callbacks, waitForNewScroll = 1000, logConsole = false, logError = false) {
-  let timer = null;
-
-  function onScrollEnd() {
-    if (timer !== null) clearTimeout(timer);
-
-    timer = setTimeout(() => {
-      logConsole && console.log("Scroll ended");
-      callbacks.forEach(fn => fn());
-    }, waitForNewScroll);
-  }
-
-  window.addEventListener("scroll", onScrollEnd);
 }
