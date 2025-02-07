@@ -1,6 +1,6 @@
 # OKC – done right!
 
-## Improves the okcupid.com experience with enhanced features.
+## Improves the okcupid.com experience with enhanced UI and features.
 
 ---
 
@@ -23,21 +23,22 @@
     // @require      file:///Users/aersosi/Projects/okc-done-right/dist/index.js
     // ==/UserScript==
     ```
-4. Run `bun install` to install dependencies
-5. Run `bun run dist-all` or `bun run dist-all-minify` in terminal
-6. Point `==UserScript==` `@require` to the `dist/index.js` file
-7. Open **okcupid.com** and _enjoy your enhanced interface_!
+4. I use bun for bundling, but you can use any other bundler.
+5. Run `bun install` to install dependencies
+6. Run `bun run dist-all` or `bun run dist-all-minify` in terminal
+7. Point `==UserScript==` `@require` to the `dist/index.js` file
+8. Open **okcupid.com** and _enjoy your enhanced interface_!
 
 ---
 
 ### Setup Dev Environment
 
-1. Same as above (Step 1-7)
-2. After `bun run dist-all` (Step 5) run both commands in separate terminal:
+1. Same as above (Step 1-5)
+2. Run `bun run dist-all` (Step 6) once, then run both commands in separate terminal:
    - `bun run watch-build-js`
    - `bun run watch-build-css` 
 3. Changes in CSS and JS are watched and built automatically
 4. Open **okcupid.com** and _enjoy your enhanced interface_!
-5. Sorry, no hot reload yet.
+5. Sorry, no hot reloading yet.
 
 Happy hacking!

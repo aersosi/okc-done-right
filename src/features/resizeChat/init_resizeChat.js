@@ -2,53 +2,92 @@ import { init_iconButton, toggle_elementClass, waitFor_element } from "../../cor
 import { handle_scaleUp } from "./handle_scaleUp.js";
 import { handle_scaleDown } from "./handle_scaleDown.js";
 
-export async function init_resizeChat(logConsole = true, logError = false) {
-  const elementIsAvailable = await waitFor_element(".messenger-main-window-user-row");
+const LS_KEY = "dr_resizeChat";
 
-  if (elementIsAvailable) {
-    const messangerMenuRow = document.querySelector(".messenger-main-window-user-row");
-    logConsole && console.log("Element is available: ", ".messenger-main-window-user-row");
+// Liest den Zustand aus dem localStorage; setzt einen Default, falls noch nicht vorhanden.
+function getResizeChatState(logConsole = true, logError = true) {
+  const storedValue = localStorage.getItem(LS_KEY);
+  if (storedValue === null) {
+    localStorage.setItem(LS_KEY, JSON.stringify(false));
+    return false;
+  }
+  try {
+    const value = JSON.parse(storedValue);
+    logConsole && console.log("resizeChatValue:", value);
+    return value;
+  } catch (error) {
+    logError && console.error("Error parsing localStorage value for dr_resizeChat:", error);
+    return false;
+  }
+}
 
-    if (!messangerMenuRow) {
-      logError && console.error(`Error: "${messangerMenuRow}" not found.`);
-      return;
-    }
-    const profileLink = messangerMenuRow.firstChild;
-
-    // init scaleUp/Down wrapper
-    const wrapper = document.createElement("div");
+// Holt den Wrapper oder erstellt ihn, falls er nicht existiert.
+function getOrCreateWrapper(profileLink) {
+  let wrapper = document.getElementById("dr_UI_resizeChat_wrapper");
+  if (!wrapper) {
+    wrapper = document.createElement("div");
     wrapper.id = "dr_UI_resizeChat_wrapper";
     profileLink.after(wrapper);
+  }
+  return wrapper;
+}
 
-    // append scaleUp/Down buttons to wrapper
-    const icon_btn_resizeChat = [
-      {
-        parent: "#dr_UI_resizeChat_wrapper",
-        tag: "button",
-        className: "dr_icon_chevron_up",
-        id: "dr_UI_resizeChat_scaleUp",
-        handler: () => {
-          handle_scaleUp();
-          toggle_elementClass("dr_UI_resizeChat_scaleUp", "hidden");
-          toggle_elementClass("dr_UI_resizeChat_scaleDown", "hidden");
-        }
-      },
-      {
-        parent: "#dr_UI_resizeChat_wrapper",
-        tag: "button",
-        className: "hidden dr_icon_chevron_down",
-        id: "dr_UI_resizeChat_scaleDown",
-        handler: () => {
-          handle_scaleDown();
-          toggle_elementClass("dr_UI_resizeChat_scaleDown", "hidden");
-          toggle_elementClass("dr_UI_resizeChat_scaleUp", "hidden");
-        }
-      }
-    ];
+export async function init_resizeChat(logConsole = true, logError = true) {
+  const resizeChatValue = getResizeChatState();
 
-    icon_btn_resizeChat.forEach(({ parent, className, id, handler, insertBefore }) => {
-      init_iconButton(parent, className, id, handler, insertBefore);
-    });
+  // Warte, bis das Messenger-Element verfügbar ist
+  const elementAvailable = await waitFor_element(".messenger-main-window-user-row");
+  if (!elementAvailable) {
+    logError && console.error("Error: '.messenger-main-window-user-row' timeout.");
+    return;
   }
 
+  const messengerRow = document.querySelector(".messenger-main-window-user-row");
+  if (!messengerRow) {
+    logError && console.error("Error: Messenger row not found.");
+    return;
+  }
+  logConsole && console.log("Element available: .messenger-main-window-user-row");
+
+  // Hole das erste Kindelement (den Profil-Link)
+  const profileLink = messengerRow.firstElementChild;
+  if (!profileLink) {
+    logError && console.error("Error: Profile link not found in messenger row.");
+    return;
+  }
+
+  // Wrapper für die Buttons holen oder erstellen
+  getOrCreateWrapper(profileLink);
+
+  // Klick-Handler als separate Funktionen definieren
+  const onScaleUpClick = () => {
+    handle_scaleUp(LS_KEY, true);
+    // Buttons umschalten (können je nach Design angepasst werden)
+    toggle_elementClass("dr_UI_resizeChat_scaleUp", "hidden");
+    toggle_elementClass("dr_UI_resizeChat_scaleDown", "hidden");
+  };
+
+  const onScaleDownClick = () => {
+    handle_scaleDown(LS_KEY, false);
+    toggle_elementClass("dr_UI_resizeChat_scaleDown", "hidden");
+    toggle_elementClass("dr_UI_resizeChat_scaleUp", "hidden");
+  };
+
+  // Initialisiere die Buttons nur, wenn sie noch nicht im DOM vorhanden sind
+  if (!document.getElementById("dr_UI_resizeChat_scaleUp")) {
+    init_iconButton("#dr_UI_resizeChat_wrapper", "dr_icon_chevron_up", "dr_UI_resizeChat_scaleUp", onScaleUpClick);
+  }
+  if (!document.getElementById("dr_UI_resizeChat_scaleDown")) {
+    init_iconButton("#dr_UI_resizeChat_wrapper", "hidden dr_icon_chevron_down", "dr_UI_resizeChat_scaleDown", onScaleDownClick);
+  }
+
+  // Setze die Skalierung beim Laden anhand des gespeicherten Zustands
+  if (resizeChatValue) {
+    // Wenn true, Chat vergrößern und Buttons entsprechend anpassen
+    toggle_elementClass("dr_UI_resizeChat_scaleDown", "hidden");
+    toggle_elementClass("dr_UI_resizeChat_scaleUp", "hidden");
+    handle_scaleUp(LS_KEY, true);
+  } else {
+    handle_scaleDown(LS_KEY, false);
+  }
 }

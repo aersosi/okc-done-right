@@ -8,6 +8,7 @@ import {
 import { init_whoYouLike_UI } from "./features/page_whoYouLike/init_whoYouLike_UI.js";
 import { init_discover_UI } from "./features/page_discover/init_discover_UI.js";
 import { init_profile_UI } from "./features/page_profile/init_profile_UI.js";
+import { init_resizeChat } from "./features/resizeChat/init_resizeChat.js";
 
 import { inject_storeUserData } from "../dist_js/inject_storeUserData.js";
 import { inject_logAllData } from "../dist_js/inject_logAllData.js";
@@ -26,6 +27,7 @@ import { styles_pageDiscover } from "../dist_styles/styles_pageDiscover.js";
 import { styles_pageMessages } from "../dist_styles/styles_pageMessages.js";
 import { styles_pageProfile } from "../dist_styles/styles_pageProfile.js";
 import { styles_pageWhoYouLike } from "../dist_styles/styles_pageWhoYouLike.js";
+import { watch_forMessageWindow } from "./features/page_messages/watch_forMessageWindow.js";
 
 (async function() {
   "use strict";
@@ -45,6 +47,7 @@ import { styles_pageWhoYouLike } from "../dist_styles/styles_pageWhoYouLike.js";
         inject_stylesToHead(dr_UI, "dr_UI");
         inject_stylesToHead(dr_helper, "dr_helper");
         inject_stylesToHead(censor_okc, "censor_okc");
+        init_resizeChat();
       }
     }
   );
@@ -68,9 +71,9 @@ import { styles_pageWhoYouLike } from "../dist_styles/styles_pageWhoYouLike.js";
       document_interactive: () => {
         inject_stylesToHead(styles_pageMessages, "styles_pageMessages");
       },
-      document_complete: () => {
-        console.log("Messages Page is ready!");
-      }
+      waitForElement: [".pageMain", () => {
+        watch_forMessageWindow();
+      }]
     }
   );
 
