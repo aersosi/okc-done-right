@@ -1,4 +1,4 @@
-import { debounce } from "../../core";
+import { debounce } from "../index.js";
 
 export function observe_scroll(callbacks, debounceTime = 100, waitForNewScroll = 1000, logConsole = false) {
   let endTimer = null;

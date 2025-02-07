@@ -1,4 +1,4 @@
-import { remove_elementsWithID } from "../../core/index.js";
+import { remove_elementsWithID } from "../../core";
 
 export function handle_scaleDown(LS_KEY, resizeChatValue, logConsole = false) {
   localStorage.setItem(LS_KEY, JSON.stringify(resizeChatValue));

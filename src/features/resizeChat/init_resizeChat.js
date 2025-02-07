@@ -1,4 +1,4 @@
-import { init_iconButton, toggle_elementClass, waitFor_element } from "../../core/index.js";
+import { init_iconButton, toggle_elementClass, waitFor_element } from "../../core";
 import { handle_scaleUp } from "./handle_scaleUp.js";
 import { handle_scaleDown } from "./handle_scaleDown.js";
 

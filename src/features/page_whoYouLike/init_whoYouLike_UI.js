@@ -2,13 +2,14 @@ import {
   bind_inputToElement,
   init_button,
   init_element,
+  init_iconButton,
   init_input,
+  observe_scroll,
   toggle_elementClass
 } from "../../core";
 
 import { handle_btn_notCity } from "./highlightNotCity/handle_btn_notCity.js";
 import { reset_userLocations } from "./highlightNotCity/reset_userLocations.js";
-import { observe_scroll } from "./observe_scroll.js";
 import { handle_scrollUntilLoaded } from "./scrollUntilLoaded/handle_scrollUntilLoaded.js";
 import { handle_stopScrollUntilLoaded } from "./scrollUntilLoaded/handle_stopScrollUntilLoaded.js";
 import { handle_hideOfflineUsers } from "./hideOfflineUsers/handle_hideOfflineUsers.js";
@@ -20,7 +21,6 @@ import { bootstrap_userCard } from "./bootstrapUserCard/bootstrap_userCard.js";
 import { handle_btn_matchHighlightPercent } from "./matchHighlightPercent/handle_btn_matchHighlightPercent.js";
 import { init_matchHighlightPercent } from "./matchHighlightPercent/init_matchHighlightPercent.js";
 import { set_matchHighlightPercent } from "./matchHighlightPercent/set_matchHighlightPercent.js";
-import { init_iconButton } from "../../core";
 
 export function init_whoYouLike_UI() {
   // Functions to init on Load

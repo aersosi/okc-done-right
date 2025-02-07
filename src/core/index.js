@@ -10,6 +10,7 @@ export { inject_stylesToHead } from "./features/inject_stylesToHead.js";
 export { inject_scriptToHead } from "./features/inject_scriptToHead.js";
 export { log_allScrollEvents } from "./features/log_allScrollEvents.js";
 export { observe_childrenAppended } from "./features/observe_childrenAppended.js";
+export { observe_scroll } from "./features/observe_scroll.js";
 export { observe_stateChanges } from "./features/observe_stateChanges.js";
 export { remove_elementsWithID } from "./features/remove_elementsWithID.js";
 export { toggle_elementClass } from "./features/toggle_elementClass.js";
