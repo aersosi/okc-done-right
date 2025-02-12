@@ -3,9 +3,16 @@ import { handle_scaleChatDown } from "./handle_scaleChatDown.js";
 import { handle_scaleChatUp } from "./handle_scaleChatUp.js";
 
 export async function init_resizeChat(logConsole = false, logError = false) {
-  // wait for chatWindow content to load
-  const chatIsLoaded = await waitFor_element(".messenger-message-pane [data-cy='messenger.messageRow']");
-  if (chatIsLoaded) {
+  try {
+    // wait for chatWindow content to load
+    const chatIsLoaded = await waitFor_element(".messenger-message-pane [data-cy='messenger.messageRow']");
+
+    // Early return if chat isn't loaded
+    if (!chatIsLoaded) {
+      logError && console.error("Chat window did not load");
+      return;
+    }
+
     // if no wrapper, create it
     let resizeChat_wrapper = document.getElementById("dr_OKC_resizeChat_wrapper");
     if (!resizeChat_wrapper) {
@@ -18,8 +25,10 @@ export async function init_resizeChat(logConsole = false, logError = false) {
       profileLink.after(resizeChat_wrapper);
 
       // append buttons to wrapper
-      init_iconButton("#dr_OKC_resizeChat_wrapper", "dr_icon_chevron_up", "dr_btn_scaleChatUp", () => handle_scaleChatUp(dr_btn_scaleChatUp, dr_btn_scaleChatDown));
-      init_iconButton("#dr_OKC_resizeChat_wrapper", "dr_icon_chevron_down", "dr_btn_scaleChatDown", () => handle_scaleChatDown(dr_btn_scaleChatUp, dr_btn_scaleChatDown));
+      init_iconButton("#dr_OKC_resizeChat_wrapper", "dr_icon_chevron_up", "dr_btn_scaleChatUp",
+        () => handle_scaleChatUp(dr_btn_scaleChatUp, dr_btn_scaleChatDown));
+      init_iconButton("#dr_OKC_resizeChat_wrapper", "dr_icon_chevron_down", "dr_btn_scaleChatDown",
+        () => handle_scaleChatDown(dr_btn_scaleChatUp, dr_btn_scaleChatDown));
 
       const dr_chatIsBig = localStorage.getItem("dr_chatIsBig");
       const dr_btn_scaleChatUp = document.getElementById("dr_btn_scaleChatUp");
@@ -32,6 +41,7 @@ export async function init_resizeChat(logConsole = false, logError = false) {
         handle_scaleChatDown(dr_btn_scaleChatUp, dr_btn_scaleChatDown);
       }
     }
+  } catch (error) {
+    logError && console.error("Error initializing resize chat:", error);
   }
 }
-

@@ -1,0 +1,5 @@
+.userrow-bucket-card-link-container:not(:has(.dr_matchHigh)) {
+    opacity: 0.1;
+    pointer-events: none !important;
+    cursor: not-allowed !important;
+}

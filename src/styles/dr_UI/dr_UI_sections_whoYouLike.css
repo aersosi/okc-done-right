@@ -17,3 +17,8 @@
 label[for="input_notCity"] {
     padding-block: 0.25rem;
 }
+
+#dr_UI_wrapper_hideMatchHighlightPercent {
+    display: flex;
+    flex-direction: column;
+}

@@ -1,15 +1,20 @@
 /*.card-content-header__text,*/
 /*.card-content-header__location,*/
 /*.userInfo-username-name,*/
-/*.userInfo-meta-location {*/
+/*.userInfo-meta-location,*/
+/*.tappy-tap-container button {*/
 /*    filter: blur(3px);*/
 /*}*/
-/*.preloaded-image-content{*/
+
+/*.preloaded-image-content,*/
+/*.profile-questions-userinfo-photos-photo {*/
 /*    filter: blur(6px);*/
 /*}*/
-/*.userthumb-img {*/
-/*    filter: blur(12px);*/
 
+/*.userthumb-img,*/
+/*img[draggable="false"],*/
+/*.tappy-photo {*/
+/*    filter: blur(12px);*/
 /*}*/
 
 /*[aria-label*="Message from"] {*/

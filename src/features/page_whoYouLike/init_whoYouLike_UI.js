@@ -21,6 +21,8 @@ import { bootstrap_userCard } from "./bootstrapUserCard/bootstrap_userCard.js";
 import { handle_btn_matchHighlightPercent } from "./matchHighlightPercent/handle_btn_matchHighlightPercent.js";
 import { init_matchHighlightPercent } from "./matchHighlightPercent/init_matchHighlightPercent.js";
 import { set_matchHighlightPercent } from "./matchHighlightPercent/set_matchHighlightPercent.js";
+import { handle_showMatchHighlightPercent } from "./matchHighlightPercent/handle_showMatchHighlightPercent.js";
+import { handle_hideMatchHighlightPercent } from "./matchHighlightPercent/handle_hideMatchHighlightPercent.js";
 
 export function init_whoYouLike_UI() {
   // Functions to init on Load
@@ -228,6 +230,18 @@ export function init_whoYouLike_UI() {
     // toggle match highlight
     handle_btn_matchHighlightPercent("input_matchHighlightPercent", "btn_matchHighlightPercent");
     set_matchHighlightPercent();
+  });
+
+  init_element("[for='input_matchHighlightPercent']", "div", null, "dr_UI_wrapper_hideMatchHighlightPercent", null);
+  init_button("#dr_UI_wrapper_hideMatchHighlightPercent", "dr_btn_secondary", "btn_hideMatchHighlightPercent", "Hide match highlight", null, () => {
+    toggle_elementClass("btn_hideMatchHighlightPercent", "hidden");
+    toggle_elementClass("btn_showMatchHighlightPercent", "hidden");
+    handle_hideMatchHighlightPercent();
+  });
+  init_button("#dr_UI_wrapper_hideMatchHighlightPercent", "dr_btn_primary hidden", "btn_showMatchHighlightPercent", "Show match highlight", null, () => {
+    toggle_elementClass("btn_hideMatchHighlightPercent", "hidden");
+    toggle_elementClass("btn_showMatchHighlightPercent", "hidden");
+    handle_showMatchHighlightPercent();
   });
 
   // init input_notCity
