@@ -6,7 +6,7 @@ export function update_hiddenUserList(logError = false) {
   // Create Headline
   init_element("#dr_UI_section_hiddenUsers", "div", null, "dr_UI_body_hiddenUsers");
 
-  let hideList = document.getElementById("dr_UI_body_hiddenUsers");
+  const hideList = document.getElementById("dr_UI_body_hiddenUsers");
   if (!hideList) {
     logError && console.error("Hide List not found.");
     return;

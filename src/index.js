@@ -9,9 +9,13 @@ import { init_whoYouLike_UI } from "./features/page_whoYouLike/init_whoYouLike_U
 import { init_discover_UI } from "./features/page_discover/init_discover_UI.js";
 import { init_profile_UI } from "./features/page_profile/init_profile_UI.js";
 import { init_resizeChat } from "./features/resizeChat/init_resizeChat.js";
+import { watch_forChatWindow } from "./features/page_messages/watch_forChatWindow.js";
 
 import { inject_storeUserData } from "../dist_js/inject_storeUserData.js";
 import { inject_logAllData } from "../dist_js/inject_logAllData.js";
+import { inject_downloadAllData } from "../dist_js/inject_downloadAllData.js";
+import { inject_downloadAllData_structureNumber } from "../dist_js/inject_downloadAllData_structureNumber.js";
+import { inject_modifyData } from "../dist_js/inject_modifyData.js";
 
 import { censor_okc } from "../dist_styles/censor_okc.js";
 import { okc_overrides } from "../dist_styles/okc_overrides.js";
@@ -27,7 +31,6 @@ import { styles_pageDiscover } from "../dist_styles/styles_pageDiscover.js";
 import { styles_pageMessages } from "../dist_styles/styles_pageMessages.js";
 import { styles_pageProfile } from "../dist_styles/styles_pageProfile.js";
 import { styles_pageWhoYouLike } from "../dist_styles/styles_pageWhoYouLike.js";
-import { watch_forMessageWindow } from "./features/page_messages/watch_forMessageWindow.js";
 
 (async function() {
   "use strict";
@@ -36,6 +39,9 @@ import { watch_forMessageWindow } from "./features/page_messages/watch_forMessag
     {
       URL_includes: "okcupid.com",
       run_before_interactive: () => {
+        // inject_scriptToHead(inject_modifyData, "inject_modifyData");
+        // inject_scriptToHead(inject_logAllData, "inject_modifyData");
+
         remove_elementsWithID([
           "dr_UI_wrapper", "styles_pageDiscover", "styles_pageMessages", "styles_pageProfile", "styles_pageWhoYouLike"
         ])
@@ -71,8 +77,8 @@ import { watch_forMessageWindow } from "./features/page_messages/watch_forMessag
       document_interactive: () => {
         inject_stylesToHead(styles_pageMessages, "styles_pageMessages");
       },
-      waitForElement: [".pageMain", () => {
-        watch_forMessageWindow();
+      waitForElement: ["[data-cy='messages.messageRow']", () => {
+        watch_forChatWindow();
       }]
     }
   );
@@ -102,14 +108,6 @@ import { watch_forMessageWindow } from "./features/page_messages/watch_forMessag
         inject_stylesToHead(okc_superlikeBtn, "okc_superlikeBtn");
       },
       waitForElement: [".userrow-bucket-container", () => inject_stylesToHead(styles_pageWhoYouLike, "styles_pageWhoYouLike")]
-    }
-  );
-  observe_stateChanges(
-    {
-      URL_includes: "who-likes-you",
-      document_interactive: () => {
-        inject_scriptToHead(inject_logAllData, "inject_logAllData");
-      }
     }
   );
 

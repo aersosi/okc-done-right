@@ -1,6 +1,6 @@
 import { init_element } from "./init_element.js";
-import { remove_elementsWithID } from "./remove_elementsWithID.js";
 import { init_iconButton } from "./init_iconButton.js";
+import { remove_elementsWithID } from "./remove_elementsWithID.js";
 
 export function init_errorElement(parentElement, errorID, errorText, logConsole = false, logError = false) {
   const parent = document.querySelector(parentElement);

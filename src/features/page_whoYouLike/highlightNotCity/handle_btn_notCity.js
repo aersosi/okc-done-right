@@ -4,40 +4,35 @@ export function handle_btn_notCity(inputID, buttonID, logError = false) {
   const input = document.getElementById(inputID);
   const button = document.getElementById(buttonID);
 
-  if (!input) {
-    logError && console.error(`Input with ID "${inputID}" not found.`);
-    return;
-  }
-  if (!button) {
-    logError && console.error(`Button with ID "${buttonID}" not found.`);
+  if (!input || !button) {
+    logError && console.error(`Element with ID "${!input ? inputID : buttonID}" not found.`);
     return;
   }
 
-  // Throw err if input is empty or the value contains non letter characters
-  if (!input.value || /[^a-z]/i.test(input.value)) {
-    console.log(typeof input.value)
-    logError && console.error(`Input with ID "${inputID}" has no value or not a string.`);
+  const inputValue = input.value?.trim();
 
-    // Error to user
+  if (!inputValue || /[^a-z]/i.test(inputValue)) {
+    logError && console.error(`Invalid input: "${inputID}" must be a non-empty string with only letters.`);
+
+    // Display error message to user
     init_errorElement("[for='input_notCity']", "notCity", "Please enter a city name");
     return;
   }
 
-  const userLocationsSelector = ".userInfo-meta-location";
-  const userLocation = document.querySelectorAll(userLocationsSelector);
+  const userLocations = document.querySelectorAll(".userInfo-meta-location");
 
-  if (!userLocation) {
-    logError && console.error(`User Locations with class "${userLocationsSelector}" not found.`);
+  if (!userLocations.length) {
+    logError && console.error(`User locations not found.`);
     return;
   }
 
+  // Toggle button classes
   const isActive = button.classList.toggle("dr_btn_primary");
   button.classList.toggle("dr_btn_secondary", !isActive);
 
-  userLocation.forEach(location => {
-    if (!location.textContent.toLowerCase().includes(input.value.toLowerCase())) {
-      location.classList.toggle("not_City", isActive);
-    }
+  // Apply "not_City" class conditionally
+  userLocations.forEach(location => {
+    location.textContent?.toLowerCase().includes(inputValue.toLowerCase())
+      || location.classList.toggle("not_City", isActive);
   });
-
 }

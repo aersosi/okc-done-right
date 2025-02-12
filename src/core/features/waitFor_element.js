@@ -17,6 +17,7 @@ export function waitFor_element(selector, interval = 250, timeout = 5000, logCon
       logError && console.error(`Timeout reached, element not found: ${selector}`);
       // Reject the promise if element not found within timeout
       reject(new Error(`Element '${selector}' was not found within timeout.`));
+      // reject();
     }, timeout);
   });
 }

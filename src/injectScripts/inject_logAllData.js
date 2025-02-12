@@ -9,8 +9,7 @@
     const clonedResponse = response.clone();
 
     clonedResponse.json().then(responseData => {
-      const responseDataMe = responseData?.data?.me;
-
+      // const responseDataMe = responseData?.data?.me;
       console.log(responseData);
       console.log(responseDataMe);
 

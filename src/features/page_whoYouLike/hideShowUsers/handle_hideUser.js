@@ -3,7 +3,7 @@ import { update_hiddenUserList } from "./update_hiddenUserList.js";
 export function handle_hideUser(event, logConsole = false, logError = false) {
   const userCard = event.target.closest(".userrow-bucket-display-card");
   if (!userCard) {
-    logError && console.error("Invalid userCard element");
+    logError && console.error("userCard element not found");
     return;
   }
 
