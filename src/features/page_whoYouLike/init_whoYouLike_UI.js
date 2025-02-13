@@ -65,37 +65,37 @@ export function init_whoYouLike_UI() {
       id: "dr_UI_body_hiddenUsers"
     }
   ];
-  const section_tools = [
+  const section_filter = [
     {
       parent: "#dr_UI_wrapper",
       tag: "section",
       className: "dr_UI_section",
-      id: "dr_UI_section_tools"
+      id: "dr_UI_section_filter"
     },
     {
-      parent: "#dr_UI_section_tools",
+      parent: "#dr_UI_section_filter",
       tag: "div",
       className: "dr_UI_head"
     },
     {
-      parent: "#dr_UI_section_tools .dr_UI_head",
+      parent: "#dr_UI_section_filter .dr_UI_head",
       tag: "p",
       className: "dr_headline",
-      text: "Tools"
+      text: "Filter"
     },
 
     {
-      parent: "#dr_UI_section_tools",
+      parent: "#dr_UI_section_filter",
       tag: "div",
       className: "dr_UI_body",
-      id: "dr_UI_body_tools"
+      id: "dr_UI_body_filter"
     }
   ];
 
   section_hiddenUsers.forEach(({ parent, tag, className, id, text }) => {
     init_element(parent, tag, className, id, text);
   });
-  section_tools.forEach(({ parent, tag, className, id, text }) => {
+  section_filter.forEach(({ parent, tag, className, id, text }) => {
     init_element(parent, tag, className, id, text);
   });
 
@@ -124,24 +124,24 @@ export function init_whoYouLike_UI() {
       }
     },
     {
-      parent: "#dr_UI_section_tools .dr_UI_head",
-      id: "dr_UI_section_tools_close",
+      parent: "#dr_UI_section_filter .dr_UI_head",
+      id: "dr_UI_section_filter_close",
       icon: chevron_down,
       handler: () => {
-        toggle_elementClass("dr_UI_section_tools_close", "hidden");
-        toggle_elementClass("dr_UI_section_tools_open", "hidden");
-        toggle_elementClass("dr_UI_body_tools", "max-height-0");
+        toggle_elementClass("dr_UI_section_filter_close", "hidden");
+        toggle_elementClass("dr_UI_section_filter_open", "hidden");
+        toggle_elementClass("dr_UI_body_filter", "max-height-0");
       }
     },
     {
-      parent: "#dr_UI_section_tools .dr_UI_head",
+      parent: "#dr_UI_section_filter .dr_UI_head",
       className: "hidden",
-      id: "dr_UI_section_tools_open",
+      id: "dr_UI_section_filter_open",
       icon: chevron_up,
       handler: () => {
-        toggle_elementClass("dr_UI_section_tools_close", "hidden");
-        toggle_elementClass("dr_UI_section_tools_open", "hidden");
-        toggle_elementClass("dr_UI_body_tools", "max-height-0");
+        toggle_elementClass("dr_UI_section_filter_close", "hidden");
+        toggle_elementClass("dr_UI_section_filter_open", "hidden");
+        toggle_elementClass("dr_UI_body_filter", "max-height-0");
       }
     }
   ];
@@ -151,9 +151,9 @@ export function init_whoYouLike_UI() {
   });
 
 
-  const intervals_btn_sectionTools = {};
+  const intervals_btn_sectionFilter = {};
   // init first two buttons
-  const btn_sectionTools = [
+  const btn_sectionFilter = [
     {
       className: "dr_btn_primary hidden",
       id: "btn_stopScrollUntilLoaded",
@@ -161,7 +161,7 @@ export function init_whoYouLike_UI() {
       handler: () => {
         toggle_elementClass("btn_stopScrollUntilLoaded", "hidden");
         toggle_elementClass("btn_scrollUntilLoaded", "hidden");
-        handle_stopScrollUntilLoaded(intervals_btn_sectionTools, "interval_scrollUntilLoaded");
+        handle_stopScrollUntilLoaded(intervals_btn_sectionFilter, "interval_scrollUntilLoaded");
       }
     },
     {
@@ -172,7 +172,7 @@ export function init_whoYouLike_UI() {
       handler: () => {
         toggle_elementClass("btn_scrollUntilLoaded", "hidden");
         toggle_elementClass("btn_stopScrollUntilLoaded", "hidden");
-        handle_scrollUntilLoaded(intervals_btn_sectionTools, "interval_scrollUntilLoaded");
+        handle_scrollUntilLoaded(intervals_btn_sectionFilter, "interval_scrollUntilLoaded");
       }
     },
     {
@@ -220,13 +220,13 @@ export function init_whoYouLike_UI() {
       }
     }
   ];
-  btn_sectionTools.forEach(({ className, id, text, dataUserID, handler }) => {
-    init_button("#dr_UI_body_tools", className, id, text, dataUserID, handler);
+  btn_sectionFilter.forEach(({ className, id, text, dataUserID, handler }) => {
+    init_button("#dr_UI_body_filter", className, id, text, dataUserID, handler);
   });
 
   // init input_matchHighlightPercent
   let matchPercentValue = JSON.parse(localStorage.getItem("dr_matchHighlightPercent"));
-  init_input("#dr_UI_body_tools", "input_matchHighlightPercent", "dr_input", "number", "Match highlight above",
+  init_input("#dr_UI_body_filter", "input_matchHighlightPercent", "dr_input", "number", "Match highlight above",
     matchPercentValue, "Match highlight above", "dr_label", null
   );
 
@@ -250,7 +250,7 @@ export function init_whoYouLike_UI() {
   });
 
   // init input_notCity
-  init_input("#dr_UI_body_tools", "input_notCity", "dr_input", "text", "Hightlight cities except this", "Hamburg", "Highlight except", "dr_label",
+  init_input("#dr_UI_body_filter", "input_notCity", "dr_input", "text", "Hightlight cities except this", "Hamburg", "Highlight except", "dr_label",
     () => {
       // bind input to button child, reset UI on input change
       bind_inputToElement("input_notCity", "btn_notCity_text", "textContent");

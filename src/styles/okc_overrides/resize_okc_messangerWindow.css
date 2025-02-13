@@ -1,3 +1,4 @@
 .messenger-main-window {
     width: calc(100vw - 6rem);
+    height: calc(100vh - 13rem);
 }
