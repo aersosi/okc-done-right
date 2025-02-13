@@ -3,6 +3,7 @@
 node_modules
 
 dist/
+dist_feather_icons/
 dist_styles/
 dist_js/
 

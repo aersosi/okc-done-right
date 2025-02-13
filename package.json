@@ -5,15 +5,16 @@
   "scripts": {
     "watch-build-css": "nodemon --watch ./src --ext css --exec 'bun run src/_build/build_CSS.js && bun build ./src/index.js --outdir ./dist'",
     "watch-build-js": "nodemon --watch ./src --ext js --exec 'bun run src/_build/build_JS.js && bun build ./src/index.js --outdir ./dist'",
-    "clean": "rm -rf dist && rm -rf dist_js && rm -rf dist_styles",
+    "clean": "rm -rf dist && rm -rf dist_feather_icons && rm -rf dist_js && rm -rf dist_styles",
+    "build-inject-feather-icons": "bun run src/_build/build_featherIcons.js",
     "build-inject-css": "bun run src/_build/build_CSS.js",
     "build-inject-js": "bun run src/_build/build_JS.js",
     "build-inject-css-minify": "bun run src/_build/build_CSS_minify.js",
     "build-inject-js-minify": "bun run src/_build/build_JS_minify.js",
     "dist": "bun build ./src/index.js --outdir ./dist",
     "dist-minify": "bun build ./src/index.js --outdir ./dist --minify",
-    "dist-all": "bun run clean && bun run build-inject-css && bun run build-inject-js && bun run dist",
-    "dist-all-minify": "bun run clean && bun run build-inject-css-minify && bun run build-inject-js-minify && bun run dist-minify"
+    "dist-all": "bun run clean && bun run build-inject-feather-icons && bun run build-inject-css && bun run build-inject-js && bun run dist",
+    "dist-all-minify": "bun run clean && bun run build-inject-feather-icons && bun run build-inject-css-minify && bun run build-inject-js-minify && bun run dist-minify"
   },
   "devDependencies": {
     "@types/bun": "latest"

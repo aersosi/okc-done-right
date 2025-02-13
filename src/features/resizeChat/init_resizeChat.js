@@ -1,4 +1,4 @@
-import { init_iconButton, waitFor_element } from "../../core/index.js";
+import { init_iconButton, waitFor_element } from "../../core";
 import { handle_scaleChatDown } from "./handle_scaleChatDown.js";
 import { handle_scaleChatUp } from "./handle_scaleChatUp.js";
 

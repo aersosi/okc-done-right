@@ -6,6 +6,7 @@ export { init_element } from "./features/init_element.js";
 export { init_errorElement } from "./features/init_errorElement.js";
 export { init_input } from "./features/init_input.js";
 export { init_iconButton } from "./features/init_iconButton.js";
+export { init_iconButton2 } from "./features/init_iconButton2.js";
 export { inject_stylesToHead } from "./features/inject_stylesToHead.js";
 export { inject_scriptToHead } from "./features/inject_scriptToHead.js";
 export { log_allScrollEvents } from "./features/log_allScrollEvents.js";
