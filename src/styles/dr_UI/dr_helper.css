@@ -27,3 +27,7 @@
     pointer-events: none !important;
     cursor: not-allowed !important;
 }
+
+.dr_color_text-light {
+    color: var(--text-light);
+}

@@ -24,6 +24,9 @@ import { set_matchHighlightPercent } from "./matchHighlightPercent/set_matchHigh
 import { handle_showMatchHighlightPercent } from "./matchHighlightPercent/handle_showMatchHighlightPercent.js";
 import { handle_hideMatchHighlightPercent } from "./matchHighlightPercent/handle_hideMatchHighlightPercent.js";
 
+import { chevron_up } from "../../../dist_feather_icons/chevron-up.js";
+import { chevron_down } from "../../../dist_feather_icons/chevron-down.js";
+
 export function init_whoYouLike_UI() {
   // Functions to init on Load
   const init_okc_UI = [
@@ -100,8 +103,8 @@ export function init_whoYouLike_UI() {
     {
       parent: "#dr_UI_section_hiddenUsers .dr_UI_head",
       tag: "button",
-      className: "dr_icon_chevron_down",
       id: "dr_UI_section_hiddenUsers_close",
+      icon: chevron_down,
       handler: () => {
         toggle_elementClass("dr_UI_section_hiddenUsers_close", "hidden");
         toggle_elementClass("dr_UI_section_hiddenUsers_open", "hidden");
@@ -111,8 +114,9 @@ export function init_whoYouLike_UI() {
     {
       parent: "#dr_UI_section_hiddenUsers .dr_UI_head",
       tag: "button",
-      className: "hidden dr_icon_chevron_up",
+      className: "hidden",
       id: "dr_UI_section_hiddenUsers_open",
+      icon: chevron_up,
       handler: () => {
         toggle_elementClass("dr_UI_section_hiddenUsers_close", "hidden");
         toggle_elementClass("dr_UI_section_hiddenUsers_open", "hidden");
@@ -121,8 +125,8 @@ export function init_whoYouLike_UI() {
     },
     {
       parent: "#dr_UI_section_tools .dr_UI_head",
-      className: "dr_icon_chevron_down",
       id: "dr_UI_section_tools_close",
+      icon: chevron_down,
       handler: () => {
         toggle_elementClass("dr_UI_section_tools_close", "hidden");
         toggle_elementClass("dr_UI_section_tools_open", "hidden");
@@ -131,8 +135,9 @@ export function init_whoYouLike_UI() {
     },
     {
       parent: "#dr_UI_section_tools .dr_UI_head",
-      className: "hidden dr_icon_chevron_up",
+      className: "hidden",
       id: "dr_UI_section_tools_open",
+      icon: chevron_up,
       handler: () => {
         toggle_elementClass("dr_UI_section_tools_close", "hidden");
         toggle_elementClass("dr_UI_section_tools_open", "hidden");
@@ -141,8 +146,8 @@ export function init_whoYouLike_UI() {
     }
   ];
 
-  icon_btn_dr_UI_headlines.forEach(({ parent, className, id, handler }) => {
-    init_iconButton(parent, className, id, handler);
+  icon_btn_dr_UI_headlines.forEach(({ parent, className, id, icon, handler }) => {
+    init_iconButton(parent, className, id, icon, handler);
   });
 
 

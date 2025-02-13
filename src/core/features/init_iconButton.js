@@ -1,4 +1,4 @@
-export function init_iconButton(parentElement, iconButtonClasses, iconButtonID, iconButtonHandler, insertBefore = false, logConsole = false, logError = false) {
+export function init_iconButton(parentElement, iconButtonClasses, iconButtonID, iconButtonIcon, iconButtonHandler, insertBefore = false, logConsole = false, logError = false) {
   const parent = document.querySelector(parentElement);
   if (!parent) {
     logError && console.error(`Error: Parent "${parentElement}" not found.`);
@@ -12,16 +12,24 @@ export function init_iconButton(parentElement, iconButtonClasses, iconButtonID, 
 
   const iconButton = document.createElement("button");
 
+  iconButton.classList.add("dr_icon_btn");
+
   if (iconButtonClasses) {
-    let combine_iconButtonClasses = `dr_icon_btn ${iconButtonClasses}`;
+    let combine_iconButtonClasses = `${iconButtonClasses}`;
     iconButton.classList.add(...combine_iconButtonClasses.split(" "));
   }
 
   iconButton.id = iconButtonID;
 
+  if (iconButtonIcon) {
+    iconButton.innerHTML = iconButtonIcon;
+  } else {
+    logError && console.error(`Error: Icon "${iconButtonIcon}" not found.`);
+    iconButton.textContent = "Icon not found";
+  }
+
   if (iconButtonHandler) iconButton.addEventListener("click", iconButtonHandler);
   if (logConsole && iconButtonHandler) console.log(`Handler "click" added for iconButton with ID "${iconButtonID}".`);
-
 
   if (insertBefore) {
     parent.insertBefore(iconButton, parent.firstChild);
@@ -29,5 +37,5 @@ export function init_iconButton(parentElement, iconButtonClasses, iconButtonID, 
     parent.appendChild(iconButton);
   }
 
-  logConsole && console.log(`Add: iconButton with ID "${iconButtonID}" to "${parentElement}".`);
+  logConsole && console.log(`Add: iconButton with ID "${iconButtonID}" and iconName "${iconButtonIconName}" to "${parentElement}".`);
 }

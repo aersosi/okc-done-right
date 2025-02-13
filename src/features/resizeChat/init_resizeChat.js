@@ -1,6 +1,8 @@
 import { init_iconButton, waitFor_element } from "../../core";
 import { handle_scaleChatDown } from "./handle_scaleChatDown.js";
 import { handle_scaleChatUp } from "./handle_scaleChatUp.js";
+import { minimize_2 } from "../../../dist_feather_icons/minimize-2.js";
+import { maximize_2 } from "../../../dist_feather_icons/maximize-2.js";
 
 export async function init_resizeChat(logConsole = false, logError = false) {
   try {
@@ -25,9 +27,9 @@ export async function init_resizeChat(logConsole = false, logError = false) {
       profileLink.after(resizeChat_wrapper);
 
       // append buttons to wrapper
-      init_iconButton("#dr_OKC_resizeChat_wrapper", "dr_icon_chevron_up", "dr_btn_scaleChatUp",
+      init_iconButton("#dr_OKC_resizeChat_wrapper", "dr_color_text-light", "dr_btn_scaleChatUp", maximize_2,
         () => handle_scaleChatUp(dr_btn_scaleChatUp, dr_btn_scaleChatDown));
-      init_iconButton("#dr_OKC_resizeChat_wrapper", "dr_icon_chevron_down", "dr_btn_scaleChatDown",
+      init_iconButton("#dr_OKC_resizeChat_wrapper", "dr_color_text-light", "dr_btn_scaleChatDown", minimize_2,
         () => handle_scaleChatDown(dr_btn_scaleChatUp, dr_btn_scaleChatDown));
 
       const dr_chatIsBig = localStorage.getItem("dr_chatIsBig");

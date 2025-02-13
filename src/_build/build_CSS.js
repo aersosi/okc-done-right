@@ -1,3 +1,3 @@
 import { buildFilesToJS } from "./buildFilesToJS.js";
 
-buildFilesToJS("./src", "./dist_styles", ".css");
+buildFilesToJS("./src", "./dist_styles", "css");

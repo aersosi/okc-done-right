@@ -13,7 +13,7 @@ async function getAllFiles(directory, fileExtension) {
 
       if (entry.isDirectory()) {
         await scan(fullPath);
-      } else if (entry.isFile() && path.extname(entry.name) === fileExtension) {
+      } else if (entry.isFile() && path.extname(entry.name) === "." + fileExtension) {
         allFiles.push(fullPath);
       }
     }
@@ -68,7 +68,7 @@ export async function buildFilesToJS(srcDir, outputDir, fileExtension, minificat
       cleanContent = cleanContent.join(lineBreak);
 
       const filename = path.basename(filePath, path.extname(filePath));
-      const jsContent = `export const ${filename} = \`${cleanContent}\`;`;
+      const jsContent = `export const ${filename.replace("-","_")} = \`${cleanContent}\`;`;
       const jsFilePath = path.join(outputDir, `${filename}.js`);
 
       await writeFile(jsFilePath, jsContent, "utf-8");

@@ -7,6 +7,6 @@ main + aside {
     display: none !important;
 }
 
-.messenger-main-window-user-row {
-    background-color: var(--primary) !important;
+.messenger-main-window {
+    box-shadow: 0 0 10px var(--primary) !important;
 }
