@@ -1,4 +1,4 @@
-(function(prefix = "_pickData_", downloadTimeout = 5000, logConsole = false, logError = false) {
+(function(prefix = "_newData_", downloadTimeout = 5000, logConsole = false, logError = false) {
   let fileIndex = 1;
   const originalFetch = window.fetch;
   let pendingDownloads = []; // Zwischenspeicher für JSON-Daten

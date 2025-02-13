@@ -231,19 +231,19 @@ export function init_whoYouLike_UI() {
   );
 
   // init btn_matchHighlightPercent
-  init_button("[for='input_matchHighlightPercent']", "dr_btn_secondary", "btn_matchHighlightPercent", "Set match highlight", null, () => {
+  init_button("[for='input_matchHighlightPercent']", "dr_btn_secondary", "btn_matchHighlightPercent", "Match highlight above", null, () => {
     // toggle match highlight
     handle_btn_matchHighlightPercent("input_matchHighlightPercent", "btn_matchHighlightPercent");
     set_matchHighlightPercent();
   });
 
   init_element("[for='input_matchHighlightPercent']", "div", null, "dr_UI_wrapper_hideMatchHighlightPercent", null);
-  init_button("#dr_UI_wrapper_hideMatchHighlightPercent", "dr_btn_secondary", "btn_hideMatchHighlightPercent", "Hide match highlight", null, () => {
+  init_button("#dr_UI_wrapper_hideMatchHighlightPercent", "dr_btn_secondary", "btn_hideMatchHighlightPercent", "Hide Users below", null, () => {
     toggle_elementClass("btn_hideMatchHighlightPercent", "hidden");
     toggle_elementClass("btn_showMatchHighlightPercent", "hidden");
     handle_hideMatchHighlightPercent();
   });
-  init_button("#dr_UI_wrapper_hideMatchHighlightPercent", "dr_btn_primary hidden", "btn_showMatchHighlightPercent", "Show match highlight", null, () => {
+  init_button("#dr_UI_wrapper_hideMatchHighlightPercent", "dr_btn_primary hidden", "btn_showMatchHighlightPercent", "Show Users below", null, () => {
     toggle_elementClass("btn_hideMatchHighlightPercent", "hidden");
     toggle_elementClass("btn_showMatchHighlightPercent", "hidden");
     handle_showMatchHighlightPercent();

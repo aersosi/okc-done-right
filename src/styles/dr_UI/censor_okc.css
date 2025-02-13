@@ -2,19 +2,30 @@
 /*.card-content-header__location,*/
 /*.userInfo-username-name,*/
 /*.userInfo-meta-location,*/
-/*.tappy-tap-container button {*/
+/*.tappy-tap-container button,*/
+/*.messenger-main-window [role="gridcell"],*/
+/*.dr_UI_row [target="_blank"],*/
+/*.dr_UI_row_userImg,*/
+/*.prematch-intro-confirmation-content-sent-intro-content-body {*/
 /*    filter: blur(3px);*/
 /*}*/
 
 /*.preloaded-image-content,*/
-/*.profile-questions-userinfo-photos-photo {*/
+/*.profile-questions-userinfo-photos-photo,*/
+/*.profile-basics-asl-row,*/
+/*.profile-essay-contents {*/
 /*    filter: blur(6px);*/
 /*}*/
 
+/*.desktop-dt-content .preloaded-image-content,*/
 /*.userthumb-img,*/
-/*img[draggable="false"],*/
-/*.tappy-photo {*/
+/*.tappy-photo,*/
+/*.profile-basics-username {*/
 /*    filter: blur(12px);*/
+/*}*/
+
+/*img[draggable="false"] {*/
+/*    filter: blur(24px);*/
 /*}*/
 
 /*[aria-label*="Message from"] {*/

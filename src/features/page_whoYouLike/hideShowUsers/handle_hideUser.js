@@ -11,6 +11,7 @@ export function handle_hideUser(event, logConsole = false, logError = false) {
   const userName = userCard.dataset.dr_user_name;
   const userAge = userCard.dataset.dr_user_age;
   const userNameAge = `${userName}, ${userAge}`;
+  const userImgSrc = userCard.querySelector("img").getAttribute("src");
 
   if (!userNameAge) {
     logError && console.error(`Username and age information not found for userCard with ID "${userID}".`);
@@ -28,7 +29,7 @@ export function handle_hideUser(event, logConsole = false, logError = false) {
   })();
 
   // Add or update the hidden user in localStorage
-  hiddenUsers[userID] = userNameAge;
+  hiddenUsers[userID] = [userNameAge, userImgSrc];
   try {
     localStorage.setItem("dr_hiddenUsers", JSON.stringify(hiddenUsers));
     logConsole && console.log(`User "${userNameAge}" (ID: ${userID}) added to hidden users.`);

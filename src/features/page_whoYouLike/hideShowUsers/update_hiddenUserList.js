@@ -17,11 +17,15 @@ export function update_hiddenUserList(logError = false) {
 
   // Populate the hide list
   const hiddenUsers = JSON.parse(localStorage.getItem("dr_hiddenUsers")) || {};
-  Object.entries(hiddenUsers).forEach(([userId, userNameAge]) => {
+  Object.entries(hiddenUsers).forEach(([userId, [userNameAge, userImgSrc]]) => {
 
     const row = document.createElement("div");
     row.className = "dr_UI_row";
     row.dataset.okcUserId = userId;
+
+    const userImg = document.createElement("img");
+    userImg.classList.add("dr_UI_row_userImg");
+    userImg.src = userImgSrc;
 
     const link = document.createElement("a");
     link.classList.add("dr_link_primary");
@@ -32,9 +36,10 @@ export function update_hiddenUserList(logError = false) {
     const unhideButton = document.createElement("button");
     unhideButton.dataset.okcUserId = userId;
     unhideButton.textContent = "Unhide";
-    unhideButton.classList.add("dr_btn", "dr_btn_secondary");
+    unhideButton.classList.add("dr_UI_row_btn", "dr_btn", "dr_btn_secondary");
     unhideButton.addEventListener("click", handle_showUser);
 
+    row.appendChild(userImg);
     row.appendChild(link);
     row.appendChild(unhideButton);
 
