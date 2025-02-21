@@ -1,3 +1,9 @@
+.not-minMaxAge {
+    opacity: 0.1;
+    pointer-events: none;
+    cursor: not-allowed !important;
+}
+
 .not-online,
 .hidden {
     display: none !important;

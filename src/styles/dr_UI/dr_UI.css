@@ -44,6 +44,12 @@
     flex-direction: row;
     align-items: center;
 }
+.dr_UI_col {
+    position: relative;
+    display: flex;
+    gap: 0.5rem;
+    flex-direction: column;
+}
 
 .dr_UI_row_userImg {
     width: 1.5rem;

@@ -5,9 +5,5 @@ export function init_matchHighlightPercent() {
   if (storedValue === null) {
     matchPercentValue = 90;
     localStorage.setItem("dr_matchHighlightPercent", JSON.stringify(matchPercentValue));
-  } else {
-    matchPercentValue = JSON.parse(storedValue);
   }
-
-  return matchPercentValue;
 }

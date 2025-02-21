@@ -11,7 +11,7 @@
 
 #dr_UI_body_filter {
     overflow-y: hidden;
-    max-height: 24rem;
+    max-height: 29rem;
 }
 
 label[for="input_notCity"] {

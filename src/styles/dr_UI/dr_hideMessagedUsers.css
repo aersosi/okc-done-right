@@ -1,4 +1,5 @@
 .userrow-bucket-card-link-container:has(.dr_OKC_firstMessage) {
-    opacity: 0.10;
+    opacity: 0.1;
     pointer-events: none;
+    cursor: not-allowed !important;
 }

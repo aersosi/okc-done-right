@@ -8,29 +8,52 @@ import {
   toggle_elementClass
 } from "../../core";
 
+// highlightNotCity
 import { handle_btn_notCity } from "./highlightNotCity/handle_btn_notCity.js";
 import { reset_userLocations } from "./highlightNotCity/reset_userLocations.js";
+
+// scrollUntilLoaded
 import { handle_scrollUntilLoaded } from "./scrollUntilLoaded/handle_scrollUntilLoaded.js";
 import { handle_stopScrollUntilLoaded } from "./scrollUntilLoaded/handle_stopScrollUntilLoaded.js";
+
+// hideOfflineUsers
 import { handle_hideOfflineUsers } from "./hideOfflineUsers/handle_hideOfflineUsers.js";
+
+// hideShowUsers
 import { init_hiddenUsers } from "./hideShowUsers/init_hiddenUsers.js";
+
+// hideAllMessagedUsers
 import { handle_hideMessagedUsers } from "./hideAllMessagedUsers/handle_hideMessagedUsers.js";
 import { handle_showMessagedUsers } from "./hideAllMessagedUsers/handle_showMessagedUsers.js";
+
 import { handle_showOfflineUsers } from "./hideOfflineUsers/handle_showOfflineUsers.js";
-import { bootstrap_userCard } from "./bootstrapUserCard/bootstrap_userCard.js";
+
+// matchHighlightPercent
 import { handle_btn_matchHighlightPercent } from "./matchHighlightPercent/handle_btn_matchHighlightPercent.js";
 import { init_matchHighlightPercent } from "./matchHighlightPercent/init_matchHighlightPercent.js";
 import { set_matchHighlightPercent } from "./matchHighlightPercent/set_matchHighlightPercent.js";
 import { handle_showMatchHighlightPercent } from "./matchHighlightPercent/handle_showMatchHighlightPercent.js";
 import { handle_hideMatchHighlightPercent } from "./matchHighlightPercent/handle_hideMatchHighlightPercent.js";
 
+// minMaxAge
+import { init_minMaxAge } from "./minMaxAge/init_minMaxAge.js";
+import { handle_btn_hideMinMaxAge } from "./minMaxAge/handle_btn_hideMinMaxAge.js";
+import { handle_btn_showMinMaxAge } from "./minMaxAge/handle_btn_showMinMaxAge.js";
+
+// bootstrapUserCard
+import { bootstrap_userCard } from "./bootstrapUserCard/bootstrap_userCard.js";
+
+
 import { chevron_up } from "../../../dist_feather_icons/chevron-up.js";
 import { chevron_down } from "../../../dist_feather_icons/chevron-down.js";
+import { set_minMaxAge } from "./minMaxAge/set_minMaxAge.js";
+
 
 export function init_whoYouLike_UI() {
   // Functions to init on Load
   const init_okc_UI = [
     init_matchHighlightPercent,
+    init_minMaxAge,
     bootstrap_userCard
   ];
   init_okc_UI.forEach(callback => callback());
@@ -224,6 +247,36 @@ export function init_whoYouLike_UI() {
     init_button("#dr_UI_body_filter", className, id, text, dataUserID, handler);
   });
 
+
+  // init dr_UI_wrapper_minMaxAge
+  init_element("#dr_UI_body_filter", "div", "dr_UI_col", "dr_UI_wrapper_minMaxAge", null);
+
+  init_element("#dr_UI_wrapper_minMaxAge", "div", "dr_UI_row", "dr_UI_wrapper_inputs_minMaxAge", null);
+  // init input_minAge
+  let minAgeValue = JSON.parse(localStorage.getItem("dr_minMaxAge")).minAge;
+  init_input("#dr_UI_wrapper_inputs_minMaxAge", "input_minAge", "dr_input", "number", "18",
+    minAgeValue, "Min Age", "dr_label", null
+  );
+  // init input_maxAge
+  let maxAgeValue = JSON.parse(localStorage.getItem("dr_minMaxAge")).maxAge;
+  init_input("#dr_UI_wrapper_inputs_minMaxAge", "input_maxAge", "dr_input", "number", "99",
+    maxAgeValue, "Max Age", "dr_label", null
+  );
+
+  init_button("#dr_UI_wrapper_minMaxAge", "dr_btn_secondary", "btn_hideMinMaxAge", "Hide Users", null, () => {
+    // toggle btn_minMaxAge
+    toggle_elementClass("btn_hideMinMaxAge", "hidden");
+    toggle_elementClass("btn_showMinMaxAge", "hidden");
+    handle_btn_hideMinMaxAge();
+  });
+  init_button("#dr_UI_wrapper_minMaxAge", "dr_btn_primary hidden", "btn_showMinMaxAge", "Show Users", null, () => {
+    // toggle btn_minMaxAge
+    toggle_elementClass("btn_showMinMaxAge", "hidden");
+    toggle_elementClass("btn_hideMinMaxAge", "hidden");
+    handle_btn_showMinMaxAge();
+  });
+
+
   // init input_matchHighlightPercent
   let matchPercentValue = JSON.parse(localStorage.getItem("dr_matchHighlightPercent"));
   init_input("#dr_UI_body_filter", "input_matchHighlightPercent", "dr_input", "number", "Match highlight above",
@@ -272,6 +325,7 @@ export function init_whoYouLike_UI() {
 
   const init_dr_UI = [
     handle_hideOfflineUsers,
+    set_minMaxAge,
     init_hiddenUsers
   ];
   init_dr_UI.forEach(callback => callback());
