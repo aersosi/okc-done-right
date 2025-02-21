@@ -1,6 +1,6 @@
 import { update_hiddenUserList } from "./update_hiddenUserList.js";
 
-export const init_hiddenUsers = (logConsole = false, logError = false) => {
+export const set_hiddenUsers = (logConsole = false, logError = false) => {
   const hiddenUsers = (() => {
     try {
       return JSON.parse(localStorage.getItem("dr_hiddenUsers")) ?? {};
@@ -25,7 +25,7 @@ export const init_hiddenUsers = (logConsole = false, logError = false) => {
 
     if (userCard) {
       const parentElement = userCard.parentElement;
-      parentElement.classList.add("opacity-10", "pointer-events-none");
+      parentElement.classList.add("manually-hidden");
 
       userCard.dataset.userId = userId;
     }

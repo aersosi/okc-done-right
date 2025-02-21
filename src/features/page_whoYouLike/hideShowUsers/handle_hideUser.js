@@ -41,7 +41,7 @@ export function handle_hideUser(event, logConsole = false, logError = false) {
   // Hide the user card visually
   const parentElement = userCard.parentElement;
   if (parentElement) {
-    parentElement.classList.add("opacity-10", "pointer-events-none");
+    parentElement.classList.add("manually-hidden");
     logConsole && console.log(`User card for ID "${userID}" visually hidden.`);
   } else {
     logError && console.error(`Parent element not found for userCard with ID "${userID}".`);

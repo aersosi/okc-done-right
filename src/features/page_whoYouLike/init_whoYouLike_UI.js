@@ -20,7 +20,7 @@ import { handle_stopScrollUntilLoaded } from "./scrollUntilLoaded/handle_stopScr
 import { handle_hideOfflineUsers } from "./hideOfflineUsers/handle_hideOfflineUsers.js";
 
 // hideShowUsers
-import { init_hiddenUsers } from "./hideShowUsers/init_hiddenUsers.js";
+import { set_hiddenUsers } from "./hideShowUsers/set_hiddenUsers.js";
 
 // hideAllMessagedUsers
 import { handle_hideMessagedUsers } from "./hideAllMessagedUsers/handle_hideMessagedUsers.js";
@@ -54,10 +54,8 @@ export function init_whoYouLike_UI() {
   const init_okc_UI = [
     init_matchHighlightPercent,
     init_minMaxAge,
-    bootstrap_userCard
   ];
   init_okc_UI.forEach(callback => callback());
-  observe_scroll(init_okc_UI);
 
   // Init dr_UI_wrapper
   init_element("body", "div", "dr_UI_wrapper", "dr_UI_wrapper", false);
@@ -322,11 +320,11 @@ export function init_whoYouLike_UI() {
   // set input value to button child on load
   bind_inputToElement("input_notCity", "btn_notCity_text", "textContent");
 
-
   const init_dr_UI = [
+    bootstrap_userCard,
     handle_hideOfflineUsers,
     set_minMaxAge,
-    init_hiddenUsers
+    set_hiddenUsers
   ];
   init_dr_UI.forEach(callback => callback());
   observe_scroll(init_dr_UI);

@@ -1,3 +1,4 @@
+.manually-hidden,
 .not-minMaxAge {
     opacity: 0.1;
     pointer-events: none;

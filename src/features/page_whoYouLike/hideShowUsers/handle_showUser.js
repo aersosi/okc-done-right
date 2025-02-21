@@ -28,7 +28,7 @@ export function handle_showUser(event, logConsole = false, logError = false) {
   const userCard = document.querySelector(`a[href*="${userId}"]`)?.closest(".userrow-bucket-display-card");
   if (userCard) {
     const parentElement = userCard.parentElement;
-    parentElement.classList.remove("opacity-10", "pointer-events-none");
+    parentElement.classList.remove("manually-hidden");
 
     logConsole && console.log(`User card for ID "${userId}" is now visible.`);
   } else {
