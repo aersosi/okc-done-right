@@ -24,7 +24,7 @@ async function getAllFiles(directory, fileExtension) {
 }
 
 // Main function to build files into JS modules
-export async function buildFilesToJS(srcDir, outputDir, fileExtension, minification = false, logError = false) {
+export async function buildFilesToJS(srcDir, outputDir, fileExtension, minification = false, placeholder = false, logError = false) {
   try {
     console.log(`Building files from '${srcDir}' with extension '${fileExtension}'...`);
 
@@ -42,33 +42,37 @@ export async function buildFilesToJS(srcDir, outputDir, fileExtension, minificat
 
     // Process each file
     for (const filePath of allFiles) {
-      const fileContent = await readFile(filePath, "utf-8");
+      let fileContent = await readFile(filePath, "utf-8");
 
-      let cleanContent = fileContent.split("\n");
+      if (placeholder) {
+        fileContent = "...";
+      } else {
+        let cleanContent = fileContent.split("\n");
 
-      if (minification) {
-        cleanContent = cleanContent
-          .map((line) =>
-            line.replace(/\s{2,}/g, "")               // Remove double spaces
-              .replace(/\/\/(?![^"]*["']).*/g, "")    // Remove JS inline comment (// ...)
-              .replace(/\/\*[\s\S]*?\*\//g, "")       // Remove JS/CSS multiline comment (/* ... */)
-              .replace(/\s*{\s*/g, "{")               // Replace " {" with "{"
-              .replace(/\s*:\s*/g, ":")               // Replace ": " with ":"
-              .replace(/\s*!/g, "!")                  // Replace " !" with "!"
-          )
-          .filter((line) =>
-            line.trim() &&
-            !line.trim().startsWith("logConsole &&") &&
-            !line.trim().startsWith("logError &&")
-          );
+        if (minification) {
+          cleanContent = cleanContent
+            .map((line) =>
+              line.replace(/\s{2,}/g, "")               // Remove double spaces
+                .replace(/\/\/(?![^"]*["']).*/g, "")    // Remove JS inline comment (// ...)
+                .replace(/\/\*[\s\S]*?\*\//g, "")       // Remove JS/CSS multiline comment (/* ... */)
+                .replace(/\s*{\s*/g, "{")               // Replace " {" with "{"
+                .replace(/\s*:\s*/g, ":")               // Replace ": " with ":"
+                .replace(/\s*!/g, "!")                  // Replace " !" with "!"
+            )
+            .filter((line) =>
+              line.trim() &&
+              !line.trim().startsWith("logConsole &&") &&
+              !line.trim().startsWith("logError &&")
+            );
+        }
+
+        const lineBreak = minification ? "" : "\n";
+        cleanContent = cleanContent.join(lineBreak);
+        fileContent = cleanContent;
       }
 
-
-      const lineBreak = minification ? "" : "\n";
-      cleanContent = cleanContent.join(lineBreak);
-
       const filename = path.basename(filePath, path.extname(filePath));
-      const jsContent = `export const ${filename.replace("-","_")} = \`${cleanContent}\`;`;
+      const jsContent = `export const ${filename.replace("-", "_")} = \`${fileContent}\`;`;
       const jsFilePath = path.join(outputDir, `${filename}.js`);
 
       await writeFile(jsFilePath, jsContent, "utf-8");
