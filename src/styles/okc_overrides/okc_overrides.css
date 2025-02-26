@@ -9,4 +9,5 @@ main + aside {
 
 .messenger-main-window {
     box-shadow: 0 0 10px var(--primary) !important;
+    transition: width 0.25s ease, height 0.25s ease;
 }
