@@ -64,7 +64,7 @@ export function clickBlockBtn(event, logError = true) {
 
 }
 
-function userLocalStorage(logConsole = false, logError = false) {
+function userLocalStorage(logConsole = true, logError = true) {
 
   const userID = window.location.pathname.replace("/profile/", "");
   if (!userID) {
@@ -85,6 +85,9 @@ function userLocalStorage(logConsole = false, logError = false) {
   }
 
   const userNameAge = `${userName}, ${userAge}`;
+  const userImgStyle = document.querySelector(".profile-thumb-image").style.backgroundImage;
+  const userImgSize = "?cr=4&h=400"
+  const userImgSrc = userImgStyle.match(/http.*?\.(jpe?g)/)[0] + userImgSize;
 
   // Safely parse hidden users from localStorage
   const hiddenUsers = (() => {
@@ -97,7 +100,7 @@ function userLocalStorage(logConsole = false, logError = false) {
   })();
 
   // Add or update the hidden user in localStorage
-  hiddenUsers[userID] = userNameAge;
+  hiddenUsers[userID] = [userNameAge, userImgSrc];
   try {
     localStorage.setItem("dr_hiddenUsers", JSON.stringify(hiddenUsers));
     logConsole && console.log(`User "${userNameAge}" (ID: ${userID}) added to hidden users.`);
