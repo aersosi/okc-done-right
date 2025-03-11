@@ -1,5 +1,6 @@
 import { handle_showUser } from "./handle_showUser.js";
 import { init_element } from "../../../core";
+import { update_btn_unhideAll } from "./update_btn_unhideAll.js";
 
 export function update_hiddenUserList(logError = false) {
 
@@ -17,6 +18,10 @@ export function update_hiddenUserList(logError = false) {
 
   // Populate the hide list
   const hiddenUsers = JSON.parse(localStorage.getItem("dr_hiddenUsers")) || {};
+
+  // show/hide btn_unhideAll
+  update_btn_unhideAll(hiddenUsers);
+
   Object.entries(hiddenUsers).forEach(([userId, [userNameAge, userImgSrc]]) => {
 
     const row = document.createElement("div");

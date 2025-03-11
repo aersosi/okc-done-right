@@ -47,13 +47,14 @@ import { bootstrap_userCard } from "./bootstrapUserCard/bootstrap_userCard.js";
 import { chevron_up } from "../../../dist_feather_icons/chevron-up.js";
 import { chevron_down } from "../../../dist_feather_icons/chevron-down.js";
 import { set_minMaxAge } from "./minMaxAge/set_minMaxAge.js";
+import { handle_unhideAll } from "./hideShowUsers/handle_unhideAll.js";
 
 
 export function init_whoYouLike_UI() {
   // Functions to init on Load
   const init_okc_UI = [
     init_matchHighlightPercent,
-    init_minMaxAge,
+    init_minMaxAge
   ];
   init_okc_UI.forEach(callback => callback());
 
@@ -84,6 +85,11 @@ export function init_whoYouLike_UI() {
       tag: "div",
       className: "dr_UI_body",
       id: "dr_UI_body_hiddenUsers"
+    },
+    {
+      parent: "#dr_UI_section_hiddenUsers",
+      tag: "div",
+      className: "dr_UI_footer"
     }
   ];
   const section_filter = [
@@ -171,6 +177,9 @@ export function init_whoYouLike_UI() {
     init_iconButton(parent, className, id, icon, handler);
   });
 
+  init_button("#dr_UI_section_hiddenUsers .dr_UI_footer", "dr_btn_secondary hidden", "btn_unhideAll", "Unhide All", null, () => {
+    handle_unhideAll();
+  });
 
   const intervals_btn_sectionFilter = {};
   // init first two buttons

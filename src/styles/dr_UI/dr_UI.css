@@ -37,6 +37,13 @@
     transition: max-height 0.25s ease, padding 0.25s ease, margin 0.25s ease;
 }
 
+.dr_UI_footer {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding-block: 0.5rem;
+}
+
 .dr_UI_row {
     position: relative;
     display: flex;

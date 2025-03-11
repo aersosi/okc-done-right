@@ -21,7 +21,7 @@
         localStorage.setItem("dr_isMoreData", responseDataMe.likes.pageInfo.hasMore);
       }
 
-      // 5. save userID and matchPercent to localstore
+      // 5. save userID and matchPercent etc. to localstore
       if (responseDataMe?.likes?.data) {
         let userData = {};
 

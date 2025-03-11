@@ -1,3 +1,5 @@
+import { update_btn_unhideAll } from "./update_btn_unhideAll.js";
+
 export function handle_showUser(event, logConsole = false, logError = false) {
   const userId = event.target.closest(".dr_UI_row")?.dataset.okcUserId;
   if (!userId) {
@@ -14,6 +16,9 @@ export function handle_showUser(event, logConsole = false, logError = false) {
       return {};
     }
   })();
+
+  // show/hide btn_unhideAll
+  update_btn_unhideAll(hiddenUsers);
 
   // Remove userId from hiddenUsers
   if (hiddenUsers[userId]) {
