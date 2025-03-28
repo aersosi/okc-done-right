@@ -10,8 +10,13 @@
   window.fetch = async function(...args) {
     const response = await originalFetch(...args);
     const clonedResponse = response.clone();
-
-    clonedResponse.json().then(responseData => {
+    const responseText = await clonedResponse.text();
+    if (!responseText.trim()) {
+      logError && console.error("Leere Antwort erhalten.");
+    }
+    let responseData;
+    try {
+      responseData = JSON.parse(responseText);
       const responseDataMe = responseData?.data?.me;
 
       // 4. Save hasMore to localStorage
@@ -42,9 +47,9 @@
 
         localStorage.setItem("dr_allUserData", JSON.stringify(updatedData));
       }
-    }).catch((err) => {
+    } catch (err) {
       logError && console.error(err);
-    });
+    }
 
     return response;
   };
