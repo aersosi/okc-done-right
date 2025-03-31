@@ -1,6 +1,6 @@
 import { update_hiddenUserList } from "./update_hiddenUserList.js";
 
-export const set_hiddenUsers = (logConsole = false, logError = false) => {
+export const set_hiddenUsers = (logConsole = true, logError = false) => {
   const hiddenUsers = (() => {
     try {
       return JSON.parse(localStorage.getItem("dr_hiddenUsers")) ?? {};
@@ -16,6 +16,8 @@ export const set_hiddenUsers = (logConsole = false, logError = false) => {
   }
 
   Object.keys(hiddenUsers).forEach(userId => {
+    logConsole && console.log(`User with ID ${userId} hidden`)
+
     const userCard = document.querySelector(`a[href*="${userId}"]`)?.closest(".userrow-bucket-display-card");
 
     if (!userCard) {
@@ -26,7 +28,7 @@ export const set_hiddenUsers = (logConsole = false, logError = false) => {
     if (userCard) {
       const parentElement = userCard.parentElement;
       parentElement.classList.add("manually-hidden");
-
+      logConsole && console.log(`${parentElement} manually hidden`)
       userCard.dataset.userId = userId;
     }
   });

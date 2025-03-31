@@ -21,21 +21,25 @@
     try {
       const response = await originalFetch(...args);
       const clonedResponse = response.clone();
-      const contentType = clonedResponse.headers.get('content-type');
+      const contentType = clonedResponse.headers.get("content-type");
 
       // Nur JSON-Antworten verarbeiten
-      if (!contentType?.includes('application/json')) {
+      if (!contentType?.includes("application/json")) {
         return response;
       }
 
       const jsonData = await clonedResponse.json();
-      let superlikeCount = jsonData?.data?.me?.superlikeTokenCount;
-      const premiums = jsonData?.data?.me?.premiums;
-      const stackMatch = jsonData?.data?.me?.stack?.data;
+      // console.log("jsonData", jsonData);
 
-      // console.log(stackMatch)
+      const responseDataMe = jsonData?.data?.me;
+      // console.log("responseDataMe", responseDataMe);
 
-      if(superlikeCount) {
+      let superlikeCount = responseDataMe?.superlikeTokenCount;
+      let premiums = responseDataMe?.premiums;
+      let stackMatch = responseDataMe?.stack?.data;
+      // console.log("stackMatch", stackMatch);
+
+      if (superlikeCount) {
         superlikeCount = 9999;
       }
 
@@ -51,12 +55,13 @@
       // Overwrite stackMatch
       if (stackMatch && Array.isArray(stackMatch)) {
         stackMatch.forEach(item => {
+          console.log("stackMatch", item);
+
           if (item?.match) {
             item.targetLikesSender = true;
             item.match.targetLikes = true;
             item.match.targetVote = "LIKE";
-            item.match.targetMessageTime = 1733324295680;
-
+            item.match.targetMessageTime = null;
             item.match.senderLikes = true;
             item.match.senderPassed = false;
             item.match.senderVote = null;
@@ -74,7 +79,7 @@
       // Header and Body update
       const newBody = JSON.stringify(jsonData);
       const newHeaders = new Headers(response.headers);
-      newHeaders.set('Content-Length', newBody.length);
+      newHeaders.set("Content-Length", newBody.length);
 
       return new Response(newBody, {
         status: response.status,

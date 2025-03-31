@@ -11,7 +11,7 @@
 
 #dr_UI_body_filter {
     overflow-y: hidden;
-    max-height: 29rem;
+    max-height: fit-content;
 }
 
 label[for="input_notCity"] {
@@ -21,4 +21,15 @@ label[for="input_notCity"] {
 #dr_UI_wrapper_hideMatchHighlightPercent {
     display: flex;
     flex-direction: column;
+}
+
+
+#dr_UI_wrapper_blockUsersMessagedLongAgo {
+    display: flex;
+    gap: 1rem;
+
+    #btn_cancelBlockUsersMessagedLongAgo,
+    #btn_blockUsersMessagedLongAgo {
+        flex-grow: 1;
+    }
 }

@@ -16,6 +16,7 @@ import { inject_logAllData } from "../dist_js/inject_logAllData.js";
 import { inject_downloadAllData } from "../dist_js/inject_downloadAllData.js";
 import { inject_downloadAllData_structureNumber } from "../dist_js/inject_downloadAllData_structureNumber.js";
 import { inject_modifyData } from "../dist_js/inject_modifyData.js";
+import { inject_modifyData_2 } from "../dist_js/inject_modifyData_2.js";
 
 import { censor_okc } from "../dist_styles/censor_okc.js";
 import { okc_overrides } from "../dist_styles/okc_overrides.js";
@@ -40,7 +41,8 @@ import { styles_pageWhoYouLike } from "../dist_styles/styles_pageWhoYouLike.js";
       URL_includes: "okcupid.com",
       run_before_interactive: () => {
         // inject_scriptToHead(inject_modifyData, "inject_modifyData");
-        // inject_scriptToHead(inject_logAllData, "inject_modifyData");
+        inject_scriptToHead(inject_modifyData_2, "inject_modifyData_2");
+        // inject_scriptToHead(inject_logAllData, "inject_logAllData");
         // inject_scriptToHead(inject_downloadAllData_structureNumber, "inject_downloadAllData_structureNumber");
 
         remove_elementsWithID([

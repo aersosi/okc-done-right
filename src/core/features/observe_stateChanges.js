@@ -12,9 +12,9 @@ export function observe_stateChanges({
                                        document_complete = []
                                      }) {
   // Konvertiere Funktionen in Arrays
-  run_before_interactive = typeof run_before_interactive === 'function' ? [run_before_interactive] : run_before_interactive;
-  document_interactive = typeof document_interactive === 'function' ? [document_interactive] : document_interactive;
-  document_complete = typeof document_complete === 'function' ? [document_complete] : document_complete;
+  run_before_interactive = typeof run_before_interactive === "function" ? [run_before_interactive] : run_before_interactive;
+  document_interactive = typeof document_interactive === "function" ? [document_interactive] : document_interactive;
+  document_complete = typeof document_complete === "function" ? [document_complete] : document_complete;
 
   let oldHref = document.location.href;
   const observedElements = new Set();

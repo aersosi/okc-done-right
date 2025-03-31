@@ -14,4 +14,5 @@ export { observe_scroll } from "./features/observe_scroll.js";
 export { observe_stateChanges } from "./features/observe_stateChanges.js";
 export { remove_elementsWithID } from "./features/remove_elementsWithID.js";
 export { toggle_elementClass } from "./features/toggle_elementClass.js";
+export { toggle_classForTime } from "./features/toggle_classForTime.js";
 export { waitFor_element } from "./features/waitFor_element.js";

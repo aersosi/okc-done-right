@@ -1,4 +1,4 @@
-import { init_errorElement } from "../../../core";
+import { init_errorElement, toggle_classForTime } from "../../../core";
 
 export function handle_btn_matchHighlightPercent(inputID, buttonID, logError = false) {
   const input = document.getElementById(inputID);
@@ -7,11 +7,8 @@ export function handle_btn_matchHighlightPercent(inputID, buttonID, logError = f
     return;
   }
 
-  const button = document.getElementById(buttonID);
-  if (!button) {
-    logError && console.error(`Input with ID "${inputID}" not found.`);
-    return;
-  }
+  // toggle button color for 500ms
+  toggle_classForTime(buttonID, "dr_btn_secondary", "dr_btn_primary");
 
   // Throw err if input is empty or the value contains non letter characters
   if (!input.value || /[^0-9]/i.test(input.value)) {
@@ -28,14 +25,6 @@ export function handle_btn_matchHighlightPercent(inputID, buttonID, logError = f
   } else if (input.value > 100) {
     input.value = 100;
   }
-
-
-  button.classList.remove("dr_btn_secondary");
-  button.classList.add("dr_btn_primary");
-  setTimeout(() => {
-    button.classList.remove("dr_btn_primary");
-    button.classList.add("dr_btn_secondary");
-  }, 500);
 
   localStorage.setItem("dr_matchHighlightPercent", JSON.stringify(input.value));
 }

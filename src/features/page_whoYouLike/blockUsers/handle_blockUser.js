@@ -7,14 +7,20 @@ export function handle_blockUser(event, logConsole = false, logError = false) {
     logError && console.error("Invalid userCard element");
     return;
   }
-
   const userID = userCard.dataset.dr_user_id;
   const profileLink = `/profile/${userID}`;
 
+  // Hide user first
   handle_hideUser(event);
 
-  const newTab = window.open(profileLink, "_blank");
-  newTab.addEventListener("load", () => injectBlockScript(newTab));
+  // Open the profile link in a new tab and check if it was successful
+  const newTab = window.open(profileLink, profileLink.slice(-7));
+  // Check if the new tab was opened successfully
+  if (newTab) {
+    newTab.addEventListener("load", () => injectBlockScript(newTab));
+  } else {
+    logError && console.error("Failed to open new tab. Please check pop-up settings.");
+  }
 }
 
 // Inject blocking script in new tab

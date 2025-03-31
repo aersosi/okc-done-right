@@ -18,15 +18,16 @@ import { handle_stopScrollUntilLoaded } from "./scrollUntilLoaded/handle_stopScr
 
 // hideOfflineUsers
 import { handle_hideOfflineUsers } from "./hideOfflineUsers/handle_hideOfflineUsers.js";
+import { handle_showOfflineUsers } from "./hideOfflineUsers/handle_showOfflineUsers.js";
 
 // hideShowUsers
 import { set_hiddenUsers } from "./hideShowUsers/set_hiddenUsers.js";
+import { handle_unhideAll } from "./hideShowUsers/handle_unhideAll.js";
 
-// hideAllMessagedUsers
-import { handle_hideMessagedUsers } from "./hideAllMessagedUsers/handle_hideMessagedUsers.js";
-import { handle_showMessagedUsers } from "./hideAllMessagedUsers/handle_showMessagedUsers.js";
-
-import { handle_showOfflineUsers } from "./hideOfflineUsers/handle_showOfflineUsers.js";
+// messagedUsers
+import { handle_hideMessagedUsers } from "./messagedUsers/handle_hideMessagedUsers.js";
+import { handle_showMessagedUsers } from "./messagedUsers/handle_showMessagedUsers.js";
+import { handle_blockUsersMessagedLongAgo } from "./messagedUsers/handle_blockUsersMessagedLongAgo.js";
 
 // matchHighlightPercent
 import { handle_btn_matchHighlightPercent } from "./matchHighlightPercent/handle_btn_matchHighlightPercent.js";
@@ -39,15 +40,14 @@ import { handle_hideMatchHighlightPercent } from "./matchHighlightPercent/handle
 import { init_minMaxAge } from "./minMaxAge/init_minMaxAge.js";
 import { handle_btn_hideMinMaxAge } from "./minMaxAge/handle_btn_hideMinMaxAge.js";
 import { handle_btn_showMinMaxAge } from "./minMaxAge/handle_btn_showMinMaxAge.js";
+import { set_minMaxAge } from "./minMaxAge/set_minMaxAge.js";
 
 // bootstrapUserCard
 import { bootstrap_userCard } from "./bootstrapUserCard/bootstrap_userCard.js";
 
-
 import { chevron_up } from "../../../dist_feather_icons/chevron-up.js";
 import { chevron_down } from "../../../dist_feather_icons/chevron-down.js";
-import { set_minMaxAge } from "./minMaxAge/set_minMaxAge.js";
-import { handle_unhideAll } from "./hideShowUsers/handle_unhideAll.js";
+import { observe_visibilityChange } from "../../core/features/observe_visibilityChange.js";
 
 
 export function init_whoYouLike_UI() {
@@ -183,7 +183,7 @@ export function init_whoYouLike_UI() {
 
   const intervals_btn_sectionFilter = {};
   // init first two buttons
-  const btn_sectionFilter = [
+  const buttons_sectionFilter = [
     {
       className: "dr_btn_primary hidden",
       id: "btn_stopScrollUntilLoaded",
@@ -198,7 +198,6 @@ export function init_whoYouLike_UI() {
       className: "dr_btn_secondary",
       id: "btn_scrollUntilLoaded",
       text: "Scroll until loaded",
-      dataUserID: null,
       handler: () => {
         toggle_elementClass("btn_scrollUntilLoaded", "hidden");
         toggle_elementClass("btn_stopScrollUntilLoaded", "hidden");
@@ -209,7 +208,6 @@ export function init_whoYouLike_UI() {
       className: "dr_btn_secondary",
       id: "btn_hideOfflineUsers",
       text: "Hide Offline Users",
-      dataUserID: null,
       handler: () => {
         toggle_elementClass("btn_hideOfflineUsers", "hidden");
         toggle_elementClass("btn_showOfflineUsers", "hidden");
@@ -220,7 +218,6 @@ export function init_whoYouLike_UI() {
       className: "dr_btn_primary hidden",
       id: "btn_showOfflineUsers",
       text: "Show Offline Users",
-      dataUserID: null,
       handler: () => {
         toggle_elementClass("btn_showOfflineUsers", "hidden");
         toggle_elementClass("btn_hideOfflineUsers", "hidden");
@@ -231,7 +228,6 @@ export function init_whoYouLike_UI() {
       className: "dr_btn_secondary",
       id: "btn_hideMessagedUsers",
       text: "Hide Messaged Users",
-      dataUserID: null,
       handler: () => {
         toggle_elementClass("btn_hideMessagedUsers", "hidden");
         toggle_elementClass("btn_showMessagedUsers", "hidden");
@@ -242,18 +238,50 @@ export function init_whoYouLike_UI() {
       className: "dr_btn_primary hidden",
       id: "btn_showMessagedUsers",
       text: "Show Messaged Users",
-      dataUserID: null,
       handler: () => {
         toggle_elementClass("btn_showMessagedUsers", "hidden");
         toggle_elementClass("btn_hideMessagedUsers", "hidden");
         handle_showMessagedUsers();
       }
+    }, {
+      className: "dr_btn_secondary",
+      id: "btn_initBlockUsersMessagedLongAgo",
+      text: "Block users messaged long ago",
+      handler: () => {
+        toggle_elementClass("btn_initBlockUsersMessagedLongAgo", "hidden");
+        toggle_elementClass("dr_UI_wrapper_blockUsersMessagedLongAgo", "hidden");
+      }
     }
   ];
-  btn_sectionFilter.forEach(({ className, id, text, dataUserID, handler }) => {
-    init_button("#dr_UI_body_filter", className, id, text, dataUserID, handler);
+  buttons_sectionFilter.forEach(({ className, id, text, handler }) => {
+    init_button("#dr_UI_body_filter", className, id, text, null, handler);
   });
 
+  // wrapper block all users messaged long ago
+  init_element("#dr_UI_body_filter", "div", "hidden", "dr_UI_wrapper_blockUsersMessagedLongAgo");
+  const buttons_blockUsersMessagedLongAgo = [
+    {
+      className: "dr_btn_primary",
+      id: "btn_cancelBlockUsersMessagedLongAgo",
+      text: "Cancel",
+      handler: () => {
+        toggle_elementClass("dr_UI_wrapper_blockUsersMessagedLongAgo", "hidden");
+        toggle_elementClass("btn_initBlockUsersMessagedLongAgo", "hidden");
+      }
+    }, {
+      className: "dr_btn_secondary",
+      id: "btn_blockUsersMessagedLongAgo",
+      text: "Block",
+      handler: () => {
+        toggle_elementClass("dr_UI_wrapper_blockUsersMessagedLongAgo", "hidden");
+        toggle_elementClass("btn_initBlockUsersMessagedLongAgo", "hidden");
+        handle_blockUsersMessagedLongAgo("btn_initBlockUsersMessagedLongAgo");
+      }
+    }
+  ];
+  buttons_blockUsersMessagedLongAgo.forEach(({ className, id, text, handler }) => {
+    init_button("#dr_UI_wrapper_blockUsersMessagedLongAgo", className, id, text, null, handler);
+  });
 
   // init dr_UI_wrapper_minMaxAge
   init_element("#dr_UI_body_filter", "div", "dr_UI_col", "dr_UI_wrapper_minMaxAge", null);
@@ -335,8 +363,11 @@ export function init_whoYouLike_UI() {
     set_minMaxAge,
     set_hiddenUsers
   ];
+  // // run on load
   init_dr_UI.forEach(callback => callback());
+  // run on scroll
   observe_scroll(init_dr_UI);
-
+  // run on visibility change
+  observe_visibilityChange(init_dr_UI, null, true, true);
 }
 

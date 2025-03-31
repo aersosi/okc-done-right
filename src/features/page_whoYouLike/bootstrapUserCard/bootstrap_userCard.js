@@ -37,7 +37,7 @@ export function bootstrap_userCard(logError = false) {
 
     if (!userCards[index].querySelector(".dr_OKC_firstMessage")) {
       const elmFirstMessage = init_firstMessage("dr_OKC_firstMessage", firstMessage);
-      if (elmFirstMessage !== null) userCards[index].appendChild(elmFirstMessage);
+      elmFirstMessage && userCards[index].appendChild(elmFirstMessage);
     }
 
     if (!userCards[index].querySelector(".dr_OKC_userNewTabLink")) {

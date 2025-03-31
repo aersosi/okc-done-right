@@ -137,6 +137,9 @@
     background-position: 50% 50%;
     background-size: 1.25rem;
 }
+.dr_OKC_firstMessage.twoWeeksAgo{
+    background-color: black;
+}
 
 .dr_errorElement {
     display: flex;
